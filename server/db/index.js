@@ -13,14 +13,14 @@ var db = mongoose.connect(DATABASE_URI).connection;
 // anywhere the User model needs to be used.
 require('./models');
 
-var startDbPromise = new Promise(function (resolve, reject) {
-    db.on('open', resolve);
-    db.on('error', reject);
+var startDbPromise = new Promise(function(resolve, reject) {
+	db.on('open', resolve);
+	db.on('error', reject);
 });
 
 console.log(chalk.yellow('Opening connection to MongoDB . . .'));
-startDbPromise.then(function () {
-    console.log(chalk.green('MongoDB connection opened!'));
+startDbPromise.then(function() {
+	console.log(chalk.green('MongoDB connection opened!'));
 });
 
 module.exports = startDbPromise;
