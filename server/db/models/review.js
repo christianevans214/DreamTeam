@@ -17,12 +17,7 @@ var schema = new mongoose.Schema({
 	}]
 })
 
-schema.method('updateReview', function() {
-	var sumReview = this.reviews.reduce(function(cur, nextReview) {
-		return cur + nextReview.userRating;
-	})
-	return sumReview / this.reviews.length;
-})
+
 
 schema.pre('save', function(next) {
 

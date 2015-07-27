@@ -4,3 +4,4 @@
 require('./user');
 require('./album');
 require('./review');
+require("./transaction");

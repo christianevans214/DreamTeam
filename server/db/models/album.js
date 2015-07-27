@@ -27,7 +27,8 @@ var schema = new mongoose.Schema({
 	genre: {
 		type: [String],
 		required: true
-	}
+	},
+	price: Number
 })
 
 
