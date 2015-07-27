@@ -7,6 +7,10 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
+    lastName: {
+        type: String,
+        required: true
+    },
     photo: String,
     email: {
         type: String,
@@ -17,8 +21,7 @@ var schema = new mongoose.Schema({
         type: String
     },
     salt: {
-        type: String,
-        default: generateSalt
+        type: String
     },
     twitter: {
         id: String,
