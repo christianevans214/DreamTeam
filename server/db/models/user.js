@@ -11,14 +11,17 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    photo: String,
+    photo: {type: String,
+            default: '../app/views/images/defaultPhoto.png' 
+    },
     email: {
         type: String,
         required: true,
         unique: true
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
     salt: {
         type: String
