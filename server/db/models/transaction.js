@@ -26,20 +26,4 @@ var schema = new mongoose.Schema({
 })
 
 
-schema.pre('save', function(next) {
-
-	if (this.isModified('review')) {
-		this.rating = this.updateReview();
-	}
-
-	next();
-
-});
-
-schema.method('updateReview', function() {
-	var sumReview = this.reviews.reduce(function(cur, nextReview) {
-		return cur + nextReview.userRating;
-	})
-	return sumReview / this.reviews.length;
-})
-mongoose.model
+mongoose.model('Transaction', schema);

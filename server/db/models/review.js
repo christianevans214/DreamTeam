@@ -21,7 +21,7 @@ var schema = new mongoose.Schema({
 
 schema.pre('save', function(next) {
 
-	if (this.isModified('review')) {
+	if (this.isModified('reviews')) {
 		this.rating = this.updateReview();
 	}
 
@@ -29,4 +29,10 @@ schema.pre('save', function(next) {
 
 });
 
+schema.method('updateReview', function() {
+	var sumReview = this.reviews.reduce(function(cur, nextReview) {
+		return cur + nextReview.userRating;
+	})
+	return Math.round((sumReview / this.reviews.length) * 100) / 100;
+})
 mongoose.model('Review', schema);
