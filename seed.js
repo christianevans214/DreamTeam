@@ -26,13 +26,43 @@ var User = Promise.promisifyAll(mongoose.model('User'));
 var seedUsers = function () {
 
     var users = [
-        {
+        {   
+            firstName: 'test',
+            lastName: 'test',
             email: 'testing@fsa.com',
-            password: 'password'
+            password: 'password',
         },
-        {
+        {   
+            firstName: 'Barack',
+            lastName: 'Obama',
+            photo: 'http://www.quickmeme.com/img/ba/ba8d26d434d56f5e98c04e5223ca3e17659005a34297440a31a0e12469e1a568.jpg',
             email: 'obama@gmail.com',
-            password: 'potus'
+            password: 'potus',
+            isAdmin: true,
+        },
+         {   
+            firstName: 'Cooper',
+            lastName: 'Zelenetz',
+            photo: 'http://ak-hdl.buzzfed.com/static/2014-05/enhanced/webdr08/7/11/enhanced-buzz-9911-1399476833-28.jpg',
+            email: 'Cooper@gmail.com',
+            password: 'cooper',
+            isAdmin: true,
+        },
+         {   
+            firstName: 'Led',
+            lastName: 'Zeppelin',
+            photo: 'http://cps-static.rovicorp.com/3/JPG_400/MI0003/680/MI0003680454.jpg?partner=allrovi.com',
+            email: 'Zep@gmail.com',
+            password: 'Led',
+            isAdmin: true,
+        },
+        {   
+            firstName: 'Taylor',
+            lastName: 'Swift',
+            photo: 'https://usatlife.files.wordpress.com/2014/05/1taylorswift-mug.jpg?w=1000&h=1405',
+            email: 'Taylor@gmail.com',
+            password: 'Swift',
+            isAdmin: true,
         }
     ];
     return User.createAsync(users);
