@@ -21,7 +21,8 @@ var schema = new mongoose.Schema({
 		type: Date,
 		default: Date.now
 	},
-	trackingNumber: String
+	trackingNumber: String,
+	status: String
 })
 
 
