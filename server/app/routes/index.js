@@ -4,6 +4,7 @@ module.exports = router;
 
 router.use('/members', require('./members'));
 router.use('/account', require('./account'));
+router.use('/albums', require('./albums'));
 
 // Make sure this is after all of
 // the registered routes!
