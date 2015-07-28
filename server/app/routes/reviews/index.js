@@ -9,7 +9,10 @@ module.exports = router;
 router.param('id', function(req, res, next, id){
 	Review.findById(id).exec()
 	.then(function(review){
-		if(review) req.review = review;
+		if (review) { 
+			req.review = review;
+			next();
+		}
 		else{
 			throw new Error('No review found');
 		}
@@ -33,7 +36,7 @@ router.get('/:id', function(req, res){
 
 //CREATE Review
 router.post('/', function (req, res, next){
-	Review.create({}).exec()
+	Review.create(req.body)
 	.then(function (review){
 		res.json(review);
 	})
