@@ -4,21 +4,6 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 module.exports = router;
 
-// this works, but it might not be necessary
-// router.param('id', function(req, res, next, id){
-// 	User.findById(id).exec()
-// 	.then(function(user){
-// 		if(user) {
-// 			console.log("user", user)
-// 			req.user = user;
-// 			next();
-// 		}/*else{
-// 			//throw error
-// 		}*/
-// 	})
-// 	.then(null, next);
-// })
-
 //GET All users
 router.get('/', function(req, res, next){
 	User.find({}).exec()
@@ -35,5 +20,38 @@ router.get('/:id', function (req, res, next) {
 	.then(function(user){
 		res.json(user);
 	})
+	.then(null, function(){
+		res.send(404)
+	});
+})
+
+//Post one user
+router.post('/', function(req,res,next){
+	User.create(req.body)
+	.then(function(user){
+		res.status(201).send(user);
+	})
 	.then(null, next);
+})
+
+//Update a user
+router.put('/:id', function(req,res,next){
+	User.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, {new: true}, function(err,user){
+		if(err){
+			next(err);
+		}else{
+			res.json(user);
+		}
+	})
+})
+
+//Delete a user
+router.delete('/:id', function(req,res,next){
+	User.findByIdAndRemove(req.params.id, function(err,user){
+		if(err){
+			next(err);
+		}else{
+			res.status(204).end();
+		}
+	})
 })
