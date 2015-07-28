@@ -16,7 +16,7 @@ router.get('/', function(req,res,next){
 //Get one transaction 
 router.get('/:id', function(req, res, next) {
   Transaction.findById(req.params.id).exec()
-  .then(function(transaction){
+  .then(function(Transaction){
     res.json(Transaction);
   })
   .then(null, next);
@@ -45,7 +45,7 @@ router.put('/:id', function(req,res,next){
 
 //Delete a Transaction
 router.delete('/:id', function(req,res,next){
-  Transaction.findByIdAndRemove(req.params.id, function(err,Transaction){
+  Transaction.findByIdAndRemove(req.params.id, function(err){
     if(err){
       next(err);
     }else{
