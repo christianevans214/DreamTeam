@@ -27,14 +27,14 @@ router.get('/:id', function(req, res, next) {
 router.post('/', function(req,res,next){
   Transaction.create(req.body)
   .then(function(Transaction){
-    res.json(Transaction);
+    res.status(201).send(Transaction);
   })
   .then(null, next);
 })
 
 //Update a Transaction
 router.put('/:id', function(req,res,next){
-  Transaction.findOneAndUpdate({_id: req.params.id}, req.body, function(err,Transaction){
+  Transaction.findOneAndUpdate({_id: req.params.id},{$set: req.body}, {new: true}, function(err,Transaction){
     if(err){
       next(err);
     }else{

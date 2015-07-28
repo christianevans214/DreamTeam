@@ -1,10 +1,10 @@
 'use strict';
 var mongoose = require('mongoose');
 
-
 var schema = new mongoose.Schema({
 	user: {
-		type: Object,
+		type: mongoose.Schema.Types.ObjectId, //get logged in user or not
+		ref: 'User',
 		default: undefined
 	},
 	email: {
@@ -24,6 +24,7 @@ var schema = new mongoose.Schema({
 	trackingNumber: String,
 	status: String
 })
+
 
 
 mongoose.model('Transaction', schema);

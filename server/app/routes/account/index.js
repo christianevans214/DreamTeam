@@ -20,21 +20,23 @@ router.get('/:id', function (req, res, next) {
 	.then(function(user){
 		res.json(user);
 	})
-	.then(null, next);
+	.then(null, function(){
+		res.send(404)
+	});
 })
 
 //Post one user
 router.post('/', function(req,res,next){
 	User.create(req.body)
 	.then(function(user){
-		res.json(user);
+		res.status(201).send(user);
 	})
 	.then(null, next);
 })
 
 //Update a user
 router.put('/:id', function(req,res,next){
-	User.findOneAndUpdate({_id: req.params.id}, req.body, function(err,user){
+	User.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, {new: true}, function(err,user){
 		if(err){
 			next(err);
 		}else{
