@@ -8,8 +8,10 @@ module.exports = router;
 router.param('id', function(req, res, next, id){
 	Album.findById(id).exec()
 	.then(function(album){
-		if(album) req.album = album;
-		else{
+		if(album) {
+			req.album = album;
+			next();
+		} else{
 			throw new Error('No album found');
 		}
 	})
