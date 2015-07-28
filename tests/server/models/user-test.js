@@ -10,41 +10,41 @@ require('../../../server/db/models');
 
 var User = mongoose.model('User');
 
-describe('User model', function () {
+describe('User model', function() {
 
-    beforeEach('Establish DB connection', function (done) {
+    beforeEach('Establish DB connection', function(done) {
         if (mongoose.connection.db) return done();
         mongoose.connect(dbURI, done);
     });
 
-    afterEach('Clear test database', function (done) {
+    afterEach('Clear test database', function(done) {
         clearDB(done);
     });
 
-    it('should exist', function () {
+    it('should exist', function() {
         expect(User).to.be.a('function');
     });
 
-    describe('password encryption', function () {
+    describe('password encryption', function() {
 
-        describe('generateSalt method', function () {
+        describe('generateSalt method', function() {
 
-            it('should exist', function () {
+            it('should exist', function() {
                 expect(User.generateSalt).to.be.a('function');
             });
 
-            it('should return a random string basically', function () {
+            it('should return a random string basically', function() {
                 expect(User.generateSalt()).to.be.a('string');
             });
 
         });
 
-        describe('encryptPassword', function () {
+        describe('encryptPassword', function() {
 
             var cryptoStub;
             var hashUpdateSpy;
             var hashDigestStub;
-            beforeEach(function () {
+            beforeEach(function() {
 
                 cryptoStub = sinon.stub(require('crypto'), 'createHash');
 
@@ -58,20 +58,20 @@ describe('User model', function () {
 
             });
 
-            afterEach(function () {
+            afterEach(function() {
                 cryptoStub.restore();
             });
 
-            it('should exist', function () {
+            it('should exist', function() {
                 expect(User.encryptPassword).to.be.a('function');
             });
 
-            it('should call crypto.createHash with "sha1"', function () {
+            it('should call crypto.createHash with "sha1"', function() {
                 User.encryptPassword('asldkjf', 'asd08uf2j');
                 expect(cryptoStub.calledWith('sha1')).to.be.ok;
             });
 
-            it('should call hash.update with the first and second argument', function () {
+            it('should call hash.update with the first and second argument', function() {
 
                 var pass = 'testing';
                 var salt = '1093jf10j23ej===12j';
@@ -83,7 +83,7 @@ describe('User model', function () {
 
             });
 
-            it('should call hash.digest with hex and return the result', function () {
+            it('should call hash.digest with hex and return the result', function() {
 
                 var x = {};
                 hashDigestStub.returns(x);
@@ -97,47 +97,48 @@ describe('User model', function () {
 
         });
 
-        describe('on creation', function () {
+        describe('on creation', function() {
 
             var encryptSpy;
             var saltSpy;
 
-            var createUser = function () {
-                return User.create({ 
+            var createUser = function() {
+                return User.create({
                     email: 'obama@gmail.com',
                     firstName: "president",
                     lastName: "obama",
-                    password: 'potus' });
+                    password: 'potus'
+                });
             };
 
-            beforeEach(function () {
+            beforeEach(function() {
                 encryptSpy = sinon.spy(User, 'encryptPassword');
                 saltSpy = sinon.spy(User, 'generateSalt');
             });
 
-            afterEach(function () {
+            afterEach(function() {
                 encryptSpy.restore();
                 saltSpy.restore();
             });
 
-            it('should call User.encryptPassword with the given password and generated salt', function (done) {
-                createUser().then(function () {
+            it('should call User.encryptPassword with the given password and generated salt', function(done) {
+                createUser().then(function() {
                     var generatedSalt = saltSpy.getCall(0).returnValue;
                     expect(encryptSpy.calledWith('potus', generatedSalt)).to.be.ok;
                     done();
                 });
             });
 
-            it('should set user.salt to the generated salt', function (done) {
-               createUser().then(function (user) {
-                   var generatedSalt = saltSpy.getCall(0).returnValue;
-                   expect(user.salt).to.be.equal(generatedSalt);
-                   done();
-               });
+            it('should set user.salt to the generated salt', function(done) {
+                createUser().then(function(user) {
+                    var generatedSalt = saltSpy.getCall(0).returnValue;
+                    expect(user.salt).to.be.equal(generatedSalt);
+                    done();
+                });
             });
 
-            it('should set user.password to the encrypted password', function (done) {
-                createUser().then(function (user) {
+            it('should set user.password to the encrypted password', function(done) {
+                createUser().then(function(user) {
                     var createdPassword = encryptSpy.getCall(0).returnValue;
                     expect(user.password).to.be.equal(createdPassword);
                     done();
