@@ -44,6 +44,8 @@ describe('Members Route', function () {
 
 		var userInfo = {
 			email: 'joe@gmail.com',
+			firstName: 'joe',
+			lastName: 'alvez',
 			password: 'shoopdawoop'
 		};
 

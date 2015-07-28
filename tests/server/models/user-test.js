@@ -103,7 +103,11 @@ describe('User model', function () {
             var saltSpy;
 
             var createUser = function () {
-                return User.create({ email: 'obama@gmail.com', password: 'potus' });
+                return User.create({ 
+                    email: 'obama@gmail.com',
+                    firstName: "president",
+                    lastName: "obama",
+                    password: 'potus' });
             };
 
             beforeEach(function () {

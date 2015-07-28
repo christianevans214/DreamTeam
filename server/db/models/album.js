@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
 	artistName: {
-		type: String
+		type: String,
+		required: true
 	},
 	album: {
 		type: String,
@@ -29,6 +30,8 @@ var schema = new mongoose.Schema({
 		required: true
 	},
 	price: Number
+
+	// pending a differentiator for album size 
 })
 
 

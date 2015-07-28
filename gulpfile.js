@@ -72,6 +72,26 @@ gulp.task('testServerJSWithCoverage', function (done) {
         });
 });
 
+
+gulp.task('testModels', function (done) {
+    gulp.src('./server/models/*.js')
+        .pipe(istanbul({
+            includeUntested: true
+        }))
+        .pipe(istanbul.hookRequire())
+        .on('finish', function () {
+            gulp.src('./tests/server/models/*.js', {read: false})
+                .pipe(mocha({reporter: 'spec'}))
+                .pipe(istanbul.writeReports({
+                    dir: './coverage/server/',
+                    reporters: ['html', 'text']
+                }))
+                .on('end', done);
+        });
+});
+
+
+
 gulp.task('testBrowserJS', function (done) {
     karma.start({
         configFile: __dirname + '/tests/browser/karma.conf.js',
