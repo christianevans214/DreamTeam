@@ -55,12 +55,6 @@ gulp.task('testServerJS', function () {
 	}).pipe(mocha({ reporter: 'spec' }));
 });
 
-/*gulp.task('testRouterJS', function () {
-    return gulp.src('./tests/server/routes/members-only-test.js', {
-        read: false
-    }).pipe(mocha({ reporter: 'spec' }));
-});*/
-
 gulp.task('testServerJSWithCoverage', function (done) {
     gulp.src('./server/**/*.js')
         .pipe(istanbul({
