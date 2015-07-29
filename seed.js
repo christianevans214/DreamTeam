@@ -72,43 +72,59 @@ var seedAlbums = function() {
     var albums = [{
         artistName: "Michael Jackson",
         album: "Thriller",
-        genre: "R&B",
-        price: "27.16"
+        genre: ["R&B"],
+        price: "27.16",
+        imgUrl: "http://ecx.images-amazon.com/images/I/61qTE9kINgL.jpg",
+        year: 1982
     }, {
         artistName: "Leon Bridges",
         album: "Coming Home",
-        genre: "Soul",
+        genre: ["Soul"],
         price: "20.00"
+        imgUrl: "http://static1.squarespace.com/static/54fdea6de4b018047dada8af/t/5552050ee4b03b3ccda57c18/1431438608081/",
+        year: 2015
     }, {
         artistName: "The Beatles",
         album: "Abbey Road",
-        genre: "Pop",
-        price: "37.00"
+        genre: ["Pop"],
+        price: "37.00",
+        imgUrl: "http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/AbbeyRoad.jpg?itok=BgfH98zh",
+        year: 1969
     }, {
         artistName: "Pink Floyd",
         album: "Dark Side of the Moon",
-        genre: "Rock",
-        price: "24.43"
+        genre: ["Rock"],
+        price: "24.43",
+        imgUrl: "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
+        year: 1973
     }, {
         artistName: "Beyoncé",
         album: "Beyoncé",
-        genre: "R&B",
-        price: "25.50"
+        genre: ["R&B"],
+        price: "25.50",
+        imgUrl: "https://upload.wikimedia.org/wikipedia/commons/2/21/Beyonc%C3%A9_-_Beyonc%C3%A9.svg",
+        year: 2014
     }, {
         artistName: "Led Zeppelin",
         album: "IV",
-        genre: "Clasic Rock",
-        price: "23.84"
+        genre: ["Clasic Rock"],
+        price: "23.84",
+        imgUrl: "http://ecx.images-amazon.com/images/I/61qTE9kINgL.jpg",
+        year: 1971
     }, {
         artistName: "Kanye West",
         album: "My Beautiful Dark Twisted Fantasy",
-        genre: "Pop",
-        price: "25.85"
+        genre: ["Pop"],
+        price: "25.85",
+        imgUrl: "https://upload.wikimedia.org/wikipedia/en/b/be/MBDTF_ALT.jpg",
+        year: 2010
     }, {
         artistName: "Joni Mitchel",
         album: "Feeling Blue",
-        genre: "Pop",
-        price: "32.00"
+        genre: ["Folk Rock"],
+        price: "32.00",
+        imgUrl: "http://blog.thecurrent.org/files/2015/04/Blue-Joni-Mitchell.jpg",
+        year: 1971
     }];
 
     return Album.createAsync(albums);

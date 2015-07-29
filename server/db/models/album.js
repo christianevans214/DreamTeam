@@ -29,8 +29,8 @@ var schema = new mongoose.Schema({
 		type: [String],
 		required: true
 	},
-	price: Number
-
+	price: Number,
+	year: Number
 	// pending a differentiator for album size 
 })
 
