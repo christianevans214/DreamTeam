@@ -1,16 +1,16 @@
-app.factory('UserFactory', function ($http, $rootScope) {
+app.factory('UserFactory', function($http){
 	return {
-		updateUser: function(id, data){
-			return $http.put(`/api/account/${id}`, data)
+		getUser: function(id){
+			return $http.get('api/account/' + id)
 			.then(function(res){
 				return res.data;
 			})
-		}/*, 
-		editQuantity: function(id){
-			var matches = $rootScope.user.cart.filter((elem) => {
-				return elem.album._id === id;
+		},
+		updateUser: function(id, data){
+			return $http.put(`api/account/${id}`, data)
+			.then(function(res){
+				return res.data;
 			})
-			return matches.length;
-		}*/
+		}
 	}
 })

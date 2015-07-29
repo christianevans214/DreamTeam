@@ -68,13 +68,13 @@ var seedUsers = function() {
 
 };
 
-var seedAlbums = function(){
+var seedAlbums = function() {
     var albums = [{
         artistName: "Michael Jackson",
         album: "Thriller",
         genre: ["R&B"],
         price: "27.16",
-        imgUrl: "http://ecx.images-amazon.com/images/I/61qTE9kINgL.jpg",
+        imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png",
         year: 1982
     }, {
         artistName: "Leon Bridges",
@@ -90,21 +90,21 @@ var seedAlbums = function(){
         price: "37.00",
         imgUrl: "http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/AbbeyRoad.jpg?itok=BgfH98zh",
         year: 1969
-    },  {
+    }, {
         artistName: "Pink Floyd",
         album: "Dark Side of the Moon",
         genre: ["Rock"],
         price: "24.43",
         imgUrl: "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
         year: 1973
-    },  {
+    }, {
         artistName: "Beyoncé",
         album: "Beyoncé",
         genre: ["R&B"],
         price: "25.50",
         imgUrl: "https://upload.wikimedia.org/wikipedia/commons/2/21/Beyonc%C3%A9_-_Beyonc%C3%A9.svg",
         year: 2014
-    },  {
+    }, {
         artistName: "Led Zeppelin",
         album: "IV",
         genre: ["Clasic Rock"],
