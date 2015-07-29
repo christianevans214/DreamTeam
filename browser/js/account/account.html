@@ -1,10 +1,16 @@
-<div class="container">
+<div class="container col-lg-6">
+	<div>
+		<img src='{{ user.photo }}' style="width: 50%" class="img-thumbnail img-responsive">
+	</div>
 	<ul>
 		<li>{{ user.firstName }}</li>
 		<li>{{ user.lastName }}</li>
-		<li><img src='{{ user.photo }}'></li>
 		<li>{{ user.email }}</li>
 		<li>{{ user.isAdmin }}</li>
-
 	</ul>
+		<button ui-sref="account.editProfile">Edit Profile</button>
+		<button>Shopping History</button>
+</div>
+<div class="container col-lg-3">
+	<ui-view><ui-view>
 </div>
