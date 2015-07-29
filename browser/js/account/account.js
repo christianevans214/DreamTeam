@@ -3,9 +3,9 @@ app.config(function($stateProvider) {
 		url: '/account/:id',
 		controller: 'AccountController',
 		templateUrl: 'js/account/account.html',
-		data: {
-			authenticate: true
-		},
+		// data: {
+		// 	authenticate: true
+		// }, 
 		resolve: {
 			user: function(UserFactory, $stateParams) {
 				return UserFactory.getUser($stateParams.id);
@@ -14,18 +14,11 @@ app.config(function($stateProvider) {
 	})
 })
 
-app.factory('UserFactory', function($http) {
-	return {
-		getUser: function(id) {
-			return $http.get('api/account/' + id)
-				.then(function(res) {
-					return res.data;
-				})
-		}
-	}
-})
-
-app.controller('AccountController', function($scope, UserFactory, user) {
+app.controller('AccountController', function($scope, UserFactory, user, $rootScope) {
 	$scope.user = user;
-	console.log("$scope.user", $scope.user)
-})
+	$rootScope.$on("editedUser", function(event, data) {
+		// console.log("event caught!", data);
+		$scope.user = data;
+		$scope.$digest();
+	})
+}) >>> >>> > dd5ca0f9b706d625f10a386722105bdfd49ef495
