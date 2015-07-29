@@ -1,3 +1,0 @@
-app.Factory('AlbumFactory', function(){
-  
-})
