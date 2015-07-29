@@ -7,7 +7,7 @@ app.factory("AlbumFactory", function($http) {
 				})
 		},
 		getAlbum: function(id) {
-			return $http.get('/api/albums/' + id)
+			return $http.get(`/api/albums/${id}`)
 				.then(function(response) {
 					return response.data;
 				})
