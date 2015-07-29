@@ -14,7 +14,11 @@ app.config(function ($stateProvider){
 	})
 })
 
-app.controller('AccountController', function($scope, UserFactory, user){
+app.controller('AccountController', function($scope, UserFactory, user, $rootScope){
 	$scope.user = user;
-	console.log("$scope.user", $scope.user)
+	$rootScope.$on("editedUser", function(event, data){
+		// console.log("event caught!", data);
+		$scope.user = data;
+		$scope.$digest();
+	} )
 })
