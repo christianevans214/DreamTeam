@@ -55,7 +55,6 @@ var schema = new mongoose.Schema({
         default: false
     },
     purchaseHistory: [{}],
-    //{}
     cart: [{}]
 });
 
