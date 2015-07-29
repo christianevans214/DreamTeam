@@ -50,9 +50,9 @@ router.put('/:id', function(req, res, next) {
 })
 
 //Delete a Transaction
-router.delete('/:id', function(req, res, next) {
-  Transaction.findByIdAndRemove(req.params.id, function(err, transaction) {
-    if (err) {
+router.delete('/:id', function(req,res,next){
+  Transaction.findByIdAndRemove(req.params.id, function(err){
+    if(err){
       next(err);
     } else {
       res.status(204).end();

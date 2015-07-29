@@ -14,7 +14,9 @@ router.get('/', function(req, res, next) {
 })
 
 //GET One user
-router.get('/:id', function(req, res, next) {
+
+router.get('/:id', function (req, res) {
+
 	// res.json(req.user);
 	User.findById(req.params.id).exec()
 		.then(function(user) {
@@ -52,9 +54,9 @@ router.put('/:id', function(req, res, next) {
 })
 
 //Delete a user
-router.delete('/:id', function(req, res, next) {
-	User.findByIdAndRemove(req.params.id, function(err, user) {
-		if (err) {
+router.delete('/:id', function(req,res,next){
+	User.findByIdAndRemove(req.params.id, function(err){
+		if(err){
 			next(err);
 		} else {
 			res.status(204).end();
