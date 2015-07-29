@@ -68,14 +68,13 @@ var seedUsers = function() {
 
 };
 
-<< << << < HEAD
 var seedAlbums = function() {
     var albums = [{
         artistName: "Michael Jackson",
         album: "Thriller",
         genre: ["R&B"],
         price: "27.16",
-        imgUrl: "http://ecx.images-amazon.com/images/I/61qTE9kINgL.jpg",
+        imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png",
         year: 1982
     }, {
         artistName: "Leon Bridges",

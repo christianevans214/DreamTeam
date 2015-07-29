@@ -4,7 +4,7 @@ app.config(function($stateProvider){
     controller: 'AlbumController',
     templateUrl: 'js/album/album.html',
     resolve: {
-      album: function(AlbumFactory, $stateParams){
+      album: function(AlbumFactory, $stateParams) {
         return AlbumFactory.getAlbum($stateParams.albumId);
       }
     }

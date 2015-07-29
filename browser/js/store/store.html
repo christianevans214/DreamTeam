@@ -4,6 +4,7 @@
 	</div>
 	<div class = "albums-showcase col-md-9 col-lg-9 col-sm-9">
 		<div class = "album col-md-3 col-lg-3 col-sm-3" ng-repeat= "album in albums | filter:filterObject">
+		<a ui-sref = "albumDetail({albumId: '{{album._id}}'})"><div class = "clickable">
 			<img src = "{{album.imgUrl}}" style = "width: 100%"/>
 			<div class = "album-info">
 			<h4> {{album.album}} </h4>
@@ -11,9 +12,10 @@
 			<p> {{album.genre.join(",")}}</p>
 			<p> ${{album.price}}</p>
 			<p> {{album.tags.join(",")}}</p>
-			<p> {{album.year}}
+			<p> {{album.year}} </p>
 			</div>
-
+		</div>
+		</a>
 		</div>
 	</div>
 	<div class = "search-container col-md-4 col-lg-4 col-sm-4">
@@ -27,3 +29,4 @@
 	</div>
 
 </div>
+<!-- {albumId: {{album._id}}} -->
