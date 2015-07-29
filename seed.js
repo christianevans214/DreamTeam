@@ -68,7 +68,7 @@ var seedUsers = function() {
 
 };
 
-var seedAlbums = function(){
+var seedAlbums = function() {
     var albums = [{
         artistName: "Michael Jackson",
         album: "Thriller",
@@ -84,17 +84,17 @@ var seedAlbums = function(){
         album: "Abbey Road",
         genre: "Pop",
         price: "37.00"
-    },  {
+    }, {
         artistName: "Pink Floyd",
         album: "Dark Side of the Moon",
         genre: "Rock",
         price: "24.43"
-    },  {
+    }, {
         artistName: "Beyoncé",
         album: "Beyoncé",
         genre: "R&B",
         price: "25.50"
-    },  {
+    }, {
         artistName: "Led Zeppelin",
         album: "IV",
         genre: "Clasic Rock",

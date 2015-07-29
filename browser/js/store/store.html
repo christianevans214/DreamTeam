@@ -2,14 +2,25 @@
 	<div class = "carousel featured-albums" "style = width: 100%">
 		<img src = "http://musicmedia.ign.com/music/image/article/117/1171117/25-most-iconic-album-covers-of-all-time-20110527043622444-000.jpg" />
 	</div>
-	<div class = "albums-showcase">
+	<div class = "albums-showcase col-md-9 col-lg-9 col-sm-9">
+		<div class = "album col-md-3 col-lg-3 col-sm-3" ng-repeat= "album in albums | filter:filterObject">
+			<img src = "{{album.imgUrl}}" style = "width: 100%"/>
+			<div class = "album-info">
+			<h4> {{album.album}} </h4>
+			<p> {{album.artistName}}</p>
+			<p> {{album.genre.join(",")}}</p>
+			<p> ${{album.price}}</p>
+			<p> {{album.tags.join(",")}}</p>
+			</div>
+
+		</div>
 	</div>
-	<div class = "search-container">
+	<div class = "search-container col-md-4 col-lg-4 col-sm-4">
 		<h1>S E A R C H</h1>
 		<div class = "search-options">
-		<ul class = "search-criteria">
+	<!-- 	<ul class = "search-criteria">
 			<li ng-repeat= "criterion in searchCriteria" ui-sref = "{{criterion.state}}">{{criterion.title}}</li>
-		</ul>
+		</ul> -->
 		<ui-view></ui-view>
 		</div>
 	</div>
