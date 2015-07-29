@@ -1,5 +1,5 @@
 *{
-	border: 1px solid black;
+	// border: 1px solid black;
 }
 
 .search-container{
@@ -21,3 +21,11 @@
 	}
 }
 
+input {
+    float:right;
+    clear:both;
+}
+
+.album-info {
+	color: black;
+}
