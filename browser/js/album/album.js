@@ -11,19 +11,20 @@ app.config(function($stateProvider){
   })
 })
 
-app.factory('AlbumFactory', function($http){
-  return{
-    getAlbum: function(id){
-      return $http.get('/api/albums/' + id)
-      .then(function(res){
-        return res.data;
-      })
-    }
-  }
-})
-
-app.controller('AlbumController', function($scope, album){
-  console.log('here');
+app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory){
   $scope.album = album;
-  $scope.hello = "hello";
+  AuthService.getLoggedInUser()
+  .then(function(user){
+    if(!user) $rootScope.guestUser = [];
+    else $rootScope.user = user;
+  })
+
+  $scope.addToCart = function(currentAlbum){
+    if($rootScope.user){
+      $rootScope.user.cart.push(currentAlbum);
+      UserFactory.updateUser($rootScope.user._id, $rootScope.user);
+    } else $rootScope.guestUser.push(currentAlbum);
+
+    $state.go('cart');
+  }
 })

@@ -80,7 +80,7 @@ var seedAlbums = function(){
         artistName: "Leon Bridges",
         album: "Coming Home",
         genre: ["Soul"],
-        price: "20.00"
+        price: "20.00",
         imgUrl: "http://static1.squarespace.com/static/54fdea6de4b018047dada8af/t/5552050ee4b03b3ccda57c18/1431438608081/",
         year: 2015
     }, {
@@ -125,7 +125,6 @@ var seedAlbums = function(){
         price: "32.00",
         imgUrl: "http://blog.thecurrent.org/files/2015/04/Blue-Joni-Mitchell.jpg",
         year: 1971
->>>>>>> master
     }];
 
     return Album.createAsync(albums);
