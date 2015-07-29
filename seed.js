@@ -68,6 +68,7 @@ var seedUsers = function() {
 
 };
 
+<< << << < HEAD
 var seedAlbums = function() {
     var albums = [{
         artistName: "Michael Jackson",
