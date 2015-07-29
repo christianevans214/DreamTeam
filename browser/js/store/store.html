@@ -1,0 +1,17 @@
+<div class = "store">
+	<div class = "carousel featured-albums" "style = width: 100%">
+		<img src = "http://musicmedia.ign.com/music/image/article/117/1171117/25-most-iconic-album-covers-of-all-time-20110527043622444-000.jpg" />
+	</div>
+	<div class = "albums-showcase">
+	</div>
+	<div class = "search-container">
+		<h1>S E A R C H</h1>
+		<div class = "search-options">
+		<ul class = "search-criteria">
+			<li ng-repeat= "criterion in searchCriteria" ui-sref = "{{criterion.state}}">{{criterion.title}}</li>
+		</ul>
+		<ui-view></ui-view>
+		</div>
+	</div>
+
+</div>
