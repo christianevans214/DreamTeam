@@ -125,6 +125,7 @@ var seedAlbums = function(){
         price: "32.00",
         imgUrl: "http://blog.thecurrent.org/files/2015/04/Blue-Joni-Mitchell.jpg",
         year: 1971
+>>>>>>> master
     }];
 
     return Album.createAsync(albums);
