@@ -22,6 +22,8 @@ var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = Promise.promisifyAll(mongoose.model('User'));
+var Album = Promise.promisifyAll(mongoose.model('Album'));
+
 
 var seedUsers = function() {
 
@@ -59,15 +61,66 @@ var seedUsers = function() {
         password: 'Swift',
         isAdmin: true,
     }];
+
+
+
     return User.createAsync(users);
 
 };
+
+var seedAlbums = function(){
+    var albums = [{
+        artistName: "Michael Jackson",
+        album: "Thriller",
+        genre: "R&B",
+        price: "27.16"
+    }, {
+        artistName: "Leon Bridges",
+        album: "Coming Home",
+        genre: "Soul",
+        price: "20.00"
+    }, {
+        artistName: "The Beatles",
+        album: "Abbey Road",
+        genre: "Pop",
+        price: "37.00"
+    },  {
+        artistName: "Pink Floyd",
+        album: "Dark Side of the Moon",
+        genre: "Rock",
+        price: "24.43"
+    },  {
+        artistName: "Beyoncé",
+        album: "Beyoncé",
+        genre: "R&B",
+        price: "25.50"
+    },  {
+        artistName: "Led Zeppelin",
+        album: "IV",
+        genre: "Clasic Rock",
+        price: "23.84"
+    }, {
+        artistName: "Kanye West",
+        album: "My Beautiful Dark Twisted Fantasy",
+        genre: "Pop",
+        price: "25.85"
+    }, {
+        artistName: "Joni Mitchel",
+        album: "Feeling Blue",
+        genre: "Pop",
+        price: "32.00"
+    }];
+
+    return Album.createAsync(albums);
+}
+
 
 connectToDb.then(function() {
     mongoose.connection.db.dropDatabase(function() {
         User.findAsync({}).then(function(users) {
             if (users.length === 0) {
-                return seedUsers();
+                // return seedUsers();
+                return Promise.all([seedUsers(), seedAlbums()])
             } else {
                 console.log(chalk.magenta('Seems to already be user data, exiting!'));
                 process.kill(0);
