@@ -29,6 +29,6 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
       $scope.currentId = $rootScope.guestUser._id;
     }
 
-    $state.go('cart', {id: currentId});
+    $state.go('cart', {id: $scope.currentId});
   }
 })
