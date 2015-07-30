@@ -50,7 +50,13 @@ var schema = new mongoose.Schema({
         default: false
     },
     purchaseHistory: [{type: mongoose.Schema.Types.ObjectId, ref: "Transaction"}],
-    cart: [type: mongoose.Schema.Types.ObjectId, ref: "Album"}]
+    cart: [{
+        album: {
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: "Album"
+        },
+        quantity: Number
+    }]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
