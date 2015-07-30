@@ -1,14 +1,8 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
-var shortid = require('shortid');
 
 var schema = new mongoose.Schema({
-    _id: {
-        type: String,
-        unique: true,
-        default: shortid.generate
-    },
     firstName: {
         type: String,
         required: true
@@ -17,8 +11,9 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    photo: {type: String,
-            default: '../app/views/images/defaultPhoto.png' 
+    photo: {
+        type: String,
+        default: '../app/views/images/defaultPhoto.png'
     },
     email: {
         type: String,
