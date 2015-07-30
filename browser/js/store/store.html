@@ -5,10 +5,10 @@
 	<div class = "albums-showcase col-md-9 col-lg-9 col-sm-9">
 		<div class = "album col-md-3 col-lg-3 col-sm-3" ng-repeat= "album in albums | filter:filterObject">
 		<a ui-sref = "albumDetail({albumId: '{{album._id}}'})"><div class = "clickable">
-			<img src = "{{album.imgUrl}}" style = "width: 100%"/>
+			<img src = "{{album.image}}" style = "width: 100%"/>
 			<div class = "album-info">
-			<h4> {{album.album}} </h4>
-			<p> {{album.artistName}}</p>
+			<h4> {{album.title}} </h4>
+			<p> {{album.artist.name}}</p>
 			<p> {{album.genre.join(",")}}</p>
 			<p> ${{album.price}}</p>
 			<p> {{album.tags.join(",")}}</p>
@@ -25,8 +25,8 @@
 			<li ng-repeat= "criterion in searchCriteria" ui-sref = "{{criterion.state}}">{{criterion.title}}</li>
 		</ul> -->
 		<div class = "search">
-			<div class = "searchCrit" id = "artist"><label for = "artist-name">Artist Name</label>     <input id = "artist-name" ng-model = "filterObject.artistName" placeholder="Story Name"></input></div>
-			<div class = "searchCrit" id = "album"><label for = "album">Album</label>     <input id = "album" ng-model = "filterObject.album" placeholder = "Album"></input></div>
+			<div class = "searchCrit" id = "artist"><label for = "artist-name">Artist Name</label>     <input id = "artist-name" ng-model = "filterObject.artist.name" placeholder="Story Name"></input></div>
+			<div class = "searchCrit" id = "album"><label for = "album">Album</label>     <input id = "album" ng-model = "filterObject.title" placeholder = "Album"></input></div>
 			<!-- price should be a drop-down list of price-ranges -->
 			<div class = "searchCrit" id = "price"><label for = "price">Price</label>     <input id = "price" ng-model = "filterObject.price" placeholder = "Price"></input></div>
 			<!-- price should be a check-list list of different genres -->
