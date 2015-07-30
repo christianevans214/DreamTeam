@@ -8,29 +8,26 @@ var schema = new mongoose.Schema({
 		ref: 'User'
 	},
 	content: String,
-	userRating: {
+	rating: {
 		type: Number,
 		max: 5
 	}
-	
 })
 
+// schema.pre('save', function(next) {
 
+// 	if (this.isModified('reviews')) {
+// 		this.rating = this.updateReview();
+// 	}
 
-schema.pre('save', function(next) {
+// 	next();
 
-	if (this.isModified('reviews')) {
-		this.rating = this.updateReview();
-	}
+// });
 
-	next();
-
-});
-
-schema.method('updateReview', function() {
-	var sumReview = this.reviews.reduce(function(cur, nextReview) {
-		return cur + nextReview.userRating;
-	})
-	return Math.round((sumReview / this.reviews.length) * 100) / 100;
-})
+// schema.method('updateReview', function() {
+// 	var sumReview = this.reviews.reduce(function(cur, nextReview) {
+// 		return cur + nextReview.userRating;
+// 	})
+// 	return Math.round((sumReview / this.reviews.length) * 100) / 100;
+// })
 mongoose.model('Review', schema);
