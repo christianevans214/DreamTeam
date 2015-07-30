@@ -3,21 +3,16 @@ var mongoose = require('mongoose');
 
 
 var schema = new mongoose.Schema({
-	averageRating: {
+	username: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	content: String,
+	rating: {
 		type: Number,
 		max: 5
-	},
-	reviews: [{
-		username: String,
-		content: String,
-		rating: {
-			type: Number,
-			max: 5
-		}
-	}]
+	}
 })
-
-
 
 // schema.pre('save', function(next) {
 

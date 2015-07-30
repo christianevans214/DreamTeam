@@ -27,19 +27,15 @@ describe('Review model', function () {
    describe('On Creation', function() {
        var correctReview = function(){
            return Review.create({
-               averageRating: 5,
-               reviews: [{
-                   username: 'Cooper',
-                   content: 'Awesome album!',
-                   userRating: 5
-               }]
+                 content: 'Awesome album!',
+                 userRating: 5
            });
        }
 
        it('should create a transaction', function(done){
            correctReview().then(function(review){
                console.log(review)
-               expect(review.reviews[0].content).to.be.equal('Awesome album!');
+               expect(review.content).to.be.equal('Awesome album!');
                done();
            })
        });
