@@ -1,18 +1,18 @@
-<div class="container col-lg-6">
-	<div class="avatar-wrapper">
-		<img src='{{ user.photo }}' id='avatar'>
+<div class = "background-account">
+ 	<div class="container" id="account-wrapper">
+		<div class="avatar-wrapper">
+			<img src='{{ user.photo }}' id='avatar'>
+		</div>
+		<div class = "accountInfo-wrapper">
+			<ui-view>	
+				<br>
+				<p id = "firstName" ng-model = "user.firstName">@{{ user.firstName }} {{ user.lastName }}</p>
+				<hr>
+				<p ng-model = "user.email">email: {{ user.email }}</p>
+				<hr>
+			<button ui-sref="account.editProfile" class="btn btn-default">Edit Profile</button>
+			<button class="btn btn-default">Shopping History</button>
+			</ui-view>
+		</div>
 	</div>
-	<div class="userInfo-wrapper">
-		<ui-view>		
-			<p ng-model = "user.firstName">@{{ user.firstName }}</p>
-			<p ng-model = "user.lastName">{{ user.lastName }}</p>
-			<p ng-model = "user.email">{{ user.email }}</p>
-			<p ng-model = "user.isAdmin">{{ user.isAdmin }}</p>
-		</ui-view>
-	</div>
-		<button ui-sref="account.editProfile">Edit Profile</button>
-		<button>Shopping History</button>
-</div>
-<div class="container col-lg-3">
-	<!-- <ui-view><ui-view> -->
 </div>

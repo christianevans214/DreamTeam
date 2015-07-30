@@ -12,8 +12,8 @@
                 <span class="glyphicon glyphicon-shopping-cart"></span></a>
             </li>
         </ul>
-        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</button>
+        <button ng-show="!user" ui-sref="login" class="btn signup-button">Login</button>
         <div ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>
