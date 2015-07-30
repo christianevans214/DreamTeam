@@ -1,13 +1,15 @@
 <div class="container col-lg-6">
-	<div>
-		<img src='{{ user.photo }}' style="width: 50%" class="img-thumbnail img-responsive">
+	<div class="avatar-wrapper">
+		<img src='{{ user.photo }}' id='avatar'>
 	</div>
-	<ui-view>
-		<li ng-model = "user.firstName">{{ user.firstName }}</li>
-		<li ng-model = "user.lastName">{{ user.lastName }}</li>
-		<li ng-model = "user.email">{{ user.email }}</li>
-		<li ng-model = "user.isAdmin">{{ user.isAdmin }}</li>
-	</ui-view>
+	<div class="userInfo-wrapper">
+		<ui-view>		
+			<p ng-model = "user.firstName">@{{ user.firstName }}</p>
+			<p ng-model = "user.lastName">{{ user.lastName }}</p>
+			<p ng-model = "user.email">{{ user.email }}</p>
+			<p ng-model = "user.isAdmin">{{ user.isAdmin }}</p>
+		</ui-view>
+	</div>
 		<button ui-sref="account.editProfile">Edit Profile</button>
 		<button>Shopping History</button>
 </div>
