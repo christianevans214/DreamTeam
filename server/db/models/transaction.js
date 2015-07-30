@@ -11,8 +11,14 @@ var schema = new mongoose.Schema({
 		required: true
 	},
 	purchases: [{
-		artistName:{type: mongoose.Schema.Types.ObjectId, ref: "Artist"},
-		albumName: {type: mongoose.Schema.Types.ObjectId, ref: "Album"},
+		artistName: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Artist"
+		},
+		albumName: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Album"
+		},
 		price: Number,
 		quantity: Number
 	}],
