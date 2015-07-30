@@ -1,4 +1,4 @@
-app.config(function ($stateProvider){
+app.config(function($stateProvider) {
 	$stateProvider.state('account', {
 		url: '/account/:id',
 		controller: 'AccountController',
@@ -7,18 +7,18 @@ app.config(function ($stateProvider){
 		// 	authenticate: true
 		// }, 
 		resolve: {
-			user: function(UserFactory, $stateParams){
+			user: function(UserFactory, $stateParams) {
 				return UserFactory.getUser($stateParams.id);
 			}
 		}
 	})
 })
 
-app.controller('AccountController', function($scope, UserFactory, user, $rootScope){
+app.controller('AccountController', function($scope, UserFactory, user, $rootScope) {
 	$scope.user = user;
-	$rootScope.$on("editedUser", function(event, data){
+	$rootScope.$on("editedUser", function(event, data) {
 		// console.log("event caught!", data);
 		$scope.user = data;
 		$scope.$digest();
-	} )
+	})
 })

@@ -1,14 +1,9 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
-var shortid = require('shortid');
+
 
 var schema = new mongoose.Schema({
-    _id: {
-        type: String,
-        unique: true,
-        default: shortid.generate
-    },
     firstName: {
         type: String,
         required: true
@@ -17,8 +12,9 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    photo: {type: String,
-            default: '../app/views/images/defaultPhoto.png' 
+    photo: {
+        type: String,
+        default: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Disque_Vinyl.svg/226px-Disque_Vinyl.svg.png"
     },
     email: {
         type: String,
@@ -54,12 +50,22 @@ var schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    purchaseHistory: [{}],
-    cart: [{}]
+    purchaseHistory: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Transaction"
+    }],
+    cart: [{
+        album: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Album"
+        },
+        quantity: Number
+    }]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.
+
 var generateSalt = function() {
     return crypto.randomBytes(16).toString('base64');
 };
