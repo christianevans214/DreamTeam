@@ -22,7 +22,7 @@ var schema = new mongoose.Schema({
 	}],
 	reviews: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Rating"
+		ref: "Review"
 	},
 	tags: [String],
 	genre: {
