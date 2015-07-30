@@ -7,6 +7,9 @@
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}({id: user._id})">{{ item.label }}</a>
             </li>
+            <li ng-show=user.isAdmin>
+                <a ui-sref-active="active" ui-sref="admin({id:user._id})">Admin</a>
+            </li>
             <li>
                 <a ui-sref-active="active" ui-sref="cart({id: user._id})">Cart
                 <span class="glyphicon glyphicon-shopping-cart"></span></a>
