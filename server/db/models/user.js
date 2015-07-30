@@ -55,8 +55,11 @@ var schema = new mongoose.Schema({
         ref: "Transaction"
     }],
     cart: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Album"
+        album: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Album"
+        },
+        quantity: Number
     }]
 });
 
