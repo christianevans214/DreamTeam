@@ -16,6 +16,10 @@ app.controller('CartController', function($scope, $rootScope){
   
   //delete items
 
+  //remove item that is clicked from cart
+  //update the user, without that item
+  //yay!
+
   //edit items quantity
 
   //visit item detail page
