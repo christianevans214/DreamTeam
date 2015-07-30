@@ -12,8 +12,9 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    photo: {type: String,
-            default: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Disque_Vinyl.svg/226px-Disque_Vinyl.svg.png"
+    photo: {
+        type: String,
+        default: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Disque_Vinyl.svg/226px-Disque_Vinyl.svg.png"
     },
     email: {
         type: String,
@@ -49,8 +50,14 @@ var schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    purchaseHistory: [{type: mongoose.Schema.Types.ObjectId, ref: "Transaction"}],
-    cart: [type: mongoose.Schema.Types.ObjectId, ref: "Album"}]
+    purchaseHistory: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Transaction"
+    }],
+    cart: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Album"
+    }]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
