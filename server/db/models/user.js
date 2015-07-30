@@ -4,11 +4,6 @@ var mongoose = require('mongoose');
 var shortid = require('shortid');
 
 var schema = new mongoose.Schema({
-    _id: {
-        type: String,
-        unique: true,
-        default: shortid.generate
-    },
     firstName: {
         type: String,
         required: true
@@ -18,7 +13,7 @@ var schema = new mongoose.Schema({
         required: true
     },
     photo: {type: String,
-            default: '../app/views/images/defaultPhoto.png' 
+            default: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Disque_Vinyl.svg/226px-Disque_Vinyl.svg.png"
     },
     email: {
         type: String,
@@ -54,8 +49,8 @@ var schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    purchaseHistory: [{}],
-    cart: [{}]
+    purchaseHistory: [{type: mongoose.Schema.Types.ObjectId, ref: "Transaction"}],
+    cart: [type: mongoose.Schema.Types.ObjectId, ref: "Album"}]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations

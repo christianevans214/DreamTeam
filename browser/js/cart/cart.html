@@ -1,7 +1,24 @@
 <div class="container">
-	<div class="row" ng-repeat="album in albums">
-		{{album.name}}
-		{{album.artistName}}
-		{{album.price}}
+	<div class="row">
+		<table class="table-hover">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th></th>
+					<th>Quantity</th>
+					<th>Price</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><img src='{{album.imgUrl}}'></td>
+					<td>{{album.album}}</td>
+					<td>{{0}}</td>
+					<td>{{album.price}}</td>
+					<td class="remove-item">x</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
