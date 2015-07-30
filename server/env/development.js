@@ -2,9 +2,9 @@ module.exports = {
   "DATABASE_URI": "mongodb://localhost:27017/stackStore",
   "SESSION_SECRET": "Optimus Prime is my real dad",
   "TWITTER": {
-    "consumerKey": "INSERT_TWITTER_CONSUMER_KEY_HERE",
-    "consumerSecret": "INSERT_TWITTER_CONSUMER_SECRET_HERE",
-    "callbackUrl": "INSERT_TWITTER_CALLBACK_HERE" //can't be localhost, must be ip
+    "consumerKey": "aiFZ9nAFELAm4YTKrCVSfsgos",
+    "consumerSecret": "VdXdbaYN7i2Ax9YgSY2ClohZJXXwLrvamEb2OlktkjFnBmxvqU",
+    "callbackUrl": "http://192.168.1.108:1337/auth/twitter/callback" //can't be localhost, must be ip
   },
   "FACEBOOK": {
     "clientID": "503523336478729",
