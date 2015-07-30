@@ -36,7 +36,7 @@ describe('Account Route', function() {
     var user2Info = {
       email: 'joe@gmail.com',
       firstName: 'joe',
-      lastName: 'alvez',
+      lastName: 'alves',
       password: 'shoopdawoop'
     };
 

@@ -13,7 +13,7 @@ var schema = new mongoose.Schema({
     },
     photo: {
         type: String,
-        default: '../app/views/images/defaultPhoto.png'
+        default: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Disque_Vinyl.svg/226px-Disque_Vinyl.svg.png"
     },
     email: {
         type: String,
@@ -49,12 +49,22 @@ var schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    purchaseHistory: [{}],
-    cart: [{}]
+    purchaseHistory: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Transaction"
+    }],
+    cart: [{
+        album: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Album"
+        },
+        quantity: Number
+    }]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.
+
 var generateSalt = function() {
     return crypto.randomBytes(16).toString('base64');
 };

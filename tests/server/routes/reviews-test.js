@@ -26,12 +26,8 @@ describe('Reviews Route', function () {
 	var reviewToFind;
 
 	var reviewOne = { 
-		averageRating: 4,
-		reviews: [{
-			username: "Cooper",
-			content: "Woof, Woof, Woof!?",
-			userRating: 1 
-		}]
+		content: "Woof, Woof, Woof!?",
+		userRating: 1 
 	}
 
 	beforeEach('Create a review', function (done) {
@@ -59,17 +55,13 @@ describe('Reviews Route', function () {
 		agent
 		.post('/api/reviews')
 		.send({
-			averageRating: 4,
-			reviews: [{
-				username: "Cooper",
-				content: "Woof, Woof, Woof!?",
-				userRating: 1
-			}]
+			content: "Woof, Woof, Woof!?",
+			userRating: 1 
 		})
 		.expect(200)
 		.end(function(err, res){
 			if(err) return done(err);
-			expect(res.body.averageRating).to.equal(4);
+			expect(res.body.userRating).to.equal(1);
 			done();
 		});
 	});
@@ -80,7 +72,7 @@ describe('Reviews Route', function () {
 		.expect(200)
 		.end(function(err, res){
 			if (err) return done(err);
-			expect(res.body.averageRating).to.equal(reviewToFind.averageRating)
+			expect(res.body.userRating).to.equal(reviewToFind.userRating)
 			done()
 		})
 	})

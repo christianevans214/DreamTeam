@@ -21,8 +21,31 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
+var Artist = Promise.promisifyAll(mongoose.model('Artist'));
 var User = Promise.promisifyAll(mongoose.model('User'));
 var Album = Promise.promisifyAll(mongoose.model('Album'));
+
+var seedArtists = function() {
+    var artists = [{
+        name: "Michael Jackson"
+    }, {
+        name: "Leon Bridges"
+    }, {
+        name: "The Beatles"
+    }, {
+        name: "Pink Floyd"
+    }, {
+        name: "Beyoncé"
+    }, {
+        name: "Led Zeppelin"
+    }, {
+        name: "Kanye West"
+    }, {
+        name: "Joni Mitchel"
+    }]
+
+    return Artist.createAsync(artists);
+}
 
 
 var seedUsers = function() {
@@ -68,85 +91,108 @@ var seedUsers = function() {
 
 };
 
-var seedAlbums = function() {
-    var albums = [{
-        artistName: "Michael Jackson",
-        album: "Thriller",
-        genre: ["R&B"],
-        price: "27.16",
-        imgUrl: "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png",
-        year: 1982
-    }, {
-        artistName: "Leon Bridges",
-        album: "Coming Home",
-        genre: ["Soul"],
-        price: "20.00",
-        imgUrl: "http://static1.squarespace.com/static/54fdea6de4b018047dada8af/t/5552050ee4b03b3ccda57c18/1431438608081/",
-        year: 2015
-    }, {
-        artistName: "The Beatles",
-        album: "Abbey Road",
-        genre: ["Pop"],
-        price: "37.00",
-        imgUrl: "http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/AbbeyRoad.jpg?itok=BgfH98zh",
-        year: 1969
-    }, {
-        artistName: "Pink Floyd",
-        album: "Dark Side of the Moon",
-        genre: ["Rock"],
-        price: "24.43",
-        imgUrl: "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
-        year: 1973
-    }, {
-        artistName: "Beyoncé",
-        album: "Beyoncé",
-        genre: ["R&B"],
-        price: "25.50",
-        imgUrl: "https://upload.wikimedia.org/wikipedia/commons/2/21/Beyonc%C3%A9_-_Beyonc%C3%A9.svg",
-        year: 2014
-    }, {
-        artistName: "Led Zeppelin",
-        album: "IV",
-        genre: ["Clasic Rock"],
-        price: "23.84",
-        imgUrl: "http://ecx.images-amazon.com/images/I/61qTE9kINgL.jpg",
-        year: 1971
-    }, {
-        artistName: "Kanye West",
-        album: "My Beautiful Dark Twisted Fantasy",
-        genre: ["Pop"],
-        price: "25.85",
-        imgUrl: "https://upload.wikimedia.org/wikipedia/en/b/be/MBDTF_ALT.jpg",
-        year: 2010
-    }, {
-        artistName: "Joni Mitchel",
-        album: "Feeling Blue",
-        genre: ["Folk Rock"],
-        price: "32.00",
-        imgUrl: "http://blog.thecurrent.org/files/2015/04/Blue-Joni-Mitchell.jpg",
-        year: 1971
-    }];
+// var seedAlbums = function() {
 
-    return Album.createAsync(albums);
-}
+
+//     return Album.createAsync(albums);
+// }
+
+var albums = [{
+    artist: "Michael Jackson",
+    title: "Thriller",
+    genre: ["R&B"],
+    price: "27.16",
+    image: "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png",
+    year: 1982
+}, {
+    artist: "Leon Bridges",
+    title: "Coming Home",
+    genre: ["Soul"],
+    price: "20.00",
+    image: "http://static1.squarespace.com/static/54fdea6de4b018047dada8af/t/5552050ee4b03b3ccda57c18/1431438608081/",
+    year: 2015
+}, {
+    artist: "The Beatles",
+    title: "Abbey Road",
+    genre: ["Pop"],
+    price: "37.00",
+    image: "http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/AbbeyRoad.jpg?itok=BgfH98zh",
+    year: 1969
+}, {
+    artist: "Pink Floyd",
+    title: "Dark Side of the Moon",
+    genre: ["Rock"],
+    price: "24.43",
+    image: "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
+    year: 1973
+}, {
+    artist: "Beyoncé",
+    title: "Beyoncé",
+    genre: ["R&B"],
+    price: "25.50",
+    image: "https://upload.wikimedia.org/wikipedia/commons/2/21/Beyonc%C3%A9_-_Beyonc%C3%A9.svg",
+    year: 2014
+}, {
+    artist: "Led Zeppelin",
+    title: "IV",
+    genre: ["Clasic Rock"],
+    price: "23.84",
+    image: "http://ecx.images-amazon.com/images/I/61qTE9kINgL.jpg",
+    year: 1971
+}, {
+    artist: "Kanye West",
+    title: "My Beautiful Dark Twisted Fantasy",
+    genre: ["Pop"],
+    price: "25.85",
+    image: "https://upload.wikimedia.org/wikipedia/en/b/be/MBDTF_ALT.jpg",
+    year: 2010
+}, {
+    artist: "Joni Mitchel",
+    title: "Feeling Blue",
+    genre: ["Folk Rock"],
+    price: "32.00",
+    image: "http://blog.thecurrent.org/files/2015/04/Blue-Joni-Mitchell.jpg",
+    year: 1971
+}];
 
 
 connectToDb.then(function() {
     mongoose.connection.db.dropDatabase(function() {
-        User.findAsync({}).then(function(users) {
-            if (users.length === 0) {
-                // return seedUsers();
-                return Promise.all([seedUsers(), seedAlbums()])
-            } else {
-                console.log(chalk.magenta('Seems to already be user data, exiting!'));
-                process.kill(0);
-            }
-        }).then(function() {
-            console.log(chalk.green('Seed successful!'));
-            process.kill(0);
-        }).catch(function(err) {
-            console.error(err);
-            process.kill(1);
-        });
+        seedArtists()
+            .then(function(responseArr) {
+                // console.log(responseArr);
+                var newAlbums = albums.map(function(album, index) {
+                    // console.log(responseArr[index], album.artist)
+                    if (responseArr[index].name === album.artist) {
+                        album.artist = responseArr[index]._id;
+                        return album;
+                    }
+                })
+                Album.createAsync(newAlbums)
+                    .then(function(newAlbums) {
+                        console.log(newAlbums);
+                        return seedUsers();
+                    })
+                    .then(function(newUsers) {
+                        console.log(newUsers);
+                        console.log("Everything seeded!")
+                        process.kill(0);
+                    })
+            })
     });
 });
+// User.findAsync({}).then(function(users) {
+//     if (users.length === 0) {
+//         // return seedUsers();
+//         return Promise.all([seedArtists(), seedUsers(), seedAlbums()])
+//     } else {
+//         console.log(chalk.magenta('Seems to already be user data, exiting!'));
+//         process.kill(0);
+//     }
+// }).then(function() {
+//     console.log(chalk.green('Seed successful!'));
+//     process.kill(0);
+// }).catch(function(err) {
+//     console.error(err);
+//     process.kill(1);
+// });

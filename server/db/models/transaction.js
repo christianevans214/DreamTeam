@@ -3,17 +3,22 @@ var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
 	user: {
-		type: mongoose.Schema.Types.ObjectId, //get logged in user or not
-		ref: 'User',
-		default: undefined
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
 	},
 	email: {
 		type: String,
 		required: true
 	},
 	purchases: [{
-		artistName: String,
-		albumName: String,
+		artistName: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Artist"
+		},
+		albumName: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "Album"
+		},
 		price: Number,
 		quantity: Number
 	}],
