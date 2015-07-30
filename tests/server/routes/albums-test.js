@@ -54,13 +54,10 @@ describe('Albums Route', function () {
 			Album.create(album1)
 			.then(function(album){
 				albumToFind = album;
-				Album.create(album2);
-				//return albumToFind;
+				return Album.create(album2);
 			})
 			.then(function(album){
-				Album.create(album3);
-				done();
-				//return album; //return?
+				return Album.create(album3, done);
 			})
 		});
 
