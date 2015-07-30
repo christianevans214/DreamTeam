@@ -91,11 +91,6 @@ var seedUsers = function() {
 
 };
 
-// var seedAlbums = function() {
-
-
-//     return Album.createAsync(albums);
-// }
 
 var albums = [{
     artist: "Michael Jackson",
