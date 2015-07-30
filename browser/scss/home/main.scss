@@ -1,3 +1,7 @@
+*{
+	// border: 1px solid black;
+}
+/* font used in Edwin website for blades: "MuseoSans", Arial, Verdana, sans-serif; */
 #home {
   fullstack-logo {
     padding-top: 30px;
@@ -8,5 +12,102 @@
     margin-top: 40px;
     text-align: center;
   }
+}
+
+.vertical-navbar{
+  border-right: 1px solid white;
+	height: 100vh;
+  background-color: #262335;
+}
+
+.blade-container{
+
+  font-family: "MuseoSans", Arial, Verdana, sans-serif;
+	height: 100vh;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.blade{
+    // border-right: 1px solid #ccc;
+  // border-right: 1px solid black;
+
+  height: 100vh;
+    h3{
+      color: black;
+      text-align: center;
+      transition: 0.2s ease-in-out;
+    }
+}
+
+h3.faded, .transparent-btn.faded {
+  color: white;
+}
+
+.blade-container.store{
+  background-image: url("images/record-playing.gif");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.blade-container.discover{
+  background-image: url("images/discover-blade-stock.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.blade-container.account{
+  background-image: url("images/account-blade-stock.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.storeTitle.store{
+  transition: 0.2s ease-in-out;
+  transform: translate(0, 20px);
+}
+
+.discoverTitle.discover{
+  transition: 0.2s ease-in-out;
+  transform: translate(0, 20px);  
+}
+
+.accountTitle.account{
+  transition: 0.2s ease-in-out;
+  transform: translate(0, 20px);
+}
+
+.blade-div{
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  transition: all 1.0s;
+}
+.transparent-btn{
+  opacity: 0;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px;
+  transition: 0.3s ease-in-out;
+  // border: 2px solid white;
+    a{
+      transition: 0.3s ease-in-out;
+      text-decoration: none;
+      color: white;
+    }
+    .store-link{
+      transition: 0.3s ease-in-out;
+      color:black;
+    }
+}
+.store-and-btn.store, .discover-and-btn.discover, .account-and-btn.account{
+  opacity: 1;
+  transform: translate(0, 20px);
+}
+.transparent-btn.faded{
+  border: 2px solid white;
+}
+.transparent-btn > a.faded{
+  color: white;
 }
 
