@@ -1,18 +1,19 @@
-<div class="container">
-<form>
-	<ul>
-		<label>First Name: </label>
-		<input type='text' ng-model="updatedUser.firstName" placeholder='{{ user.firstName }}'></input><br>
-		<label>Last Name: </label>
-		<input type='text' ng-model="updatedUser.lastName" placeholder="{{ user.lastName }}">
-		</input><br>
-		<label>Email Adrs: </label>
-		<input type='text' ng-model="updatedUser.email" placeholder="{{ user.email }}">
-		</input><br>
-		<label>Image Url: </label>
-		<input type='text' ng-model="updatedUser.imgUrl" placeholder="Insert image url">
-		</input><br>
-		<button ng-click="submitUpdate(updatedUser)">submit!</button>
-	</ul>
-</form>
-</div>
+<div class = "formAccount-wrapper">
+	<form>
+		<ul>
+			<label>Your Name: </label>
+			<input type='text' ng-model="updatedUser.firstName" placeholder='{{ user.firstName }}' align="left" ></input><br>
+			<label>Last Name: </label>
+			<input type='text' ng-model="updatedUser.lastName" placeholder="{{ user.lastName }}" align="left" >
+			</input><br>
+			<label>Your Email: </label>
+			<input type='text' ng-model="updatedUser.email" placeholder="{{ user.email }}" align="left" >
+			</input><br>
+			<label>Image Url:  </label>
+			<input type='text' ng-model="updatedUser.imgUrl" placeholder="Insert image url" align="left" >
+			</input><br>
+		</ul>
+	</form>
+</div>	
+			<button ng-click="submitUpdate(updatedUser)" class="btn btn-default">submit!</button>
+	
