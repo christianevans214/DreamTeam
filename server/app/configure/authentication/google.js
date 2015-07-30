@@ -32,7 +32,7 @@ module.exports = function (app) {
                         google: {
                             id: profile.id
                         }
-                    }, done);
+                    });
                 }
 
             }).then(function (userToLogin) {
