@@ -1,15 +1,19 @@
-<form id="signup-form" name="signupForm" ng-submit="signup(signupInfo)">
+<form id="signup-form" name="signupForm" ng-submit="signup(credentials)">
     <div class="form-group">
         <label for="email"> Email Address </label>
-         <input type="text" ng-model="signup.email" class="form-control" id="email" placeholder="Enter email">
-    </div>
-     <div class="form-group">
-        <label for="username-password">Username</label>
-        <input type="password" ng-model="signup.password" class="form-control" id="signup-password" placeholder="Password">
+         <input type="email" ng-model="credentials.email" class="form-control" id="signup" placeholder="Enter email">
     </div>
     <div class="form-group">
-        <label for="signup-password">Password</label>
-        <input type="password" ng-model="signup.password" class="form-control" id="signup-password" placeholder="Password">
+        <label for="credentials-password">Password</label>
+        <input type="text" ng-model="credentials.password" class="form-control" id="signup" placeholder="Enter password">
+    </div>
+     <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" ng-model="credentials.firstName" class="form-control" id="signup" placeholder="Enter first name">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" ng-model="credentials.lastName" class="form-control" id="signup" placeholder="Enter last name">
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
