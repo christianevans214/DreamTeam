@@ -17,6 +17,8 @@ module.exports = function (app) {
 
     var createNewUser = function (token, tokenSecret, profile) {
         return UserModel.create({
+            firstName: profile.displayName.split(" ")[0],
+            lastName: profile.displayName.split(" ")[1],
             twitter: {
                 id: profile.id,
                 username: profile.username,
@@ -40,6 +42,7 @@ module.exports = function (app) {
 
         UserModel.findOne({'twitter.id': profile.id}).exec()
             .then(function (user) {
+                console.log('profile', profile);
                 if (user) { // If a user with this twitter id already exists.
                     return updateUserCredentials(user, token, tokenSecret, profile);
                 } else { // If this twitter id has never been seen before and no user is attached.
