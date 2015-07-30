@@ -2,21 +2,21 @@
 One vinyl e-commerce site to rule them all.
 
 #To-Do
-  - Admin Dashboard			||  Functionality
+  - Admin Dashboard			
 
-  - Reviews	 				||  Operation / Functionality
+  - Reviews	 				
 
-  - Discovery Page			||  Design
+  - Discovery Page			
 
-  - Carousel 				||  Design
+  - Carousel 				
 
-  - Shopping Cart			||  Operation / Functionality 
+  - Shopping Cart			
 
-  - Profile					||  Functionality
-  	-- view shopping cart
-  	-- ability to change password
+  - Profile					
+  	1) view shopping cart
+  	2) ability to change password
 
-  - Promotion 				||  Extra - Feature
+  - Promotion 				
   
-  - Spotify API				|| 	¡ Bonus !
+  - Spotify API				
    
