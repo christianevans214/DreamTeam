@@ -15,5 +15,7 @@ app.controller('StoreController', function($scope, AlbumFactory) {
 		$scope.albums = albums;
 		console.log(albums);
 	})
+
+	
 	$scope.filterObject = {};
 });
