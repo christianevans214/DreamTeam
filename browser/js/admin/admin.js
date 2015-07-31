@@ -7,6 +7,10 @@ app.config(function($stateProvider) {
 		})
 })
 
-app.controller("AdminController", function($scope) {
+app.controller("AdminController", function($scope, UserFactory) {
 	$scope.hello = "hello";
+	UserFactory.getAllUsers()
+		.then(function(users) {
+			console.log(users);
+		})
 })
