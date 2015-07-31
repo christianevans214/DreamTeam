@@ -26,7 +26,6 @@ module.exports = function (app) {
                     return UserModel.create({
                         firstName: profile.displayName.split(' ')[0],
                         lastName: profile.displayName.split(' ')[1],
-                        email: profile.emails[0].value,
                         photo: profile._json.picture,
                         facebook: {
                             id: profile.id
