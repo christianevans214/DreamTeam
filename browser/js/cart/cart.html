@@ -11,12 +11,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td><img src='{{album.imgUrl}}'></td>
-					<td>{{album.album}}</td>
-					<td>{{0}}</td>
-					<td>{{album.price}}</td>
-					<td class="remove-item">x</td>
+				<tr ng-repeat="cartItem in cartItems">
+					<td><img src='{{cartItem.image}}'></td>
+					<td>{{cartItem.album}}</td>
+					<td>{{cartItem.quantity}}</td>
+					<td>{{}}</td>
+					<td class="remove-item" ng-click="deleteFromCart(cartItem.album)">x</td>
 				</tr>
 			</tbody>
 		</table>

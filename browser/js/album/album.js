@@ -22,7 +22,7 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
   $scope.addToCart = function(currentAlbum){
 
     if($scope.user){
-      CartFactory.updateCart(currentAlbum._id, $scope.user);
+      CartFactory.addAlbum(currentAlbum._id, $scope.user);
       UserFactory.updateUser($scope.user._id, $scope.user);
       
     }
