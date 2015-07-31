@@ -1,13 +1,19 @@
 app.factory("ArtistFactory", function($http) {
 	return {
-		getAlbums: function() {
-			return $http.get('/api/albums')
+		getArtists: function() {
+			return $http.get('api/artists')
 				.then(function(response) {
 					return response.data
 				})
 		},
-		getAlbum: function(id) {
-			return $http.get(`/api/albums/${id}`)
+		getArtist: function(id) {
+			return $http.get(`api/artists/${id}`)
+				.then(function(response) {
+					return response.data;
+				})
+		},
+		createArtist: function(newInfo) {
+			return $http.post('api/artists', newInfo)
 				.then(function(response) {
 					return response.data;
 				})

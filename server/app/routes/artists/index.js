@@ -6,22 +6,22 @@ var Artist = mongoose.model('Artist');
 module.exports = router;
 
 //params for artist
-router.param('id', function(req, res, next, id){
+router.param('id', function(req, res, next, id) {
 	Artist.findById(id).exec()
-	.then(function(artist){
-		if(artist) {
-			req.artist = artist;
-			next();
-		} else{
-			throw new Error('No artist found');
-		}
-	})
-	.then(null, next);
+		.then(function(artist) {
+			if (artist) {
+				req.artist = artist;
+				next();
+			} else {
+				throw new Error('No artist found');
+			}
+		})
+		.then(null, next);
 })
 
 
 //GET All artists
-router.get('/', function(reArtistq, res, next) {
+router.get('/', function(req, res, next) {
 	Artist.find({}).exec()
 		.then(function(artist) {
 			res.json(artist);
@@ -30,37 +30,35 @@ router.get('/', function(reArtistq, res, next) {
 })
 
 //GET One artist
-router.get('/:id', function(req, res){
+router.get('/:id', function(req, res) {
 	res.json(req.artist);
 })
 
 
 //POST new artist
-router.post('/', function(req, res, next){
+router.post('/', function(req, res, next) {
 	Artist.create(req.body)
-	.then(function(artist){
-		res.json(artist);
-	})
-	.then(null, next);
+		.then(function(artist) {
+			res.json(artist);
+		})
+		.then(null, next);
 })
 
 //PUT update artist
-router.put('/:id', function(req, res, next){  
-	_.extend(req.artist, req.body);  
-	req.artist.save()				
-	.then(function(artist){
-		res.json(artist);
-	})
-	.then(null, next);
+router.put('/:id', function(req, res, next) {
+	_.extend(req.artist, req.body);
+	req.artist.save()
+		.then(function(artist) {
+			res.json(artist);
+		})
+		.then(null, next);
 })
 
 //DELETE remove artist
-router.delete('/:id', function(req, res, next){
+router.delete('/:id', function(req, res, next) {
 	req.artist.remove()
-	.then(function(){
-		res.sendStatus(200);
-	})
-	.then(null, next);
+		.then(function() {
+			res.sendStatus(200);
+		})
+		.then(null, next);
 })
-
-

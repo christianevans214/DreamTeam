@@ -17,6 +17,11 @@ app.factory("TransactionFactory", function($http) {
 				.then(function(res) {
 					return res.data;
 				})
+		},
+		changeTransaction: function(id, status) {
+			return this.updateTransaction(id, {
+				"status": status
+			})
 		}
 
 	}

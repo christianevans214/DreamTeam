@@ -20,7 +20,7 @@ app.factory('UserFactory', function($http) {
 				})
 		},
 		triggerPWChange: function(id) {
-			this.updateUser(id, {
+			return this.updateUser(id, {
 				needPWChange: true
 			})
 		},
@@ -29,6 +29,11 @@ app.factory('UserFactory', function($http) {
 				.then(function(res) {
 					return res.data;
 				})
+		},
+		makeAdmin: function(id) {
+			return this.updateUser(id, {
+				isAdmin: true
+			})
 		}
 
 	}

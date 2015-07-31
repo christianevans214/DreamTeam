@@ -1,0 +1,50 @@
+*{
+	// border: 1px solid black;
+}
+
+.admin-nav-btns{
+	list-style-type: none;
+	.nav-btn{
+		cursor: pointer;
+		display: inline-block;
+	}
+}
+
+.tinyPhoto{
+	width: 75px;
+}
+
+.album-list-element{
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.users-list-element{
+	display: inline-block;
+	margin-right: 15px;
+}
+
+
+.delete{
+	float: right;
+	padding-top: 25px;
+	padding-right: 30px;
+	font-size: 20px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+	&:hover{
+		font-size: 26px;
+		color: red;
+	}
+}
+
+.albums{
+	list-style-type: none;
+}
+
+.edit-album-input{
+	width: 100%;
+	height: 42px;
+	padding-left: 20px;
+}
