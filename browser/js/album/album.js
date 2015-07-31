@@ -17,16 +17,25 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
 
   AuthService.getLoggedInUser()
   .then(function(user){
-    console.log("album controller user:", user);
     $scope.user = user;
   })
 
   $scope.addToCart = function(currentAlbum){
+    console.log("currentAlbum", currentAlbum)
 
     if($scope.user){
-      CartFactory.addAlbum(currentAlbum._id, $scope.user);
+      CartFactory.addAlbum(currentAlbum, $scope.user);
       UserFactory.updateUser($scope.user._id, $scope.user);
-      
+    }else{
+      var items;
+      var guestCart = localStorageService.get('cart');
+      if(guestCart === null){
+        items = [{album: currentAlbum, quantity: 1}];
+        localStorageService.set('cart', items);
+      }else{
+        console.log("guest cart", guestCart)
+
+      }
     }
 
     $state.go('cart', {id: $scope.currentId});
