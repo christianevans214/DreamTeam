@@ -23,6 +23,13 @@ app.factory('CartFactory', function () {
 				}
 			});
 			user.cart.splice(index, 1);
+		},
+		updateQuantity: function(albumId, user, quantity){
+			user.cart.forEach(function(cartItem, idx){
+				if(cartItem.album === albumId) {
+					cartItem.quantity = quantity;
+				}
+			});
 		}
 	}
 })

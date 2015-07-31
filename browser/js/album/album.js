@@ -11,8 +11,10 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory){
+app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory, localStorageService){
+
   $scope.album = album;
+
   AuthService.getLoggedInUser()
   .then(function(user){
     console.log("album controller user:", user);
