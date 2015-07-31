@@ -6,14 +6,37 @@
 					<th>Item</th>
 					<th></th>
 					<th>Quantity</th>
+					<th></th>
 					<th>Price</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="cartItem in cartItems">
-					<td><img src='{{cartItem.image}}'></td>
-					<td>{{cartItem.album}}</td>
+					<td>
+						<a ui-sref="albumDetail({albumId: cartItem.album})">
+						<img src='{{cartItem.image}}'>
+						</a>
+					</td>
+					<td>
+						<a ui-sref="albumDetail({albumId: cartItem.album})">
+						{{cartItem.album}}
+						</a>
+					</td>
+					<td>
+						<select ng-model="cartItem.quantity" ng-model="cartItem.quantity" ng-change="updateCartQuantity(cartItem.album,cartItem.quantity)" convert-to-number>
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+						  <option value="6">6</option>
+						  <option value="7">7</option>
+						  <option value="8">8</option>
+						  <option value="9">9</option>
+						  <option value="10">10</option>
+						</select>
+					</td>
 					<td>{{cartItem.quantity}}</td>
 					<td>{{}}</td>
 					<td class="remove-item" ng-click="deleteFromCart(cartItem.album)">x</td>
