@@ -7,6 +7,7 @@ router.use('/account', require('./account'));
 router.use('/transaction', require('./transaction'));
 router.use('/albums', require('./albums'));
 router.use('/reviews', require('./reviews'));
+router.use('/artists', require('./artists'));
 
 
 // Make sure this is after all of

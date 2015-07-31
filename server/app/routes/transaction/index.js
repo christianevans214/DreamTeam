@@ -4,7 +4,23 @@ var mongoose = require('mongoose');
 var Transaction = mongoose.model('Transaction');
 module.exports = router;
 
-//Get all transactions
+
+//params for transaction
+router.param('id', function(req, res, next, id){
+  Transaction.findById(id).exec()
+  .then(function(transaction){
+    if(transaction) {
+      req.transaction = transaction;
+      next();
+    } else{
+      throw new Error('No transaction found');
+    }
+  })
+  .then(null, next);
+})
+
+
+//GET All transactions
 router.get('/', function(req, res, next) {
   Transaction.find({}).exec()
     .then(function(transaction) {
@@ -14,48 +30,40 @@ router.get('/', function(req, res, next) {
 })
 
 //Get one transaction 
-router.get('/:id', function(req, res, next) {
-  Transaction.findById(req.params.id).exec()
-    .then(function(transaction) {
-      res.json(transaction);
-    })
-    .then(null, next);
+router.get('/:id', function(req, res){
+  res.json(req.transaction);
 })
 
 
 //Post one Transaction
-router.post('/', function(req, res, next) {
+router.post('/', function(req, res, next){
   Transaction.create(req.body)
-    .then(function(transaction) {
-      res.status(201).send(transaction);
-    })
-    .then(null, next);
+  .then(function(transaction){
+    res.json(transaction);
+  })
+  .then(null, next);
 })
+
 
 //Update a Transaction
-router.put('/:id', function(req, res, next) {
-  Transaction.findOneAndUpdate({
-    _id: req.params.id
-  }, {
-    $set: req.body
-  }, {
-    new: true
-  }, function(err, transaction) {
-    if (err) {
-      next(err);
-    } else {
-      res.json(transaction);
-    }
+router.put('/:id', function(req, res, next){  
+  _.extend(req.transaction, req.body);  
+  req.transaction.save()       
+  .then(function(transaction){
+    res.json(transaction);
   })
+  .then(null, next);
 })
 
+
 //Delete a Transaction
-router.delete('/:id', function(req,res,next){
-  Transaction.findByIdAndRemove(req.params.id, function(err){
-    if(err){
-      next(err);
-    } else {
-      res.status(204).end();
-    }
+router.delete('/:id', function(req, res, next){
+  req.transaction.remove()
+  .then(function(){
+    res.sendStatus(200);
   })
+  .then(null, next);
 })
+
+
+
