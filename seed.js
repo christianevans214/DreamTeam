@@ -97,7 +97,7 @@ var albums = [{
     title: "Thriller",
     genre: ["R&B"],
     price: "27.16",
-    image: "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png",
+    image: "http://i.huffpost.com/gen/891066/images/o-MICHAEL-JACKSON-THRILLER-facebook.jpg",
     year: 1982
 }, {
     artist: "Leon Bridges",
@@ -132,14 +132,14 @@ var albums = [{
     title: "IV",
     genre: ["Clasic Rock"],
     price: "23.84",
-    image: "http://ecx.images-amazon.com/images/I/61qTE9kINgL.jpg",
+    image: "http://superhypeblog.com/wp-content/uploads/2011/08/led-zep-iv.jpg",
     year: 1971
 }, {
     artist: "Kanye West",
     title: "My Beautiful Dark Twisted Fantasy",
     genre: ["Pop"],
     price: "25.85",
-    image: "https://upload.wikimedia.org/wikipedia/en/b/be/MBDTF_ALT.jpg",
+    image: "http://sites.bxmc.poly.edu/~dariclim/VFS/wp-content/uploads/2014/09/kanye_west_mbdtf.jpg",
     year: 2010
 }, {
     artist: "Joni Mitchel",

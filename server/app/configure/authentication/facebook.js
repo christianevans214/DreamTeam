@@ -22,7 +22,11 @@ module.exports = function (app) {
                 if (user) {
                     return user;
                 } else {
+                    console.log(profile)
                     return UserModel.create({
+                        firstName: profile.displayName.split(' ')[0],
+                        lastName: profile.displayName.split(' ')[1],
+                        photo: profile._json.picture,
                         facebook: {
                             id: profile.id
                         }

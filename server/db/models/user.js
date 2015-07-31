@@ -3,27 +3,17 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true
-    },
-    lastName: {
-        type: String,
-        required: true
-    },
+    firstName: String,
+    lastName: String,
     photo: {
         type: String,
         default: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Disque_Vinyl.svg/226px-Disque_Vinyl.svg.png"
     },
     email: {
         type: String,
-        required: true,
         unique: true
     },
-    password: {
-        type: String,
-        required: true
-    },
+    password: String,
     salt: {
         type: String
     },
@@ -40,10 +30,7 @@ var schema = new mongoose.Schema({
         email: String
     },
     google: {
-        id: String,
-        token: String,
-        name: String,
-        email: String
+        id: String
     },
     isAdmin: {
         type: Boolean,
