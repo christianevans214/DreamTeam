@@ -14,11 +14,7 @@ app.config(function($stateProvider){
 
 app.controller('CartController', function($scope, $rootScope, user, UserFactory){
   //get the albums
-  console.log('user', user);
-  user ?  ($scope.userCart = user.cart) : ($scope.userCart = $rootScope.guestUser.cart);
- 
-  $scope.albums = $scope.userCart;
-  console.log('albums', $scope.albums);
+
   // if($scope.user){
   //   $scope.albums = $scope.user.cart;
   //   console.log($rootScope.user.cart)

@@ -11,22 +11,20 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory){
+app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory){
   $scope.album = album;
   AuthService.getLoggedInUser()
   .then(function(user){
-    if(!user) $rootScope.guestUser = {_id: 'guest', cart: []};
-    else $rootScope.user = user;
+    console.log("album controller user:", user);
+    $scope.user = user;
   })
 
   $scope.addToCart = function(currentAlbum){
-    if($rootScope.user){
-      $rootScope.user.cart.push(currentAlbum);
-      $scope.currentId = $rootScope.user._id;
-      UserFactory.updateUser($rootScope.user._id, $rootScope.user);
-    } else {
-      $rootScope.guestUser.cart.push(currentAlbum);
-      $scope.currentId = $rootScope.guestUser._id;
+
+    if($scope.user){
+      CartFactory.updateCart(currentAlbum._id, $scope.user);
+      UserFactory.updateUser($scope.user._id, $scope.user);
+      
     }
 
     $state.go('cart', {id: $scope.currentId});
