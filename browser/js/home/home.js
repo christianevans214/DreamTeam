@@ -8,6 +8,10 @@ app.config(function($stateProvider) {
 
 app.controller("HomeController", function($scope, $element, AuthService, $interval, $state, AUTH_EVENTS, $rootScope) {
 	$scope.hello = "hello";
+	$scope.accountTitle = "Login";
+	// if (scope.user) {
+	// 	$scope.accountTitle = "View Your Account"
+	// }
 	$interval(function() {
 		$scope.fadeIn = "faded";
 	}, 100)
@@ -15,12 +19,17 @@ app.controller("HomeController", function($scope, $element, AuthService, $interv
 	var setUser = function() {
 		AuthService.getLoggedInUser().then(function(user) {
 			$scope.user = user;
+			if ($scope.user) {
+				$scope.accountTitle = "View Your Account";
+
+			}
 			// console.log(user);
 			//$rootScope.user = user?
 		});
 	};
 	var removeUser = function() {
 		$scope.user = null;
+		$scope.accountTitle = "Login"
 	};
 
 	$scope.goToAccount = function(userId) {

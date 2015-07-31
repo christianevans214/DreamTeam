@@ -99,6 +99,16 @@ h3.faded, .transparent-btn.faded {
       transition: 0.3s ease-in-out;
       color:black;
     }
+    &:hover{
+      background-color: white;
+
+    }
+    &:hover > a {
+      color: black;
+    }
+    &:hover > .store-link {
+      color: black;
+    }
 }
 .store-and-btn.store, .discover-and-btn.discover, .account-and-btn.account{
   opacity: 1;
