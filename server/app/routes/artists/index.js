@@ -2,7 +2,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var _ = require('lodash');
-var User = mongoose.model('Artist');
+var Artist = mongoose.model('Artist');
 module.exports = router;
 
 //params for artist
