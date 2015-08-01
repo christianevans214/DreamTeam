@@ -1,4 +1,4 @@
-app.factory('CartFactory', function () {
+app.factory('CartFactory', function (AlbumFactory) {
 	return {
 		addAlbum: function(album, user){
 			if(user.cart.length === 0) return user.cart.push({album: album, quantity: 1});

@@ -11,28 +11,29 @@ app.config(function($stateProvider){
     })
 })
 
-app.controller('CartController', function($scope, $rootScope, user, UserFactory, CartFactory, AlbumFactory, albums){
-  //get the albums
-  console.log("resolve albums", albums)
+app.controller('CartController', function($scope, user, UserFactory, CartFactory, AlbumFactory){
+  //get the albums - this process seems very slow currently
   $scope.user = user;
 
-  $scope.albums = [];
+  if(!$scope.albums) $scope.albums = [];
   $scope.user.cart.forEach(function(item){
+    console.log("item", item);
     AlbumFactory.getAlbum(item.album)
     .then(function(album){
-      $scope.albums.push(album);
-      console.log("albums", $scope.albums);
+      $scope.albums.push({album: album, quantity: item.quantity});
+      $scope.cartItems = $scope.albums;
+      return album;
+    })
+    .then(function(){
+      $scope.$apply();
     })
   })
+
   
+  console.log("user cart", $scope.user.cart);
 
-
-  console.log("albums out of .then", $scope.albums);
-
-  console.log("user in cart", $scope.user.cart);
-  $scope.cartItems = $scope.user.cart;
   $scope.deleteFromCart = function(currentAlbum){
-    CartFactory.deleteAlbum(currentAlbum, $scope.user);
+    CartFactory.deleteAlbum(currentAlbum._id, $scope.user);
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
 

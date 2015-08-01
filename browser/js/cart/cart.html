@@ -3,8 +3,8 @@
 		<table class="table-hover">
 			<thead>
 				<tr>
-					<th>Item</th>
 					<th></th>
+					<th>Item</th>
 					<th>Quantity</th>
 					<th></th>
 					<th>Price</th>
@@ -15,16 +15,16 @@
 				<tr ng-repeat="cartItem in cartItems">
 					<td>
 						<a ui-sref="albumDetail({albumId: cartItem.album})">
-						<img src='{{cartItem.image}}'>
+						<img src='{{cartItem.album.image}}' height="56" width="56">
 						</a>
 					</td>
 					<td>
 						<a ui-sref="albumDetail({albumId: cartItem.album})">
-						{{cartItem.album}}
+						{{cartItem.album.title}}
 						</a>
 					</td>
 					<td>
-						<select ng-model="cartItem.quantity" ng-model="cartItem.quantity" ng-change="updateCartQuantity(cartItem.album,cartItem.quantity)" convert-to-number>
+						<select ng-model="cartItem.quantity" ng-model="cartItem.quantity" ng-change="updateCartQuantity(cartItem.album, cartItem.quantity)" convert-to-number>
 						  <option value="1">1</option>
 						  <option value="2">2</option>
 						  <option value="3">3</option>
@@ -38,7 +38,7 @@
 						</select>
 					</td>
 					<td>{{cartItem.quantity}}</td>
-					<td>{{}}</td>
+					<td>{{cartItem.album.price}}</td>
 					<td class="remove-item" ng-click="deleteFromCart(cartItem.album)">x</td>
 				</tr>
 			</tbody>

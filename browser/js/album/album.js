@@ -21,8 +21,6 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
   })
 
   $scope.addToCart = function(currentAlbum){
-    console.log("currentAlbum", currentAlbum)
-
     if($scope.user){
       CartFactory.addAlbum(currentAlbum, $scope.user);
       UserFactory.updateUser($scope.user._id, $scope.user);
