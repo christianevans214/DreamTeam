@@ -13,11 +13,12 @@ app.factory('CartFactory', function () {
 			if(!match) return user.cart.push({album: album, quantity: 1});
 			// console.log("user cart:", user.cart);
 		},
-		deleteAlbum: function(albumId, user){
+		deleteAlbum: function(album, user){
 			var index;
 			user.cart.forEach(function(cartItem, idx){
-				// console.log("idx:", idx, "album:", cartItem);
-				if(cartItem.album === albumId) {
+				console.log("idx:", idx, "cartItem:", cartItem);
+				console.log('album', album);
+				if(cartItem.album === album._id) {
 					index = idx;
 					return;
 				}
@@ -26,10 +27,7 @@ app.factory('CartFactory', function () {
 		},
 		updateQuantity: function(album, user, quantity){
 			user.cart.forEach(function(cartItem, idx){
-				console.log('cartItem', cartItem);
-				console.log('album passed In', album);
 				if(cartItem.album === album[0]._id) {
-					console.log('match', cartItem.album, album[0]._id);
 					user.cart[idx].quantity = quantity;
 					// cartItem.quantity = quantity;
 				}

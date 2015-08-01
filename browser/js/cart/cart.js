@@ -17,6 +17,16 @@ app.controller('CartController', function($scope, $rootScope, user, UserFactory,
 
   $scope.albums = [];
 
+  $rootScope.$on("editedCart", function(event, data) {
+    console.log("event caught!", data);
+    $scope.user = data;
+    console.log('scope.user', $scope.user);
+    $scope.getAlbumInfo();
+    // // $scope.cartItems = $scope.albums;
+    // console.log('$scope.cartItems', $scope.cartItems);
+    // console.log('$scope.albums', $scope.albums);
+    $scope.$digest();
+  })
   //use id reference to get album information
   //populate albums array with [album, quantity]
   //if update to cart, reflect in albums array
@@ -31,7 +41,12 @@ app.controller('CartController', function($scope, $rootScope, user, UserFactory,
         }else{
           quantity = item.quantity
         }
+        console.log('updating abum info')
+        //fix here to grab correct idx?
         $scope.albums[idx] = [album, quantity];
+      })
+      .then(function(){
+        $scope.cartItems = $scope.albums;
       })
     })
   }
@@ -39,10 +54,9 @@ app.controller('CartController', function($scope, $rootScope, user, UserFactory,
   
   $scope.getAlbumInfo();
 
-  $scope.cartItems = $scope.albums;
-
   $scope.deleteFromCart = function(currentAlbum){
     CartFactory.deleteAlbum(currentAlbum, $scope.user);
+    // $scope.getAlbumInfo(currentAlbum, 0);
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
 

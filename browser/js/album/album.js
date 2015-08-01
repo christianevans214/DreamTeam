@@ -26,8 +26,13 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
     if($scope.user){
       CartFactory.addAlbum(currentAlbum, $scope.user);
       console.log('user', $scope.user);
-      UserFactory.updateUser($scope.user._id, $scope.user);
-    }
+      UserFactory.updateUser($scope.user._id, $scope.user)
+     .then(function(newUpdatedUser){
+        $rootScope.$broadcast("editedCart", newUpdatedUser)
+        $state.go('cart')
+      })
+    } 
+    
     // }else{
     //   var items;
     //   var guestCart = localStorageService.get('cart');
@@ -37,9 +42,9 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
     //   }else{
     //     console.log("guest cart", guestCart)
 
-    //   }
+    //  
     // }
-
-    $state.go('cart');
-  }
+    // $rootScope.$broadcast("editedCart");
+    // $state.go('cart');
+  };
 })
