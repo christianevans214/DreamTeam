@@ -11,26 +11,36 @@ app.config(function($stateProvider){
     })
 })
 
-app.controller('CartController', function($scope, $rootScope, user, UserFactory, CartFactory, AlbumFactory, albums){
+app.controller('CartController', function($scope, $rootScope, user, UserFactory, CartFactory, AlbumFactory){
   //get the albums
-  console.log("resolve albums", albums)
   $scope.user = user;
 
   $scope.albums = [];
-  $scope.user.cart.forEach(function(item){
-    AlbumFactory.getAlbum(item.album)
-    .then(function(album){
-      $scope.albums.push(album);
-      console.log("albums", $scope.albums);
+
+  //use id reference to get album information
+  //populate albums array with [album, quantity]
+  //if update to cart, reflect in albums array
+  $scope.getAlbumInfo = function(currentAlbum, quantity){
+    $scope.user.cart.forEach(function(item,idx){
+      AlbumFactory.getAlbum(item.album)
+      .then(function(album){
+        if(currentAlbum){
+          if(album._id === currentAlbum[0]._id){
+          quantity = quantity;
+          }else{ quantity = item.quantity }
+        }else{
+          quantity = item.quantity
+        }
+        $scope.albums[idx] = [album, quantity];
+      })
     })
-  })
+  }
   
+  
+  $scope.getAlbumInfo();
 
+  $scope.cartItems = $scope.albums;
 
-  console.log("albums out of .then", $scope.albums);
-
-  console.log("user in cart", $scope.user.cart);
-  $scope.cartItems = $scope.user.cart;
   $scope.deleteFromCart = function(currentAlbum){
     CartFactory.deleteAlbum(currentAlbum, $scope.user);
     UserFactory.updateUser($scope.user._id, $scope.user);
@@ -38,7 +48,7 @@ app.controller('CartController', function($scope, $rootScope, user, UserFactory,
 
   $scope.updateCartQuantity = function(currentAlbum, quantity){
     CartFactory.updateQuantity(currentAlbum, $scope.user, quantity);
-    console.log('update quantity',$scope.user);
+    $scope.getAlbumInfo(currentAlbum, quantity);
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
   //checkout
