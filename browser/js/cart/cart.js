@@ -11,7 +11,7 @@ app.config(function($stateProvider){
     })
 })
 
-app.controller('CartController', function($scope, $rootScope, user, UserFactory, CartFactory, AlbumFactory){
+app.controller('CartController', function($state, $scope, $rootScope, user, CheckoutFactory, UserFactory, CartFactory, AlbumFactory){
   //get the albums
   $scope.user = user;
 
@@ -20,13 +20,10 @@ app.controller('CartController', function($scope, $rootScope, user, UserFactory,
   $rootScope.$on("editedCart", function(event, data) {
     console.log("event caught!", data);
     $scope.user = data;
-    console.log('scope.user', $scope.user);
     $scope.getAlbumInfo();
-    // // $scope.cartItems = $scope.albums;
-    // console.log('$scope.cartItems', $scope.cartItems);
-    // console.log('$scope.albums', $scope.albums);
-    $scope.$digest();
+    $scope.$apply();
   })
+
   //use id reference to get album information
   //populate albums array with [album, quantity]
   //if update to cart, reflect in albums array
@@ -66,6 +63,11 @@ app.controller('CartController', function($scope, $rootScope, user, UserFactory,
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
   //checkout
+
+  $scope.checkout = function(cart){
+    CheckoutFactory.getTransaction(cart);
+    $state.go('checkout');
+  }
 
 
 })
