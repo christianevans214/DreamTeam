@@ -91,7 +91,6 @@ app.controller('CartController', function($state, $scope, $rootScope, user, Chec
   $scope.deleteFromCart = function(currentAlbum){
     CartFactory.deleteAlbum(currentAlbum, $scope.user.cart);
     UserFactory.updateUser($scope.user._id, $scope.user);
-    $rootScope.$apply();
   }
 
   //update album from user cart
