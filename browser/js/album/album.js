@@ -11,24 +11,40 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory){
+app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory, localStorageService){
+
   $scope.album = album;
+
   AuthService.getLoggedInUser()
   .then(function(user){
-    if(!user) $rootScope.guestUser = {_id: 'guest', cart: []};
-    else $rootScope.user = user;
+    $scope.user = user;
   })
 
   $scope.addToCart = function(currentAlbum){
-    if($rootScope.user){
-      $rootScope.user.cart.push(currentAlbum);
-      $scope.currentId = $rootScope.user._id;
-      UserFactory.updateUser($rootScope.user._id, $rootScope.user);
-    } else {
-      $rootScope.guestUser.cart.push(currentAlbum);
-      $scope.currentId = $rootScope.guestUser._id;
-    }
+    console.log("currentAlbum", currentAlbum)
 
-    $state.go('cart', {id: $scope.currentId});
-  }
+    if($scope.user){
+      CartFactory.addAlbum(currentAlbum, $scope.user);
+      console.log('user', $scope.user);
+      UserFactory.updateUser($scope.user._id, $scope.user)
+     .then(function(newUpdatedUser){
+        $rootScope.$broadcast("editedCart", newUpdatedUser)
+        $state.go('cart')
+      })
+    } 
+    
+    // }else{
+    //   var items;
+    //   var guestCart = localStorageService.get('cart');
+    //   if(guestCart === null){
+    //     items = [{album: currentAlbum, quantity: 1}];
+    //     localStorageService.set('cart', items);
+    //   }else{
+    //     console.log("guest cart", guestCart)
+
+    //  
+    // }
+    // $rootScope.$broadcast("editedCart");
+    // $state.go('cart');
+  };
 })

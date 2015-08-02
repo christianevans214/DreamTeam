@@ -7,8 +7,8 @@ var schema = new mongoose.Schema({
 		ref: 'User'
 	},
 	email: {
-		type: String,
-		required: true
+		type: String
+		// required: true do we want required? What if twitter/fb/google sign in
 	},
 	purchases: [{
 		artistName: {
