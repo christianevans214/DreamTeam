@@ -25,7 +25,7 @@ app.factory('UserFactory', function($http) {
 			})
 		},
 		deleteUser: function(id) {
-			return $http.delete('api/account' + id)
+			return $http.delete('api/account/' + id)
 				.then(function(res) {
 					return res.data;
 				})

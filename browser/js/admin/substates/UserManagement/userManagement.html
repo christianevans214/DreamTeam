@@ -2,15 +2,15 @@
 	<ul class = "users">
 		<li class = "users-list" ng-repeat = 'user in users'>
 		<div class = "users-list-item">
-			<img ui-sref = "admin.viewUser({id:users._id})"class = "users-list-element tinyPhoto" src = '{{user.photo}}'>
+			<img ui-sref = "admin.viewUser({id:user._id})" ng-click="setUser(user)" class = "users-list-element tinyPhoto" src = '{{user.photo}}'>
 			</img>
 			<h5 class = "users-list-element users-firstName">{{user.firstName}}</h5>
 			<h5 class = "users-list-element users-lastName">{{user.lastName}}</h5>
 			<p class = 'users-list-element users-isAdmin'>Admin: {{user.isAdmin}}</p>
 <!-- 			<p class = "users-list-element users-cart">{{user.cart}}</p>
- -->			
+	 -->		
  			<p class = "users-list-element users-id">{{user._id}}</p>
-			<span class = "delete glyphicon glyphicon-trash" ng-click = "deleteUsers(users._id)"></span>
+			<span class = "delete glyphicon glyphicon-trash" ng-click = "deleteUser(user._id)"></span>
 		</div>
 		</li>
 	</ul>

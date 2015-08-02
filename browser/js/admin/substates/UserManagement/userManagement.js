@@ -7,5 +7,5 @@ app.config(function($stateProvider) {
 })
 
 app.controller('userManagementController', function($scope, UserFactory, users) {
-	$scope.users = users;
+	// $scope.users = users;
 })

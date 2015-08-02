@@ -10,7 +10,7 @@ app.controller('ProductManagementView', function($rootScope, $state, $scope, Alb
 	$scope.album = albums.filter(function(album) {
 			if (album._id === $stateParams.id) return true;
 		})[0]
-		//this is still broken...and looks awful. 
+		//this is not broken, but should be placed in a factory...
 	$scope.submitChanges = function(id, albumChanges) {
 		var nameToHold = albumChanges.artist.name;
 		albumChanges.artist = artists.filter(function(artist) {

@@ -22,15 +22,23 @@ app.config(function($stateProvider) {
 		})
 })
 
-app.controller("AdminController", function($rootScope, $scope, UserFactory, TransactionFactory, AlbumFactory, users, albums, artists, transactions) {
+app.controller("AdminController", function($state, $rootScope, $scope, UserFactory, TransactionFactory, AlbumFactory, users, albums, artists, transactions) {
 	$scope.users = users;
 	$scope.abums = albums;
 	$scope.artists = artists;
 	$scope.transactions = transactions;
-	// $rootScope.$on('updatedAlbum', function(event, data) {
-	// 	console.log("EMITTED", data);
-	// 	$scope.albums = data;
-	// 	albums = data;
-	// 	$scope.$digest();
-	// })
+	//should make an Admin service that has all these functions for deleting things/updating things/what not
+	$scope.deleteUser = function(id) {
+		//front-end deletion of $scope.users
+		$scope.users = $scope.users.filter(function(album) {
+				if (album._id === id) return false;
+				return true;
+			})
+			//DB deletion of users
+		UserFactory.deleteUser(id)
+			.then(function(response) {
+				console.log(response);
+				$state.go('admin.userManagement')
+			})
+	}
 })
