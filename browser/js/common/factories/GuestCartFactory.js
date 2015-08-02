@@ -1,4 +1,4 @@
-app.factory('CartFactory', function () {
+app.factory('GuestCartFactory', function () {
 	return {
 		addAlbum: function(album, user){
 			if(user.cart.length === 0) return user.cart.push({album: album, quantity: 1});
@@ -15,7 +15,7 @@ app.factory('CartFactory', function () {
 			var index;
 			cart.forEach(function(cartItem, idx){
 				console.log("idx:", idx, "cartItem:", cartItem);
-				if(cartItem.album === album._id) {
+				if(cartItem.album._id === album._id) {
 					index = idx;
 					return;
 				}
@@ -29,6 +29,14 @@ app.factory('CartFactory', function () {
 					return;
 				}
 			});
-		}
+		}/*,
+		addAlbumGuest: function(album, cart){
+			cart.forEach(function(item){
+				if(item.album._id === album._id) {
+					cartItem.quantity++;
+					match = true;
+				}
+			})
+		}*/
 	}
 })

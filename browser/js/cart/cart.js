@@ -1,6 +1,6 @@
 app.config(function($stateProvider){
   $stateProvider.state('cart', {
-    url: '/cart/',
+    url: '/cart',
     controller: 'CartController',
     templateUrl: 'js/cart/cart.html',
     resolve: {
@@ -11,35 +11,10 @@ app.config(function($stateProvider){
   })
 })
 
-
-/*app.controller('CartController', function($scope, user, UserFactory, CartFactory, AlbumFactory){
-  //get the albums - this process seems very slow currently
-  $scope.user = user;
-
-  if(!$scope.albums) $scope.albums = [];
-  $scope.user.cart.forEach(function(item){
-    console.log("item", item);
-    AlbumFactory.getAlbum(item.album)
-    .then(function(album){
-      $scope.albums.push({album: album, quantity: item.quantity});
-      $scope.cartItems = $scope.albums;
-      return album;
-    })
-    .then(function(){
-      $scope.$apply();
-    })
-  })
-
-  
-  console.log("user cart", $scope.user.cart);
-
-  $scope.deleteFromCart = function(currentAlbum){
-    CartFactory.deleteAlbum(currentAlbum._id, $scope.user);*/
-
 app.controller('CartController', function($state, $scope, $rootScope, user, CheckoutFactory, UserFactory, CartFactory, AlbumFactory, localStorageService){
   //set user
   $scope.user = user;
-  console.log("cart user", $scope.user);
+
   //initialize albums array
   $scope.albums = [];
 
@@ -48,20 +23,21 @@ app.controller('CartController', function($state, $scope, $rootScope, user, Chec
     $scope.user = data;
     $scope.$apply();
   })*/
-
-  $scope.user.cart.forEach(function(item){
-    console.log("item id", item.album)
-    AlbumFactory.getAlbum(item.album)
-    .then(function(album){
-      $scope.albums.push({album: album, quantity: item.quantity});
-      return album;
+  if($scope.user){
+    $scope.user.cart.forEach(function(item){
+      console.log("item id", item.album)
+      AlbumFactory.getAlbum(item.album)
+      .then(function(album){
+        $scope.albums.push({album: album, quantity: item.quantity});
+        return album;
+      })
+      .then(function(){
+        $scope.cartItems = $scope.albums;
+        console.log("$scope.cartItems", $scope.cartItems)
+        $rootScope.$broadcast('loadedItems', $scope.cartItems);
+      })
     })
-    .then(function(){
-      $scope.cartItems = $scope.albums;
-      console.log("$scope.cartItems", $scope.cartItems)
-      $rootScope.$broadcast('loadedItems', $scope.cartItems);
-    })
-  })
+  }
 
 
 
