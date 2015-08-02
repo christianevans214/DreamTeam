@@ -24,6 +24,7 @@ var connectToDb = require('./server/db');
 var Artist = Promise.promisifyAll(mongoose.model('Artist'));
 var User = Promise.promisifyAll(mongoose.model('User'));
 var Album = Promise.promisifyAll(mongoose.model('Album'));
+var Review = Promise.promisifyAll(mongoose.model('Review'))
 
 var seedArtists = function() {
     var artists = [{
@@ -47,6 +48,33 @@ var seedArtists = function() {
     return Artist.createAsync(artists);
 }
 
+var seedReviews = function() { 
+
+    var reviews = [{
+        username: "Barack",
+        content: "This album is presindential.",
+        rating: 5
+    }, {
+        username: "Cooper",
+        content: "Woof, grr, woof!",
+        rating: 3
+    }, {
+        username: "Led",
+        content: "A stairway to heaven of an album!",
+        rating: 5
+    }, {
+        username: "Taylor",
+        content: "I HATE KANYE!",
+        rating: 1
+    }, {
+        username: "test",
+        content: "test test test",
+        rating: 5
+    }]
+
+    return Review.createAsync(reviews);
+
+}
 
 var seedUsers = function() {
 
@@ -86,7 +114,6 @@ var seedUsers = function() {
     }];
 
 
-
     return User.createAsync(users);
 
 };
@@ -98,56 +125,64 @@ var albums = [{
     genre: ["R&B"],
     price: "27.16",
     image: "http://i.huffpost.com/gen/891066/images/o-MICHAEL-JACKSON-THRILLER-facebook.jpg",
-    year: 1982
+    year: 1982,
+    review: "Barack"
 }, {
     artist: "Leon Bridges",
     title: "Coming Home",
     genre: ["Soul"],
     price: "20.00",
     image: "http://static1.squarespace.com/static/54fdea6de4b018047dada8af/t/5552050ee4b03b3ccda57c18/1431438608081/",
-    year: 2015
+    year: 2015,
+    review: "Led"
 }, {
     artist: "The Beatles",
     title: "Abbey Road",
     genre: ["Pop"],
     price: "37.00",
     image: "http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/AbbeyRoad.jpg?itok=BgfH98zh",
-    year: 1969
+    year: 1969,
+    review: "Barack"
 }, {
     artist: "Pink Floyd",
     title: "Dark Side of the Moon",
     genre: ["Rock"],
     price: "24.43",
     image: "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
-    year: 1973
+    year: 1973,
+    review: "Cooper"
 }, {
     artist: "Beyoncé",
     title: "Beyoncé",
     genre: ["R&B"],
     price: "25.50",
     image: "https://upload.wikimedia.org/wikipedia/commons/2/21/Beyonc%C3%A9_-_Beyonc%C3%A9.svg",
-    year: 2014
+    year: 2014,
+    review: "Barack"
 }, {
     artist: "Led Zeppelin",
     title: "IV",
     genre: ["Clasic Rock"],
     price: "23.84",
     image: "http://superhypeblog.com/wp-content/uploads/2011/08/led-zep-iv.jpg",
-    year: 1971
+    year: 1971,
+    review: "test"
 }, {
     artist: "Kanye West",
     title: "My Beautiful Dark Twisted Fantasy",
     genre: ["Pop"],
     price: "25.85",
     image: "http://sites.bxmc.poly.edu/~dariclim/VFS/wp-content/uploads/2014/09/kanye_west_mbdtf.jpg",
-    year: 2010
+    year: 2010,
+    review: "Taylor"
 }, {
     artist: "Joni Mitchel",
     title: "Feeling Blue",
     genre: ["Folk Rock"],
     price: "32.00",
     image: "http://blog.thecurrent.org/files/2015/04/Blue-Joni-Mitchell.jpg",
-    year: 1971
+    year: 1971,
+    review: "Cooper"
 }];
 
 
@@ -155,9 +190,9 @@ connectToDb.then(function() {
     mongoose.connection.db.dropDatabase(function() {
         seedArtists()
             .then(function(responseArr) {
-                // console.log(responseArr);
+                console.log("array of artists", gitresponseArr);
                 var newAlbums = albums.map(function(album, index) {
-                    // console.log(responseArr[index], album.artist)
+                    console.log(responseArr[index], album.artist)
                     if (responseArr[index].name === album.artist) {
                         album.artist = responseArr[index]._id;
                         return album;
@@ -165,12 +200,12 @@ connectToDb.then(function() {
                 })
                 Album.createAsync(newAlbums)
                     .then(function(newAlbums) {
-                        console.log(newAlbums);
+                        // console.log(newAlbums);
                         return seedUsers();
                     })
                     .then(function(newUsers) {
-                        console.log(newUsers);
-                        console.log("Everything seeded!")
+                        // console.log(newUsers);
+                        // console.log("Everything seeded!")
                         process.kill(0);
                     })
             })

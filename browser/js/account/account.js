@@ -3,9 +3,6 @@ app.config(function($stateProvider) {
 		url: '/account/:id',
 		controller: 'AccountController',
 		templateUrl: 'js/account/account.html',
-		// data: {
-		// 	authenticate: true
-		// }, 
 		resolve: {
 			user: function(UserFactory, $stateParams) {
 				return UserFactory.getUser($stateParams.id);
