@@ -14,22 +14,21 @@
 			<tbody>
 				<tr ng-repeat="cartItem in cartItems">
 				 <div>
-				 	{{cartItem}}
-				<!-- 		<td class="col-md-3 col-lg-5 col-sm-3">
-							<a ui-sref="albumDetail({albumId: cartItem._id})">
+						<td class="col-md-3 col-lg-5 col-sm-3">
+							<a ui-sref="albumDetail({albumId: cartItem.album._id})">
 							<div>
-								<img class="circle col-md-3 col-lg-5 col-sm-3" src='{{cartItem[0].image}}'>
+								<img class="square col-md-3 col-lg-5 col-sm-3" src='{{cartItem.album.image}}'>
 							</div>
 							</a>
 						</td>
-						<td class="col-md-3 col-lg-5 col-sm-3">
-							<a ui-sref="albumDetail({albumId: cartItem[0]._id})">
-							{{cartItem[0].title}}
+						<td class="col-md-2 col-lg-3 col-sm-3">
+							<a ui-sref="albumDetail({albumId: cartItem.album._id})">
+							{{cartItem.album.title}}
 							</a>
 						</td>
-						<td class="col-md-2 col-lg-3 col-sm-3">{{cartItem[1]}}</td>
+						<td class="col-md-2 col-lg-3 col-sm-3">{{cartItem.quantity}}</td>
 						<td class="col-md-2 col-lg-3 col-sm-3">
-							<select ng-model="cartItem[1]" ng-change="updateCartQuantity(cartItem, cartItem[1])" convert-to-number>
+							<select ng-model="cartItem.quantity" ng-change="updateCartQuantity(cartItem.album, cartItem.quantity)" convert-to-number>
 							  <option value="1">1</option>
 							  <option value="2">2</option>
 							  <option value="3">3</option>
@@ -42,9 +41,9 @@
 							  <option value="10">10</option>
 							</select>
 						</td>
-						<td class="col-md-1 col-lg-1 col-sm-1">${{cartItem[0].price}} </td>
-						<td class="remove-item col-md-1 col-lg-1 col-sm-1" ng-click="deleteFromCart(cartItem[0])">x</td>
-				  </div> -->
+						<td class="col-md-1 col-lg-1 col-sm-1">${{cartItem.album.price}} </td>
+						<td class="remove-item col-md-1 col-lg-1 col-sm-1" ng-click="deleteFromCart(cartItem.album)">x</td>
+				  </div>
 				</tr>
 			</tbody>
 		</table>
