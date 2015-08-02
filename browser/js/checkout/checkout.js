@@ -13,6 +13,6 @@ app.config(function($stateProvider){
 })
 
 app.controller('CheckoutController', function($scope, user){
-  $scope.hello = "hello";
+  // $scope.hello = "hello";
 
 })

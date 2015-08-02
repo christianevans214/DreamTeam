@@ -14,15 +14,15 @@
 			<tbody>
 				<tr ng-repeat="cartItem in cartItems">
 				 <div>
-				 	<!-- {{cartItem}} -->
-						<td class="col-md-3 col-lg-5 col-sm-3">
-							<a ui-sref="albumDetail({albumId: cartItem[0]._id})">
+				 	{{cartItem}}
+				<!-- 		<td class="col-md-3 col-lg-5 col-sm-3">
+							<a ui-sref="albumDetail({albumId: cartItem._id})">
 							<div>
 								<img class="circle col-md-3 col-lg-5 col-sm-3" src='{{cartItem[0].image}}'>
 							</div>
 							</a>
 						</td>
-						<td class="col-md-2 col-lg-3 col-sm-3">
+						<td class="col-md-3 col-lg-5 col-sm-3">
 							<a ui-sref="albumDetail({albumId: cartItem[0]._id})">
 							{{cartItem[0].title}}
 							</a>
@@ -44,7 +44,7 @@
 						</td>
 						<td class="col-md-1 col-lg-1 col-sm-1">${{cartItem[0].price}} </td>
 						<td class="remove-item col-md-1 col-lg-1 col-sm-1" ng-click="deleteFromCart(cartItem[0])">x</td>
-				  </div>
+				  </div> -->
 				</tr>
 			</tbody>
 		</table>
