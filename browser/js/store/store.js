@@ -13,7 +13,7 @@ app.config(function($stateProvider) {
 app.controller('StoreController', function($scope, AlbumFactory) {
 	AlbumFactory.getAlbums().then(function(albums) {
 		$scope.albums = albums;
-		console.log(albums);
+		// console.log(albums);
 	})
 
 	

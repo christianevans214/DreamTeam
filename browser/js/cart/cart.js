@@ -4,11 +4,11 @@ app.config(function($stateProvider){
     controller: 'CartController',
     templateUrl: 'js/cart/cart.html',
     resolve: {
-      user: function(AuthService){
-        return AuthService.getLoggedInUser();
+        user: function(AuthService){
+          return AuthService.getLoggedInUser();
+        }
       }
-    }
-  })
+    })
 })
 
 app.controller('CartController', function($state, $scope, $rootScope, user, CheckoutFactory, UserFactory, CartFactory, AlbumFactory, localStorageService){
@@ -18,45 +18,27 @@ app.controller('CartController', function($state, $scope, $rootScope, user, Chec
   //initialize albums array
   $scope.albums = [];
 
-/*  $rootScope.$on("editedCart", function(event, data) {
-    console.log("event caught!", data, event);
-    $scope.user = data;
-    $scope.$apply();
-  })*/
-  if($scope.user){
-    $scope.user.cart.forEach(function(item){
-      console.log("item id", item.album)
-      AlbumFactory.getAlbum(item.album)
-      .then(function(album){
-        $scope.albums.push({album: album, quantity: item.quantity});
-        return album;
+
+  $scope.getAlbumInfo = function(){
+    if($scope.user){
+      console.log("scope.user", $scope.user)
+      $scope.user.cart.forEach(function(item){
+        console.log("item id", item.album)
+        AlbumFactory.getAlbum(item.album)
+        .then(function(album){
+          $scope.albums.push({album: album, quantity: item.quantity});
+          return album;
+        })
+        .then(function(){
+          $scope.cartItems = $scope.albums;
+          console.log("$scope.cartItems", $scope.cartItems)
+          $rootScope.$broadcast('loadedItems', $scope.cartItems);
+        })
       })
-      .then(function(){
-        $scope.cartItems = $scope.albums;
-        console.log("$scope.cartItems", $scope.cartItems)
-        $rootScope.$broadcast('loadedItems', $scope.cartItems);
-      })
-    })
+    }
   }
 
-
-
-  //iterate through user cart and populate albums
-/*  $scope.getAlbumInfo = function(){
-    $scope.user.cart.forEach(function(item){
-      AlbumFactory.getAlbum(item.album)
-      .then(function(album){
-        $scope.albums.push({album: album, quantity: item.quantity});
-        return album;
-      })
-      .then(function(){
-        $scope.cartItems = $scope.albums;
-        console.log("$scope.cartItems", $scope.cartItems)
-        $rootScope.$broadcast('loadedItems', $scope.cartItems)
-      })
-    })
-  }*/
-
+  $scope.getAlbumInfo();
 
   $rootScope.$on('loadedItems', function(event, data){
     $scope.cartItems = data;
