@@ -6,6 +6,15 @@ app.config(function($stateProvider) {
 	})
 })
 
-app.controller('transactionManagementController', function($scope, TransactionFactory) {
-
+app.controller('transactionManagementController', function($scope, TransactionFactory, transactions) {
+	console.log($scope.transactions)
+	$scope.transactions.push({
+			user: "obamaMama",
+			email: "I<3Puppies",
+			dateOrdered: new Date(),
+			status: "Pending",
+			trackingNumber: "123EFA1234",
+			_id: "123FERES432",
+			purchases: [])
+	})
 })
