@@ -11,7 +11,7 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory, localStorageService){
+app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory, localStorageService, GuestCartFactory){
 
   $scope.album = album;
 
@@ -36,8 +36,8 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
         guestCart = [{album: currentAlbum, quantity: 1}];
         localStorageService.set('cart', guestCart);
       }else{
-        console.log("guest cart", guestCart);
-        guestCart.push({album: currentAlbum, quantity: 1});
+        GuestCartFactory.addAlbum(currentAlbum, guestCart);
+        console.log("guestCart", guestCart)
         localStorageService.set('cart', guestCart);
       }
       $state.go('guestCart');

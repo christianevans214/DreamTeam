@@ -6,27 +6,27 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('GuestCartController', function($scope, GuestCartFactory, CartFactory, localStorageService){
+app.controller('GuestCartController', function($state, $scope, GuestCartFactory, CartFactory, localStorageService){
   $scope.cartItems = localStorageService.get('cart');
   console.log("guest cartItems", $scope.cartItems);
 
   //delete album from user cart
   $scope.deleteFromCart = function(currentAlbum){
     console.log("currentAlbum", currentAlbum)
-    GuestCartFactory.deleteAlbum(currentAlbum, $scope.cartItems);
-    localStorageService.remove('cart', currentAlbum._id);
-    //localStorageService.clearAll(/currentAlbum._id/);
+    var index = GuestCartFactory.deleteAlbum(currentAlbum, $scope.cartItems);
+    $scope.cartItems = $scope.cartItems.splice(index, 1);
+    localStorageService.set('cart', $scope.cartItems);
   }
 
   //update album from user cart
-/*  $scope.updateCartQuantity = function(currentAlbum, quantity){
-    CartFactory.updateQuantity(currentAlbum, $scope.user, quantity);
-  }*/
+  $scope.updateCartQuantity = function(currentAlbum, quantity){
+    localStorageService.set('cart', $scope.cartItems);
+  }
 
   //checkout
-/*  $scope.checkout = function(cart){
-    CheckoutFactory.getTransaction(cart);
+  $scope.checkout = function(cart){
+    //CheckoutFactory.getTransaction(cart);
     $state.go('checkout');
-  }*/
+  }
 
 })

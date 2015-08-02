@@ -1,15 +1,15 @@
 app.factory('GuestCartFactory', function () {
 	return {
-		addAlbum: function(album, user){
-			if(user.cart.length === 0) return user.cart.push({album: album, quantity: 1});
+		addAlbum: function(album, cart){
+			if(cart.length === 0) return cart.push({album: album, quantity: 1});
 			var match = false;
-			user.cart.forEach(function(cartItem){
-				if(cartItem.album === album._id) {
+			cart.forEach(function(cartItem){
+				if(cartItem.album._id === album._id) {
 					cartItem.quantity++;
 					match = true;
 				}
 			});
-			if(!match) return user.cart.push({album: album, quantity: 1});
+			if(!match) return cart.push({album: album, quantity: 1});
 		},
 		deleteAlbum: function(album, cart){
 			var index;
@@ -21,22 +21,7 @@ app.factory('GuestCartFactory', function () {
 				}
 			});
 			cart.splice(index, 1);
-		},
-		updateQuantity: function(album, user, quantity){
-			user.cart.forEach(function(cartItem, idx){
-				if(cartItem.album === album._id) {
-					user.cart[idx].quantity = quantity;
-					return;
-				}
-			});
-		}/*,
-		addAlbumGuest: function(album, cart){
-			cart.forEach(function(item){
-				if(item.album._id === album._id) {
-					cartItem.quantity++;
-					match = true;
-				}
-			})
-		}*/
+			return index;
+		}
 	}
 })
