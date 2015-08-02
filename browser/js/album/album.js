@@ -36,7 +36,6 @@ app.controller('AlbumController', function($scope, $rootScope, user, album, $sta
         localStorageService.set('cart', guestCart);
       }else{
         GuestCartFactory.addAlbum(currentAlbum, guestCart);
-        console.log("guestCart", guestCart)
         localStorageService.set('cart', guestCart);
       }
       $state.go('guestCart');
