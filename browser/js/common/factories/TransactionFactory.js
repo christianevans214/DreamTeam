@@ -13,7 +13,7 @@ app.factory("TransactionFactory", function($http) {
 				})
 		},
 		updateTransaction: function(id, updateInfo) {
-			return $http.put("api/transaction" + id, updateInfo)
+			return $http.put("api/transaction/" + id, updateInfo)
 				.then(function(res) {
 					return res.data;
 				})

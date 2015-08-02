@@ -6,17 +6,17 @@ module.exports = router;
 
 
 //params for transaction
-router.param('id', function(req, res, next, id){
-  Transaction.findById(id).exec()
-  .then(function(transaction){
-    if(transaction) {
-      req.transaction = transaction;
-      next();
-    } else{
-      throw new Error('No transaction found');
-    }
-  })
-  .then(null, next);
+router.param('id', function(req, res, next, id) {
+  Transaction.findById(id).populate('promo').exec()
+    .then(function(transaction) {
+      if (transaction) {
+        req.transaction = transaction;
+        next();
+      } else {
+        throw new Error('No transaction found');
+      }
+    })
+    .then(null, next);
 })
 
 
@@ -30,40 +30,37 @@ router.get('/', function(req, res, next) {
 })
 
 //Get one transaction 
-router.get('/:id', function(req, res){
+router.get('/:id', function(req, res) {
   res.json(req.transaction);
 })
 
 
 //Post one Transaction
-router.post('/', function(req, res, next){
+router.post('/', function(req, res, next) {
   Transaction.create(req.body)
-  .then(function(transaction){
-    res.json(transaction);
-  })
-  .then(null, next);
+    .then(function(transaction) {
+      res.json(transaction);
+    })
+    .then(null, next);
 })
 
 
 //Update a Transaction
-router.put('/:id', function(req, res, next){  
-  _.extend(req.transaction, req.body);  
-  req.transaction.save()       
-  .then(function(transaction){
-    res.json(transaction);
-  })
-  .then(null, next);
+router.put('/:id', function(req, res, next) {
+  _.extend(req.transaction, req.body);
+  req.transaction.save()
+    .then(function(transaction) {
+      res.json(transaction);
+    })
+    .then(null, next);
 })
 
 
 //Delete a Transaction
-router.delete('/:id', function(req, res, next){
+router.delete('/:id', function(req, res, next) {
   req.transaction.remove()
-  .then(function(){
-    res.sendStatus(200);
-  })
-  .then(null, next);
+    .then(function() {
+      res.sendStatus(200);
+    })
+    .then(null, next);
 })
-
-
-

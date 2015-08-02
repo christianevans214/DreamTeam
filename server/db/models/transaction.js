@@ -27,9 +27,12 @@ var schema = new mongoose.Schema({
 		default: Date.now
 	},
 	trackingNumber: String,
-	status: String
+	status: String,
+	promo: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "Promo"
+	}
 })
-
 
 
 mongoose.model('Transaction', schema);

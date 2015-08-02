@@ -6,6 +6,8 @@ app.config(function($stateProvider) {
 	})
 })
 
-app.controller("TransactionManagementView", function($scope, $state, TransactionFactory) {
-
+app.controller("TransactionManagementView", function($scope, $state, TransactionFactory, $stateParams) {
+	$scope.transaction = $scope.transactions.filter(function(transaction) {
+		if ($stateParams.id === transaction._id) return true;
+	})[0];
 })
