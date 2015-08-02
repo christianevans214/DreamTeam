@@ -10,8 +10,12 @@
             <li ng-show=user.isAdmin>
                 <a ui-sref-active="active" ui-sref="admin({id:user._id})">Admin</a>
             </li>
-            <li>
+            <li ng-show="user">
                 <a ui-sref-active="active" ui-sref="cart({id: user._id})">Cart
+                <span class="glyphicon glyphicon-shopping-cart"></span></a>
+            </li>
+            <li ng-show="!user">
+                <a ui-sref-active="active" ui-sref="guestCart">Cart
                 <span class="glyphicon glyphicon-shopping-cart"></span></a>
             </li>
         </ul>
