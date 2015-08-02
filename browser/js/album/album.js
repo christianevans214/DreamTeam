@@ -23,19 +23,26 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
   $scope.addToCart = function(currentAlbum){
     if($scope.user){
       CartFactory.addAlbum(currentAlbum, $scope.user);
-      UserFactory.updateUser($scope.user._id, $scope.user);
-    }else{
-      var items;
-      var guestCart = localStorageService.get('cart');
-      if(guestCart === null){
-        items = [{album: currentAlbum, quantity: 1}];
-        localStorageService.set('cart', items);
-      }else{
-        console.log("guest cart", guestCart)
+      console.log('user', $scope.user);
+      UserFactory.updateUser($scope.user._id, $scope.user)
+     .then(function(newUpdatedUser){
+        $rootScope.$broadcast("editedCart", newUpdatedUser)
+        $state.go('cart')
+      })
+    } 
+    
+    // }else{
+    //   var items;
+    //   var guestCart = localStorageService.get('cart');
+    //   if(guestCart === null){
+    //     items = [{album: currentAlbum, quantity: 1}];
+    //     localStorageService.set('cart', items);
+    //   }else{
+    //     console.log("guest cart", guestCart)
 
-      }
-    }
-
-    $state.go('cart', {id: $scope.currentId});
-  }
+    //  
+    // }
+    // $rootScope.$broadcast("editedCart");
+    // $state.go('cart');
+  };
 })
