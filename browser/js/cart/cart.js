@@ -4,58 +4,42 @@ app.config(function($stateProvider){
     controller: 'CartController',
     templateUrl: 'js/cart/cart.html',
     resolve: {
-        user: function(AuthService){
-          return AuthService.getLoggedInUser();
-        }
+      user: function(AuthService){
+        return AuthService.getLoggedInUser();
       }
+     }
     })
 })
 
-app.controller('CartController', function($state, $scope, $rootScope, user, CheckoutFactory, UserFactory, CartFactory, AlbumFactory, localStorageService){
-  //set user
+app.controller('CartController', function($state, user, $scope,CheckoutFactory, UserFactory, CartFactory, AlbumFactory, localStorageService){
   $scope.user = user;
-
-  //initialize albums array
-  $scope.albums = [];
-
-
-  $scope.getAlbumInfo = function(){
-    if($scope.user){
-      console.log("scope.user", $scope.user)
-      $scope.user.cart.forEach(function(item){
-        console.log("item id", item.album)
-        AlbumFactory.getAlbum(item.album)
-        .then(function(album){
-          $scope.albums.push({album: album, quantity: item.quantity});
-          return album;
-        })
-        .then(function(){
-          $scope.cartItems = $scope.albums;
-          console.log("$scope.cartItems", $scope.cartItems)
-        })
-      })
-    }
-  }
-
-  $scope.getAlbumInfo();
-
+  $scope.cartItems = localStorageService.get('userCart');
 
   //delete album from user cart
   $scope.deleteFromCart = function(currentAlbum){
-    CartFactory.deleteAlbum(currentAlbum, $scope.user.cart);
+    // console.log("currentAlbum", currentAlbum)
+    var index = CartFactory.deleteAlbum(currentAlbum, $scope.cartItems);
+    $scope.cartItems = $scope.cartItems.splice(index, 1);
+    $scope.cartItems.splice(index, 1);
+    $scope.user.cart = $scope.cartItems;
+    localStorageService.set('userCart', $scope.cartItems);
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
 
   //update album from user cart
   $scope.updateCartQuantity = function(currentAlbum, quantity){
-    CartFactory.updateQuantity(currentAlbum, $scope.user, quantity);
+    $scope.user.cart = $scope.cartItems;
+    localStorageService.set('userCart', $scope.cartItems);
+    console.log('scope use cart', $scope.user.cart);
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
 
   //checkout
   $scope.checkout = function(cart){
-    CheckoutFactory.getTransaction(cart);
+    //CheckoutFactory.getTransaction(cart);
     $state.go('checkout');
   }
+
+
 
 })
