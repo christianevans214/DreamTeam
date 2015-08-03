@@ -42,6 +42,7 @@ router.post('/', function(req, res, next) {
 			res.json(artist);
 		})
 		.then(null, next);
+
 })
 
 //PUT update artist
