@@ -15,7 +15,6 @@ app.controller('addReviewController', function($scope, user, $state, ReviewFacto
 		$scope.submitReview = function(ReviewToSubmit){
 			ReviewFactory.createReview(ReviewToSubmit)
 			.then(function(revSub){
-
 				$scope.album.review.push(revSub);
 				console.log($scope.album)
 				return AlbumFactory.updateAlbum($scope.album._id, $scope.album)
