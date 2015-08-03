@@ -1,9 +1,10 @@
 app.factory('TrackFactory', function ($http) {
 	return {
-		fetchTracks: function (albumId, callback) {
+		fetchTracks: function (albumId) {
 			return $http.get(`https://api.spotify.com/v1/albums/${albumId}/tracks`)
 				.then(function(res){
-					res.data;
+					console.log("TrackFactory", res);
+					return res.data;
 				})
         },
 	    searchAlbums: function (query) {

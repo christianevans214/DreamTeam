@@ -16,12 +16,12 @@ module.exports = router;
 'https://api.spotify.com/v1/albums/3oVCGd8gjANVb5r2F0M8BI/tracks'
 */
 //GET one track
-var spotifyCredentials = {
+/*var spotifyCredentials = {
 	clientID: spotifyConfig.clientID,
 	clientSecret: spotifyConfig.clientSecret,
 	callbackURL: spotifyConfig.callbackURL
-}
+}*/
 
-router.get(`https://api.spotify.com/v1/albums/${id}/tracks`, function(req, res, next) {
-	res.json();
+router.get('/:id/tracks', function(req, res, next) {
+	res.json(res);
 })
