@@ -10,6 +10,7 @@ module.exports = router;
 router.get('/', function(req, res, next) {
 	Promo.find({}).exec()
 		.then(function(promos) {
+			console.dir(promos);
 			res.json(promos);
 		})
 		.then(null, next);
