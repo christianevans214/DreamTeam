@@ -1,7 +1,7 @@
 app.factory("TransactionFactory", function($http) {
 	return {
 		getTransaction: function(id) {
-			return $http.get("api/transaction" + id)
+			return $http.get(`api/transaction/${id}`)
 				.then(function(res) {
 					return res.data;
 				})
@@ -12,8 +12,14 @@ app.factory("TransactionFactory", function($http) {
 					return res.data
 				})
 		},
+		submitTransaction: function(info){
+			return $http.post('api/transaction', info)
+				.then(function(res){
+					return res.data;
+				})
+		},
 		updateTransaction: function(id, updateInfo) {
-			return $http.put("api/transaction/" + id, updateInfo)
+			return $http.put(`api/transaction/${id}`, updateInfo)
 				.then(function(res) {
 					return res.data;
 				})
