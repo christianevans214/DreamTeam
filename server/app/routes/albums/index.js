@@ -34,40 +34,50 @@ router.get('/', function (req, res, next) {
 })
 
 //GET one album
-router.get('/:id', function(req, res){
+router.get('/:id', function(req, res) {
 	res.json(req.album);
 })
 
 //POST new album
-router.post('/', function(req, res, next){
+router.post('/', function(req, res, next) {
 	Album.create(req.body)
-	.then(function(album){
-		res.json(album);
-	})
-	.then(null, next);
+		.then(function(album) {
+			res.json(album);
+		})
+		.then(null, next);
 })
 
 //PUT update album
-router.put('/:id', function(req, res, next){  
+router.put('/:id', function(req, res, next) {
 	/*
 	lodash extend updates the properties of the first argument,
 	the second arguments updates the properties of the previous argument.
 	*/
-	_.extend(req.album, req.body);  
-	req.album.save()				
-	.then(function(album){
-		res.json(album);
-	})
-	.then(null, next);
+	// _.extend(req.album, req.body);
+	// req.album.save()
+	// 	.then(function(album) {
+	// 		res.json(album);
+	// 	})
+	// 	.then(null, next);
+	Album.findOneAndUpdate({
+			_id: req.params.id
+		}, {
+			$set: req.body
+		}, {
+			new: true
+		}).populate('artist').exec()
+		.then(function(data) {
+			console.log("UPDATED", data);
+			res.json(data);
+		})
+
 })
 
 //DELETE remove album
-router.delete('/:id', function(req, res, next){
+router.delete('/:id', function(req, res, next) {
 	req.album.remove()
-	.then(function(){
-		res.sendStatus(200);
-	})
-	.then(null, next);
+		.then(function() {
+			res.sendStatus(200);
+		})
+		.then(null, next);
 })
-
-

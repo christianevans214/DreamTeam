@@ -1,0 +1,25 @@
+<div class = "transaction-mgmt-container">
+	<ul class = "filterOptions">
+	<li> Filter by: </li>
+	<li class = "filter-choice" ng-click="filterBy(category)" ng-repeat = "category in categories">{{category}}</li>
+	</ul>
+	<h1 class = "no-transactions" ng-if="!transactions.length">No current transactions</h1>
+	<ul class = "transactions" ng-if = "filter === 'All' || filter === transaction.status"ng-repeat = "transaction in transactions">
+<!-- 	<pre>{{transaction | json}} </pre> -->
+		<li class = "transaction-li">
+			<div class = "transaction-li-container">
+				<a ui-sref = "admin.viewTransaction({id:transaction._id})" class = "transaction-element transaction-trackingNumber">{{transaction.trackingNumber}}</a>
+				<h5 class = "transaction-element transaction-user">{{transaction.user}}</h5>
+				<p class = "transaction-element transaction-email">{{transaction.email}}</p>
+				<p class = "transaction-element transaction-dateOrdered">{{transaction.dateOrdered}}</p>
+				<select ng-change = "updateStatus(transaction._id, transaction)" ng-model = "transaction.status" class = "transaction-element transaction-status">
+					<option value = "Created">Created</option>
+					<option value = "Pending">Pending</option>
+					<option value = "Processing">Processing</option>
+					<option value = "Completed">Completed</option>
+					<option value = "Cancelled">Cancelled</option>
+				</select>
+			</div>
+		</li>
+	</ul>
+</div>

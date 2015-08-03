@@ -1,48 +1,58 @@
-app.config(function($stateProvider){
+app.config(function($stateProvider) {
   $stateProvider.state('albumDetail', {
     url: '/albums/:albumId',
     controller: 'AlbumController',
     templateUrl: 'js/album/album.html',
     resolve: {
+      user: function(AuthService) {
+        return AuthService.getLoggedInUser();
+      },
       album: function(AlbumFactory, $stateParams) {
+        //make call to get album info for specific album from server
         return AlbumFactory.getAlbum($stateParams.albumId);
       }
     }
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory, localStorageService){
+app.controller('AlbumController', function($scope, $rootScope, user, album, $state, UserFactory, AuthService, CartFactory, localStorageService) {
 
-  // console.log(reviewUser)
+
+  $scope.user = user;
   $scope.album = album;
 
-  AuthService.getLoggedInUser()
-  .then(function(user){
-    $scope.user = user;
-  })
+  $scope.addToCart = function(currentAlbum) {
+    if ($scope.user) {
+      var userCart = localStorageService.get('userCart');
+      if (!userCart) {
+        userCart = [{
+          album: currentAlbum,
+          quantity: 1
+        }];
+        localStorageService.set('userCart', userCart);
+      } else {
+        CartFactory.addAlbum(currentAlbum, userCart);
+        localStorageService.set('userCart', userCart);
+      }
+      $scope.user.cart = userCart;
 
-  $scope.addToCart = function(currentAlbum){
-    if($scope.user){
-      CartFactory.addAlbum(currentAlbum, $scope.user);
       UserFactory.updateUser($scope.user._id, $scope.user)
-     .then(function(newUpdatedUser){
-        $rootScope.$broadcast("editedCart", newUpdatedUser)
-        $state.go('cart')
-      })
-    } 
-    
-    // }else{
-    //   var items;
-    //   var guestCart = localStorageService.get('cart');
-    //   if(guestCart === null){
-    //     items = [{album: currentAlbum, quantity: 1}];
-    //     localStorageService.set('cart', items);
-    //   }else{
-    //     console.log("guest cart", guestCart)
-
-    //  
-    // }
-    // $rootScope.$broadcast("editedCart");
-    // $state.go('cart');
+        .then(function(updatedUser) {
+          $state.go('cart');
+        })
+    } else {
+      var guestCart = localStorageService.get('cart');
+      if (!guestCart) {
+        guestCart = [{
+          album: currentAlbum,
+          quantity: 1
+        }];
+        localStorageService.set('cart', guestCart);
+      } else {
+        CartFactory.addAlbum(currentAlbum, guestCart);
+        localStorageService.set('cart', guestCart);
+      }
+      $state.go('guestCart');
+    }
   };
 })

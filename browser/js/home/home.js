@@ -23,7 +23,7 @@ app.controller("HomeController", function($scope, $element, AuthService, $interv
 				$scope.accountTitle = "View Your Account";
 
 			}
-			// console.log(user);
+			console.log(user);
 			//$rootScope.user = user?
 		});
 	};

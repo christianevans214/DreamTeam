@@ -2,61 +2,61 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var _ = require('lodash');
-var User = mongoose.model('User');
+var Promo = mongoose.model('Promo');
 module.exports = router;
 
-//GET All users
+
+//GET All promos
 router.get('/', function(req, res, next) {
-	User.find({}).exec()
-		.then(function(users) {
-			res.json(users);
+	Promo.find({}).exec()
+		.then(function(promos) {
+			res.json(promos);
 		})
 		.then(null, next);
 })
 
-//GET One user
-
+//GET One promo
 router.get('/:id', function(req, res) {
 
-	// res.json(req.user);
-	User.findById(req.params.id).exec()
-		.then(function(user) {
-			res.json(user);
+	// res.json(req.promo);
+	Promo.findById(req.params.id).exec()
+		.then(function(promo) {
+			res.json(promo);
 		})
 		.then(null, function() {
 			res.send(404)
 		});
 })
 
-//Post one user
+//Post one promo
 router.post('/', function(req, res, next) {
-	User.create(req.body)
-		.then(function(user) {
-			res.status(201).send(user);
+	Promo.create(req.body)
+		.then(function(promo) {
+			res.status(201).send(promo);
 		})
 		.then(null, next);
 })
 
-//Update a user
+//Update a promo
 router.put('/:id', function(req, res, next) {
-	User.findOneAndUpdate({
+	Promo.findOneAndUpdate({
 		_id: req.params.id
 	}, {
 		$set: req.body
 	}, {
 		new: true
-	}, function(err, user) {
+	}, function(err, promo) {
 		if (err) {
 			next(err);
 		} else {
-			res.json(user);
+			res.json(promo);
 		}
 	})
 })
 
-//Delete a user
+//Delete a promo
 router.delete('/:id', function(req, res, next) {
-	User.findByIdAndRemove(req.params.id, function(err) {
+	Promo.findByIdAndRemove(req.params.id, function(err) {
 		if (err) {
 			next(err);
 		} else {
