@@ -8,7 +8,7 @@ app.factory('TrackFactory', function ($http) {
 				})
         },
 	    searchAlbums: function (query) {
-	    	return $http.get('https://api.spotify.com/v1/search', query)
+	    	return $http.get('https://api.spotify.com/v1/search' + query)
     			.then(function(res){
     				return res.data;
     			})

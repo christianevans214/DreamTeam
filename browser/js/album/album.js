@@ -22,6 +22,18 @@ app.controller('AlbumController', function($scope, $rootScope, user, album, $sta
   $scope.tracks = [];
 
   //TODO: if album does not have spotifyId, search for album with spotify get request, and save to database
+  $scope.checkSpotifyId = function(title){
+    var queryAlbum = title.split(' ').join('+');
+    var query = `?q=${queryAlbum}&type=album&market=US`;
+    //if(!$scope.album.spotifyId){
+      TrackFactory.searchAlbums(query)
+      .then(function(res){
+        console.log("checkSpotifyId result", res);
+      })
+    //}
+  }
+
+  $scope.checkSpotifyId('The Best Of Shaggy');
 
   //Get tracks from spotify for current album
   TrackFactory.fetchTracks($scope.album.spotifyId)

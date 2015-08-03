@@ -10,7 +10,7 @@ router.get('/albums/:id/tracks', function(req, res, next) {
 })
 
 router.get('/search', function(req, res, next){
-
+	res.json(res);
 })
 
 //https://api.spotify.com/v1/search?q=Abbey+Road&type=album&market=US
