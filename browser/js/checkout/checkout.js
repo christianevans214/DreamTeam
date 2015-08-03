@@ -9,7 +9,7 @@ app.config(function($stateProvider){
         return AuthService.getLoggedInUser();
       }
     }
-    })
+  })
 })
 
 app.controller('CheckoutController', function($state, $scope, user, TransactionFactory, localStorageService, UserFactory){
@@ -21,9 +21,11 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
   } 
   else $scope.cartItems = localStorageService.get('cart');
 
-  $scope.cartItems.forEach(function(item){
-    $scope.purchases.push({album: item.album, price: item.album.price, quantity: item.quantity})
-  })
+  if($scope.cartItems.length > 0){
+    $scope.cartItems.forEach(function(item){
+      $scope.purchases.push({album: item.album, price: item.album.price, quantity: item.quantity})
+    })
+  } else $scope.purchases.push({album: $scope.cartItems.album, price: $scope.cartItems.album.price, quantity: $scope.cartItems.quantity});
 
 
   //when place order is clicked -> make post request with form data for user and guest
@@ -46,13 +48,9 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
     .then(function(){
       //delete local storage
       localStorageService.remove('cart', 'userCart');
-      $state.go('checkout.success');
+      $state.go('success');
     })
   }
-
-
-  //go to page that says "order complete" -> that goes home
-
   //send conformation email
 
 })
