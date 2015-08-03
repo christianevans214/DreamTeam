@@ -24,7 +24,7 @@ var connectToDb = require('./server/db');
 var Artist = Promise.promisifyAll(mongoose.model('Artist'));
 var User = Promise.promisifyAll(mongoose.model('User'));
 var Album = Promise.promisifyAll(mongoose.model('Album'));
-
+var Promo = Promise.promisifyAll(mongoose.model("Promo"));
 var seedArtists = function() {
     var artists = [{
         name: "Michael Jackson"
@@ -46,6 +46,20 @@ var seedArtists = function() {
 
     return Artist.createAsync(artists);
 }
+
+// var seedPromos = function() {
+//     var promos = [{
+//         code: "FREE",
+//         validProducts: ["Rock", "Pop"]
+//     }, {
+//         code: "BOGO",
+//         validProducts: ["All"]
+//     }, {
+//         code: "10%OFF",
+//         validProducts: ["Hip-Hop"]
+//     }]
+//     return Promo.createAsync(promos);
+// }
 
 
 var seedUsers = function() {
@@ -165,11 +179,11 @@ connectToDb.then(function() {
                 })
                 Album.createAsync(newAlbums)
                     .then(function(newAlbums) {
-                        console.log(newAlbums);
-                        return seedUsers();
+                        // console.log(newAlbums);
+                        return Promise.all([seedUsers()]);
                     })
-                    .then(function(newUsers) {
-                        console.log(newUsers);
+                    .then(function(res) {
+                        console.log(res);
                         console.log("Everything seeded!")
                         process.kill(0);
                     })
