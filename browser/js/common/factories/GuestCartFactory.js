@@ -20,7 +20,6 @@ app.factory('GuestCartFactory', function () {
 					return;
 				}
 			});
-			cart.splice(index, 1);
 			return index;
 		}
 	}

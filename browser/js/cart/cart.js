@@ -32,17 +32,12 @@ app.controller('CartController', function($state, $scope, $rootScope, user, Chec
         .then(function(){
           $scope.cartItems = $scope.albums;
           console.log("$scope.cartItems", $scope.cartItems)
-          $rootScope.$broadcast('loadedItems', $scope.cartItems);
         })
       })
     }
   }
 
   $scope.getAlbumInfo();
-
-  $rootScope.$on('loadedItems', function(event, data){
-    $scope.cartItems = data;
-  })
 
 
   //delete album from user cart
