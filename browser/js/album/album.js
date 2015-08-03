@@ -21,6 +21,8 @@ app.controller('AlbumController', function($scope, $rootScope, user, album, $sta
   $scope.album = album;
   $scope.tracks = [];
 
+  //TODO: if album does not have spotifyId, search for album with spotify get request, and save to database
+
   //Get tracks from spotify for current album
   TrackFactory.fetchTracks($scope.album.spotifyId)
   .then(function(res){
