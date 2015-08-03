@@ -2,21 +2,12 @@ app.config(function($stateProvider){
   $stateProvider.state('cart', {
     url: '/cart',
     controller: 'CartController',
-    templateUrl: 'js/cart/cart.html',
-    resolve: {
-        user: function(AuthService){
-          return AuthService.getLoggedInUser();
-        }
-      }
+    templateUrl: 'js/cart/cart.html'
     })
 })
 
-app.controller('CartController', function($state, $scope, user, CheckoutFactory, UserFactory, CartFactory, AlbumFactory, localStorageService){
-  //set user
-  $scope.user = user;
-
+app.controller('CartController', function($state, $scope,CheckoutFactory, UserFactory, CartFactory, AlbumFactory, localStorageService){
   $scope.cartItems = localStorageService.get('userCart');
-  // console.log("guest cartItems", $scope.cartItems);
 
   //delete album from user cart
   $scope.deleteFromCart = function(currentAlbum){
