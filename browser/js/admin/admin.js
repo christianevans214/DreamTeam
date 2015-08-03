@@ -16,6 +16,9 @@ app.config(function($stateProvider) {
 				},
 				transactions: function(TransactionFactory) {
 					return TransactionFactory.getAllTransactions()
+				},
+				isAdmin: function() {
+					return false;
 				}
 
 			}

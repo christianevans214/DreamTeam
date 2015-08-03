@@ -11,7 +11,7 @@ app.config(function($stateProvider) {
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory, localStorageService) {
+app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory, localStorageService, GuestCartFactory) {
 
   $scope.album = album;
 
@@ -21,30 +21,48 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
     })
 
   $scope.addToCart = function(currentAlbum) {
-    console.log("currentAlbum", currentAlbum)
-
     if ($scope.user) {
       CartFactory.addAlbum(currentAlbum, $scope.user);
-      console.log('user', $scope.user);
       UserFactory.updateUser($scope.user._id, $scope.user)
         .then(function(newUpdatedUser) {
           $rootScope.$broadcast("editedCart", newUpdatedUser)
           $state.go('cart')
         })
+
+
+      // }else{
+      //   var items;
+      //   var guestCart = localStorageService.get('cart');
+      //   if(guestCart === null){
+      //     items = [{album: currentAlbum, quantity: 1}];
+      //     localStorageService.set('cart', items);
+      //   }else{
+      //     console.log("guest cart", guestCart)
+
+      //  
+      // }
+      // $rootScope.$broadcast("editedCart");
+
+      $state.go('cart');
+      /*     .then(function(updatedUser){
+              console.log("updatedUser", updatedUser);
+              $rootScope.$broadcast("editedCart", updatedUser);
+              $state.go('cart');
+            })*/
+    } else {
+      var guestCart = localStorageService.get('cart');
+      if (!guestCart) {
+        guestCart = [{
+          album: currentAlbum,
+          quantity: 1
+        }];
+        localStorageService.set('cart', guestCart);
+      } else {
+        GuestCartFactory.addAlbum(currentAlbum, guestCart);
+        console.log("guestCart", guestCart)
+        localStorageService.set('cart', guestCart);
+      }
+      $state.go('guestCart');
     }
-
-    // }else{
-    //   var items;
-    //   var guestCart = localStorageService.get('cart');
-    //   if(guestCart === null){
-    //     items = [{album: currentAlbum, quantity: 1}];
-    //     localStorageService.set('cart', items);
-    //   }else{
-    //     console.log("guest cart", guestCart)
-
-    //  
-    // }
-    // $rootScope.$broadcast("editedCart");
-    // $state.go('cart');
   };
 })
