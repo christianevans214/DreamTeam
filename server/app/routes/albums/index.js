@@ -6,20 +6,19 @@ var _ = require('lodash'); //extend
 module.exports = router;
 
 router.param('id', function(req, res, next, id){
-	Album.findById(id).populate('review')
-	.populate('artist')
-	.populate('Album')
-	.exec()
-	.then(function(album){
-		if(album) {
-			req.album = album;
-			next();
-		} else{
-			throw new Error('No album found');
-		}
-	})
-	.then(null, next);
-})
+	Album.findById(id).populate('artist').populate({path:'review'}).exec(function(err, docs) {
+		var options = {
+			path: 'review.username',
+			model: 'User'
+		};
+
+	if (err) return res.json(500);
+	Album.populate(docs, options, function (err, album) {
+      res.json(album);
+    });
+  });
+});
+
 
 //GET all albums
 router.get('/', function (req, res, next) {
