@@ -48,6 +48,20 @@ var seedArtists = function() {
     return Artist.createAsync(artists);
 }
 
+// var seedPromos = function() {
+//     var promos = [{
+//         code: "FREE",
+//         validProducts: ["Rock", "Pop"]
+//     }, {
+//         code: "BOGO",
+//         validProducts: ["All"]
+//     }, {
+//         code: "10%OFF",
+//         validProducts: ["Hip-Hop"]
+//     }]
+//     return Promo.createAsync(promos);
+// }
+
 
 var seedUsers = function() {
 
@@ -238,41 +252,3 @@ connectToDb.then(function() {
 });
 
 
-
-    //     seedArtists()
-    //         .then(function(responseArr) {
-    //             console.log("array of artists", responseArr);
-    //             var newAlbums = albums.map(function(album, index) {
-    //                 console.log(responseArr[index], album.artist)
-    //                 if (responseArr[index].name === album.artist) {
-    //                     album.artist = responseArr[index]._id;
-    //                     return album;
-    //                 }
-    //             })
-    //             Album.createAsync(newAlbums)
-    //                 .then(function(newAlbums) {
-    //                     // console.log(newAlbums);
-    //                     return seedUsers();
-    //                 })
-    //                 .then(function(newUsers) {
-    //                     // console.log(newUsers);
-    //                     // console.log("Everything seeded!")
-    //                     process.kill(0);
-    //                 })
-    //         })
-    // });
-// User.findAsync({}).then(function(users) {
-//     if (users.length === 0) {
-//         // return seedUsers();
-//         return Promise.all([seedArtists(), seedUsers(), seedAlbums()])
-//     } else {
-//         console.log(chalk.magenta('Seems to already be user data, exiting!'));
-//         process.kill(0);
-//     }
-// }).then(function() {
-//     console.log(chalk.green('Seed successful!'));
-//     process.kill(0);
-// }).catch(function(err) {
-//     console.error(err);
-//     process.kill(1);
-// });
