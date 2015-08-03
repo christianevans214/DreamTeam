@@ -2,7 +2,7 @@
 One vinyl e-commerce site to rule them all.
 
 #To-Do
-  - Admin Dashboard	=> add promos, create-an-album function.
+  - Admin Dashboard	=> add promos, create-an-album function, block off non-admins (https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions#how-to-create-rules-to-prevent-access-to-a-state)
 
   - Reviews	=> Ability to add more reviews.
 
