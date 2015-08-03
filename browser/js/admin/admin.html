@@ -1,2 +1,17 @@
-<h1> Admin </h1>
-{{hello}}
+<div class = "admin-container">
+	<div class = "admin-navbar">
+		<ul class = "admin-nav-btns">
+		<!-- can have a calendar for now -->
+			<li class = "nav-btn" ui-sref = "admin"><span class = "glyphicon glyphicon-dashboard"></span> Dashboard</li>
+			<li class = "nav-btn" ui-sref="admin.userManagement"><span class = "glyphicon glyphicon-user"></span> Users</li>
+			<li class = "nav-btn" ui-sref = "admin.productManagement"> <span class = "glyphicon glyphicon-cd"></span> Albums</li>
+			<li class = "nav-btn" ui-sref = "admin.transactionManagement"><span class = "glyphicon glyphicon-send"></span> Transactions</li>
+			<li class = "nav-btn" ui-sref = "admin.promoManagement"><span class = "glyphicon glyphicon-star"></span> Promotions</li>
+			<!-- artists wil lhave option to make featured -->
+			<!-- <li class = "nav-btn" ui-sref = "admin.artistManagement"><span class = "glyphicon glyphicon-star"></span>Artists</li> -->
+		</ul>
+	</div>
+	<div class = "sub-state-container">
+		<ui-view></ui-view>
+	</div>
+</div>
