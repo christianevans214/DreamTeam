@@ -21,7 +21,6 @@ app.factory('CartFactory', function () {
 					return;
 				}
 			});
-			cart.splice(index, 1);
 			return index;
 		}
 	}
