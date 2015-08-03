@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)chrome-extension://laookkfknpbbblfpciffpaejjkokdgca/dashboard.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>New Tab</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="chrome-extension://laookkfknpbbblfpciffpaejjkokdgca/css/style.css">
+    </head>
+    <body>
+
+        <div class="background-overlay fadein"></div>
+        <ul id="background"><li class="fadein" style="background-image: url(chrome-extension://laookkfknpbbblfpciffpaejjkokdgca/backgrounds/c16b3483-3f6a-433b-acdf-f5ded8beba79.jpg);"></li></ul>
+
+        <div class="widgets fadein">
+            <div id="full"></div>
+            <div id="top-left"><div id="quicklinks" class="quicklinks top-widget" style="opacity: 1;">
+            <div class="pane quicklinks-pane light" style="max-height: 301px;">
+                <ol>
+                    <li><a href="chrome-search://local-ntp/local-ntp.html" class="local"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNUExQ0NERUQxMjIxMUU0QThCQkIwMDhCNEE2NDg4MyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozNUExQ0NERkQxMjIxMUU0QThCQkIwMDhCNEE2NDg4MyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjM1QTFDQ0RDRDEyMjExRTRBOEJCQjAwOEI0QTY0ODgzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjM1QTFDQ0RERDEyMjExRTRBOEJCQjAwOEI0QTY0ODgzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+9GSZXwAAAItJREFUeNrslLEOgCAMRKkOfrmDiT8MamoxlElxKmW4JhdCbuBI+o6YOXjOFJwHARBgiACrKIq4o2J5N5D0wCnn7PD5JFpyAM8moiF24HJ6O2mATS8d5xDtuoTogbceqJxa+60eeDgVmfp/PUAlsZnfwlDJMPW/MKyYWPtDYAgKQAEoQAAEcJ1bgAEAiqqzy70omloAAAAASUVORK5CYII=" class="icon-chrome-tab"> Chrome Tab</a></li>
+                    <li><a href="chrome://apps/" id="app-return" class="local"><i class="icon icon-th"></i> Apps</a></li>
+                <li draggable="true">
+            <div draggable="true" class="view ">
+                <a draggable="false" href="http://mail.google.com/"><img src="./New Tab_files/ico"> Gmail</a>
+                <span draggable="false" class="control destroy">✕</span>
+            </div>
+        </li></ol>
+                <div class="connection-message" style="display: none;"><i class="loading-icon"></i>Loading...</div>
+                <div class="error-message">Connection required to add link</div>
+                <a href="" class="control add">+</a>
+                <ul class="message" style="display: block;">
+                    <li class="empty">
+                        <span class="">Add your favorite links</span>
+                        <span class="description">Use the <strong><span class="icon">+</span> button</strong> above</span>
+                        <a href="" class="hide">✕</a>
+                    </li>
+                </ul>
+                <div class="quicklinks-new">
+                    <input id="quicklinks-new-title" class="title-input" type="text" placeholder="Title">
+                    <input id="quicklinks-new-url" class="address-input" type="text" placeholder="Address">
+                </div>
+            </div>
+            <a class="quicklinks-show top-nav toggle" href="">Links</a>
+        </div><div id="search" class="search top-widget" style="opacity: 1;"><form class="form"><span class="search-underline"></span><i class="icon-search"></i><input type="text" id="search-input" class="search-input" autocomplete="off"></form><iframe src="" class="search-results"></iframe></div></div>
+            <div id="top-right"><div id="todo-complete" class="metric" style="opacity: 1; display: none;">
+            <span class="metric-stat">0</span>
+            <span class="metric-label">todos complete</span>
+        </div><div id="weather" class="metric weather" style="opacity: 1;">
+            <div class="metric-stat">
+                <span class="icon" data-icon="B" title="Fair"></span>31°<span class="unit hide">c</span>
+            </div>
+            <span class="location metric-label data">New York</span>
+        </div></div>
+            <div id="center-above"></div>
+            <div id="center"><div id="centerclock" style="opacity: 1;">
+            <h1 class="time">1:51</h1>
+            <span class="format">AM</span>
+        </div><div id="greeting" style="opacity: 1;">
+          <h2>Good <span class="period">afternoon</span>, <span class="name">handsome</span>.</h2>
+        </div></div>
+            <div id="center-below"><div id="focuses" style="opacity: 1;"><div class="prompt" style="display: block;">
+            <h3>What is your main focus for today?</h3>
+            <input type="text">
+        </div>
+            <ol></ol>
+            <div class="message">
+                <i class="loading-icon"></i>Loading...
+            </div>
+        </div></div>
+            <div id="bottom"><blockquote id="shortquote" style="opacity: 1;">
+            <p class="light body">“Excuses are born out of fear. Eliminate your fear and there will be no excuses.”</p>
+            <p class="light source">Unknown<a href="https://twitter.com/intent/tweet?text=%22Excuses+are+born+out+of+fear.+Eliminate+your+fear+and+there+will+be+no+excuses.%22+%e2%80%94Unknown&via=momentumdash&related=momentumdash,levibucsis,jaywaterman" class="share-twitter"><i class="icon-twitter"></i></a></p>
+        </blockquote></div>
+            <div id="bottom-right"><div id="todo" class="todo show" style="opacity: 1;">
+            <div class="pane todo-pane is-empty" style="max-height: 301px;">
+                <div class="todo-header">
+                    <ul>
+                        <li><span class="todo-count">0 to do</span></li>
+                    </ul>
+                    <div class="error-message">Connection required to add Todo</div>
+                </div>
+                <div class="empty empty-todo">
+                    <div class="content">
+                        <div class="graphic">☺</div>
+                        <div class="title">Nothing to do</div>
+                        <div class="description">One step at a time, handsome</div>
+                    </div>
+                    <div class="action"><a href="" class="show-completed">Completed today</a></div>
+                </div>
+                <ol class="todo-list"></ol>
+                <input id="todo-new" class="todo-input todo-new" type="text" placeholder="New todo">
+            </div>
+            <span id="todo-remaining"></span>
+            <span class="toggle todo-toggle medium">Todo</span>
+        <li class="placeholder" style="display: none;"></li></div></div>
+            <div id="bottom-left"><div id="preferences" style="opacity: 1;">
+            <div class="pane preferences-pane light" style="max-height: 301px;"></div>
+            <i class="icon-cog toggle"></i>
+        </div><div id="background-info" class="light" style="opacity: 1;">
+            <span class="title">China</span>
+                <span class="source">
+                    <a href="http://www.airpano.com/Photogallery-Photo.php?author=2&photo=58" target="_blank" class="source-url">Photo by AirPano</a>
+                </span>
+       </div></div>
+        </div>
+
+        <!-- Handlesbars Templates (Move to external files) -->
+        <script async="" src="./New Tab_files/analytics.js"></script><script id="preferences-template" type="text/x-handlebars-template">
+            <div class="pane preferences-pane light"></div>
+            <i class="icon-cog toggle"></i>
+        </script>
+
+        <script id="preferences-list-template" type="text/x-handlebars-template">
+            <ul>
+                {{#if ctaCaption}}
+                <li class="cta">
+                    <a href="">
+                        {{ctaCaption}}
+                        <span class="description">{{ctaDescription}}</span>
+                    </a>
+                </li>
+                {{/if}}
+                {{#each preferences}}
+                <li>
+                    <a id="{{id}}" class="preferences-item" href="{{href}}" target="{{target}}">{{name}}</a>
+                </li>
+                {{/each}}
+            </ul>
+        </script>
+
+        <script id="preferences-about-template" type="text/x-handlebars-template">
+            <a id="preferences-back" class="back" href=""><i class="icon-left-open"></i></a>
+            <p><img src="img/logo-white.png" class="logo"></p>
+            <h1>Momentum</h1>
+            <p class="made">Personal Dashboard <span class="quiet">v{{version}}</span></p>
+            <p class="content">Thank you for your support!</p>
+            <p class="links">
+                <a href="http://momentumdash.com/help" target="_blank">Feedback</a>
+                <a href="http://momentumdash.com/blog" target="_blank">Blog</a>
+                <a href="https://www.facebook.com/momentumdash" target="_blank">Facebook</a>
+                <a href="https://twitter.com/momentumdash" target="_blank">Twitter</a></p>
+            <p class="made">
+                <a href="http://momentumdash.com" target="_blank">momentumdash.com</a> &nbsp;&nbsp; Made with &#9829; in BC
+            </p>
+        </script>
+
+        <script id="preferences-customize-template" type="text/x-handlebars-template">
+            <a id="preferences-back" class="back" href=""><i class="icon-left-open"></i></a>
+
+            <div class="header">
+                <h1 class="medium">Customize</h1>
+            </div>
+            <div class="body">
+                <ul>
+                    {{#each customizeItems}}
+                    <li class="slide-toggle" data-related-widget="{{widget}}">
+                        <input type="checkbox"></input>
+                        <span>{{name}}</span>
+                        <span class="toggle-slider">
+                            <span class="toggle-switch"></span>
+                        </span>
+                    </li>
+                    {{/each}}
+                    <li class="hint">
+                        <strong>Double click</strong> these items to edit them:<br>
+                        - name<br>
+                        - location<br>
+                        - clock (12/24)<br>
+                        - temperature (C/F)<br>
+                        - a todo<br>
+                    </li>
+                </ul>
+            </div>
+        </script>
+
+        <script id="preferences-help-template" type="text/x-handlebars-template">
+            <a id="preferences-back" class="back" href=""><i class="icon-left-open"></i></a>
+
+            <div class="header">
+                <h1 class="medium">HELP</h1>
+            </div>
+
+            <h4 class="first">Tips</h4>
+            <p>To change your name, toggle the temperature between C and F, change your location, or toggle the clock between 12 and 24 hour, <strong>double click</strong> on the setting you wish to change.</p>
+
+            <h4>Hotkeys</h4>
+            <p class="hotkeys">
+                <span class="col">
+                    <strong>T</strong> - Todo<br>
+                    <strong>F</strong> - Focus<br>
+                    <strong>,</strong> - Settings<br>
+                    <strong>ESC</strong> - Cancel, close
+                </span><span class="col">
+                    <strong>L</strong> - Links<br>
+                    <strong>S</strong> - Search<br>
+                    <strong>C</strong> - Chrome Tab<br>
+                </span>
+            </p>
+            <p>
+                Press <strong>TAB</strong> twice when opening a new tab to be able to use hotkeys
+            </p>
+
+            <h4>Need more help?</h4>
+            <p>
+                Check out our Help Center<br>
+                <a href="http://momentumdash.com/help" class="button" target="_blank">Go to Help Center</a>
+            </p>
+        </script>
+
+        <script id="message-template" type="text/x-handlebars-template">
+            <h4>{{{title}}}</h4>
+            <p>
+                <span class="message">{{{message}}}</span>
+            </p>
+            <a href="" class="hide"><span>✕</span></a>
+        </script>
+
+        <script id="weather-template" type="text/x-handlebars-template">
+            <div class="metric-stat">
+                <span class="icon" data-icon="{{code}}" title="{{condition}}"></span>{{temperature}}&deg;<span class="unit {{unitClass}}">{{unit}}</span>
+            </div>
+            <span class="location metric-label data">{{{location}}}</span>
+        </script>
+
+        <script id="todo-template" type="text/x-handlebars-template">
+            <div class="pane todo-pane">
+                <div class="todo-header">
+                    <ul>
+                        <li><span class="todo-count"><i class="loading-icon"></i>Loading...</span></li>
+                    </ul>
+                    <div class="error-message">Connection required to add Todo</div>
+                </div>
+                <div class="empty empty-todo">
+                    <div class="content">
+                        <div class="graphic">☺</div>
+                        <div class="title">Nothing to do</div>
+                        <div class="description">One step at a time...</div>
+                    </div>
+                    <div class="action"><a href="" class="show-completed">Completed today</a></div>
+                </div>
+                <ol class="todo-list"></ol>
+                <input id="todo-new" class="todo-input todo-new" type="text" placeholder="New todo">
+            </div>
+            <span id="todo-remaining"></span>
+            <span class="toggle todo-toggle medium">Todo</span>
+        </script>
+
+        <script id="todo-item-template" type="text/x-handlebars-template">
+            <div class="view">
+                <i class="control destroy">✕</i>
+                <i class="loading-icon"></i>
+                <i class="control error-icon">!</i>
+                <label><input class="toggle" type="checkbox" {{checked}}></label><span>{{title}}</span>
+            </div>
+            <input class="edit todo-input" type="text" value="{{title}}">
+        </script>
+
+        <script id="todo-complete-template" type="text/x-handlebars-template">
+            <span class="metric-stat">{{done}}</span>
+            <span class="metric-label">{{item}} complete</span>
+        </script>
+
+        <script id="focuses-template" type="text/x-handlebars-template">
+            <ol></ol>
+            <div class="message">
+                <i class="loading-icon"></i>Loading...</span>
+            </div>
+        </script>
+
+        <script id="focus-prompt-template" type="text/x-handlebars-template">
+            <h3>What is your main focus for today?</h3>
+            <input type="text">
+        </script>
+
+        <script id="focus-template" type="text/x-handlebars-template">
+            <h3>{{day}}</h3>
+            <span class="control checkbox"><i class="icon icon-checkbox-empty focus-open"></i><i class="icon icon-checkbox focus-done"></i></span><p class="todays-focus">{{focus}}</p><span class="control delete"><i>✕</i></span>
+        </script>
+
+        <script id="background-template" type="text/x-handlebars-template">
+            <li style="background-image: url('backgrounds/{{filename}}')"></li>
+        </script>
+
+        <script id="background-info-template" type="text/x-handlebars-template">
+            <span class="title">{{{title}}}</span>
+            {{#if sourceUrl}}
+                <span class="source">
+                    <a href="{{sourceUrl}}" target="_blank" class="source-url">{{{attribution}}}</a>
+                </span>
+            {{else}}
+                <span class="source">{{attribution}}</span>
+            {{/if}}
+       </script>
+
+        <script id="centerclock-template" type="text/x-handlebars-template">
+            <h1 class="time">{{time}}</h1>
+            <span class="format">AM</span>
+        </script>
+
+        <script id="greeting-template" type="text/x-handlebars-template">
+          <h2>Good <span class="period">{{period}}</span>, <span class="name">{{name}}</span>.</h2>
+        </script>
+
+        <script id="shortquote-template" type="text/x-handlebars-template">
+            <p class="light body">&ldquo;{{body}}&rdquo;</p>
+            {{#if source}}<p class="light source">{{source}}<a href="{{twitterIntentUrl}}" class="share-twitter"><i class="icon-twitter"></i></a></p>{{/if}}
+        </script>
+
+        <script id="introduction-template" type="text/x-handlebars-template">
+            <p class="logo"><img src="img/logo-white.png"></p>
+            <p class=content></p>
+        </script>
+
+        <script id="introduction-content-template" type="text/x-handlebars-template">
+            <div class="prompt">
+                {{message}}
+                <input id="introduction-input" type="text">
+                <div class="tip"></div>
+            </div>
+            <div class="buttons"></div>
+
+        </script>
+
+        <script id="introduction-tip-template" type="text/x-handlebars-template">
+            <div>{{value}}</div>
+        </script>
+
+        <script id="introduction-button-template" type="text/x-handlebars-template">
+            <button class="button">{{value}}</button>
+        </script>
+
+        <script id="quicklinks-template" type="text/x-handlebars-template">
+            <div class="pane quicklinks-pane light">
+                <ol>
+                    <li><a href="chrome-search://local-ntp/local-ntp.html" class="local"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozNUExQ0NERUQxMjIxMUU0QThCQkIwMDhCNEE2NDg4MyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozNUExQ0NERkQxMjIxMUU0QThCQkIwMDhCNEE2NDg4MyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjM1QTFDQ0RDRDEyMjExRTRBOEJCQjAwOEI0QTY0ODgzIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjM1QTFDQ0RERDEyMjExRTRBOEJCQjAwOEI0QTY0ODgzIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+9GSZXwAAAItJREFUeNrslLEOgCAMRKkOfrmDiT8MamoxlElxKmW4JhdCbuBI+o6YOXjOFJwHARBgiACrKIq4o2J5N5D0wCnn7PD5JFpyAM8moiF24HJ6O2mATS8d5xDtuoTogbceqJxa+60eeDgVmfp/PUAlsZnfwlDJMPW/MKyYWPtDYAgKQAEoQAAEcJ1bgAEAiqqzy70omloAAAAASUVORK5CYII=" class="icon-chrome-tab" > Chrome Tab</a></li>
+                    <li><a href="chrome://apps" id="app-return" class="local"><i class="icon icon-th"></i> Apps</a></li>
+                </ol>
+                <div class="connection-message"><i class="loading-icon"></i>Loading...</div>
+                <div class="error-message">Connection required to add link</div>
+                <a href="" class="control add">+</a>
+                <ul class="message">
+                    <li class="empty">
+                        <span class="">Add your favorite links</span>
+                        <span class="description">Use the <strong><span class="icon">+</span> button</strong> above</span>
+                        <a href="" class="hide">✕</a>
+                    </li>
+                </ul>
+                <div class="quicklinks-new">
+                    <input id="quicklinks-new-title" class="title-input" type="text" placeholder="Title">
+                    <input id="quicklinks-new-url" class="address-input" type="text" placeholder="Address">
+                </div>
+            </div>
+            <a class="quicklinks-show top-nav toggle" href="">Links</a>
+        </script>
+
+        <script id="quicklinks-item-template" type="text/x-handlebars-template">
+            <div draggable="true" class="view {{classes}}">
+                <a draggable="false" href="{{url}}"{{#if local}} class="local"{{/if}}><img src="{{favicon_url}}"> {{title}}</a>
+                <span draggable="false" class="control destroy">✕</span>
+            </div>
+        </script>
+
+        <!-- Libraries -->
+        <script src="chrome-extension://laookkfknpbbblfpciffpaejjkokdgca/js/lib.min.js"></script>
+        <!-- App -->
+        <script src="chrome-extension://laookkfknpbbblfpciffpaejjkokdgca/app/app.min.js"></script>
+
+
+    
+
+</body></html>

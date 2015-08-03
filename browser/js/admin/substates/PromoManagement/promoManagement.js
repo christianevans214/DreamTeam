@@ -6,6 +6,4 @@ app.config(function($stateProvider) {
 	})
 })
 
-app.controller('PromoManagementController', function($scope) {
-
-})
+app.controller('PromoManagementController', function($scope) {})
