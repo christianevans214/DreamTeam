@@ -8,13 +8,13 @@ app.config(function($stateProvider){
 
 app.controller('GuestCartController', function($state, $scope, GuestCartFactory, CartFactory, localStorageService){
   $scope.cartItems = localStorageService.get('cart');
-  console.log("guest cartItems", $scope.cartItems);
+  // console.log("guest cartItems", $scope.cartItems);
 
   //delete album from user cart
   $scope.deleteFromCart = function(currentAlbum){
-    console.log("currentAlbum", currentAlbum)
+    // console.log("currentAlbum", currentAlbum)
     var index = GuestCartFactory.deleteAlbum(currentAlbum, $scope.cartItems);
-    $scope.cartItems = $scope.cartItems.splice(index, 1);
+    $scope.cartItems.splice(index, 1);
     localStorageService.set('cart', $scope.cartItems);
   }
 
