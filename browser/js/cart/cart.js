@@ -11,7 +11,7 @@ app.config(function($stateProvider) {
   })
 })
 
-app.controller('CartController', function($state, user, $scope, CheckoutFactory, UserFactory, CartFactory, AlbumFactory, localStorageService) {
+app.controller('CartController', function($state, user, $scope, UserFactory, CartFactory, AlbumFactory, localStorageService) {
   $scope.user = user;
   $scope.cartItems = localStorageService.get('userCart');
 
