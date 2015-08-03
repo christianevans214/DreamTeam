@@ -21,6 +21,7 @@ app.controller('AlbumController', function($scope, $rootScope, user, album, $sta
   $scope.user = user;
   $scope.album = album;
 
+
   $scope.addToCart = function(currentAlbum) {
     if ($scope.user) {
       var userCart = localStorageService.get('userCart');

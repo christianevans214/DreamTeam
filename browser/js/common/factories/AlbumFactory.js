@@ -15,6 +15,7 @@ app.factory("AlbumFactory", function($http) {
 		updateAlbum: function(id, updateInfo) {
 			return $http.put('api/albums/' + id, updateInfo)
 				.then(function(res) {
+					console.log("the data returned is", res.data)
 					return res.data;
 				})
 		},

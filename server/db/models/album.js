@@ -1,8 +1,5 @@
 'use strict';
 var mongoose = require('mongoose');
-// var Artist = mongoose.model("Artist");
-// var Review = mongoose.model("Review");
-
 
 var schema = new mongoose.Schema({
 	artist: {
@@ -23,10 +20,10 @@ var schema = new mongoose.Schema({
 		duration: String,
 		artists: [String]
 	}],
-	review: {
+	review: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Review"
-	},
+	}],
 	tags: [String],
 	genre: {
 		type: [String],
