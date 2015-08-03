@@ -15,11 +15,15 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, user, album, $state, AuthService, UserFactory, CartFactory, localStorageService, GuestCartFactory){
+app.controller('AlbumController', function($scope, $rootScope, user, album, $state, AuthService, UserFactory, CartFactory, localStorageService, GuestCartFactory, TrackFactory){
 
   $scope.user = user;
   $scope.album = album;
 
+  TrackFactory.fetchTracks('3oVCGd8gjANVb5r2F0M8BI')
+  .then(function(res){
+    console.log("tracks", res);
+  })
 
   $scope.addToCart = function(currentAlbum){
     if($scope.user){
