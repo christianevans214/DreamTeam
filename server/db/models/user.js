@@ -46,7 +46,12 @@ var schema = new mongoose.Schema({
             ref: "Album"
         },
         quantity: Number
-    }]
+    }],
+    //if this is true, user will be redirected to change password page after they log in with successful password.
+    needPWChange: {
+        type: Boolean,
+        default: false
+    }
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations

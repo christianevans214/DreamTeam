@@ -1,13 +1,13 @@
-app.config(function($stateProvider){
+app.config(function($stateProvider) {
   $stateProvider.state('albumDetail', {
     url: '/albums/:albumId',
     controller: 'AlbumController',
     templateUrl: 'js/album/album.html',
     resolve: {
-      user: function(AuthService){
+      user: function(AuthService) {
         return AuthService.getLoggedInUser();
-      }, 
-      album: function(AlbumFactory, $stateParams){
+      },
+      album: function(AlbumFactory, $stateParams) {
         //make call to get album info for specific album from server
         return AlbumFactory.getAlbum($stateParams.albumId);
       }
@@ -15,38 +15,38 @@ app.config(function($stateProvider){
   })
 })
 
-
 app.controller('AlbumController', function($scope, $rootScope, user, album, $state, UserFactory, AuthService, CartFactory, localStorageService, TrackFactory){
 
   $scope.user = user;
   $scope.album = album;
 
-  TrackFactory.fetchTracks('3oVCGd8gjANVb5r2F0M8BI')
-  .then(function(res){
-    console.log("tracks", res);
-  })
-
   $scope.addToCart = function(currentAlbum){
     if($scope.user){
       var userCart = localStorageService.get('userCart');
-      if(!userCart){
-        userCart = [{album: currentAlbum, quantity: 1}];
+      if (!userCart) {
+        userCart = [{
+          album: currentAlbum,
+          quantity: 1
+        }];
         localStorageService.set('userCart', userCart);
-      }else{
+      } else {
         CartFactory.addAlbum(currentAlbum, userCart);
         localStorageService.set('userCart', userCart);
-      } 
-      $scope.user.cart = userCart;  
+      }
+      $scope.user.cart = userCart;
       UserFactory.updateUser($scope.user._id, $scope.user)
-      .then(function(updatedUser){
-        $state.go('cart');
-      })
-    }else{
+        .then(function(updatedUser) {
+          $state.go('cart');
+        })
+    } else {
       var guestCart = localStorageService.get('cart');
-      if(!guestCart){
-        guestCart = [{album: currentAlbum, quantity: 1}];
+      if (!guestCart) {
+        guestCart = [{
+          album: currentAlbum,
+          quantity: 1
+        }];
         localStorageService.set('cart', guestCart);
-      }else{
+      } else {
         CartFactory.addAlbum(currentAlbum, guestCart);
         localStorageService.set('cart', guestCart);
       }

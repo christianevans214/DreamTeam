@@ -32,8 +32,12 @@ var schema = new mongoose.Schema({
 		required: true
 	},
 	price: Number,
-	year: Number
-		// pending a differentiator for album size 
+	year: Number,
+	isInStock: {
+		type: Boolean,
+		default: true
+	}
+	// pending a differentiator for album size 
 })
 
 // schema.virtual('artistName').set(function(artistData, done) {
