@@ -22,7 +22,7 @@ app.controller('AlbumController', function($scope, $rootScope, user, album, $sta
   $scope.tracks = [];
 
   //Get tracks from spotify for current album
-  TrackFactory.fetchTracks('3oVCGd8gjANVb5r2F0M8BI')
+  TrackFactory.fetchTracks($scope.album.spotifyId)
   .then(function(res){
     res.items.forEach(function(track){
       $scope.tracks.push({name: track.name, URL: $sce.trustAsResourceUrl(track.preview_url)});

@@ -112,56 +112,64 @@ var albums = [{
     genre: ["R&B"],
     price: "27.16",
     image: "http://i.huffpost.com/gen/891066/images/o-MICHAEL-JACKSON-THRILLER-facebook.jpg",
-    year: 1982
+    year: 1982,
+    spotifyId: '2ANVost0y2y52ema1E9xAZ'
 }, {
     artist: "Leon Bridges",
     title: "Coming Home",
     genre: ["Soul"],
     price: "20.00",
     image: "http://static1.squarespace.com/static/54fdea6de4b018047dada8af/t/5552050ee4b03b3ccda57c18/1431438608081/",
-    year: 2015
+    year: 2015,
+    spotifyId: '4svLfrPPk2npPVuI4kXPYg'
 }, {
     artist: "The Beatles",
     title: "Abbey Road",
     genre: ["Pop"],
     price: "37.00",
     image: "http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/AbbeyRoad.jpg?itok=BgfH98zh",
-    year: 1969
+    year: 1969,
+    spotifyId: '3oVCGd8gjANVb5r2F0M8BI'
 }, {
     artist: "Pink Floyd",
     title: "Dark Side of the Moon",
     genre: ["Rock"],
     price: "24.43",
     image: "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
-    year: 1973
+    year: 1973,
+    spotifyId: '3a0UOgDWw2pTajw85QPMiz'
 }, {
     artist: "Beyoncé",
     title: "Beyoncé",
     genre: ["R&B"],
     price: "25.50",
     image: "https://upload.wikimedia.org/wikipedia/commons/2/21/Beyonc%C3%A9_-_Beyonc%C3%A9.svg",
-    year: 2014
+    year: 2014,
+    spotifyId: '2UJwKSBUz6rtW4QLK74kQu'
 }, {
     artist: "Led Zeppelin",
     title: "IV",
     genre: ["Clasic Rock"],
     price: "23.84",
     image: "http://superhypeblog.com/wp-content/uploads/2011/08/led-zep-iv.jpg",
-    year: 1971
+    year: 1971,
+    spotifyId: '1Ugdi2OTxKopVVqsprp5pb'
 }, {
     artist: "Kanye West",
     title: "My Beautiful Dark Twisted Fantasy",
     genre: ["Pop"],
     price: "25.85",
     image: "http://sites.bxmc.poly.edu/~dariclim/VFS/wp-content/uploads/2014/09/kanye_west_mbdtf.jpg",
-    year: 2010
+    year: 2010,
+    spotifyId: '20r762YmB5HeofjMCiPMLv'
 }, {
     artist: "Joni Mitchel",
     title: "Feeling Blue",
     genre: ["Folk Rock"],
     price: "32.00",
     image: "http://blog.thecurrent.org/files/2015/04/Blue-Joni-Mitchell.jpg",
-    year: 1971
+    year: 1971,
+    spotifyId: '5hW4L92KnC6dX9t7tYM4Ve'
 }];
 
 
