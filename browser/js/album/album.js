@@ -15,13 +15,22 @@ app.config(function($stateProvider) {
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, user, album, $state, UserFactory, AuthService, CartFactory, localStorageService) {
+app.controller('AlbumController', function($scope, $rootScope, user, album, $state, UserFactory, AuthService, CartFactory, localStorageService, TrackFactory, $sce){
 
   $scope.user = user;
   $scope.album = album;
+  $scope.tracks = [];
 
-  $scope.addToCart = function(currentAlbum) {
-    if ($scope.user) {
+  //Get tracks from spotify for current album
+  TrackFactory.fetchTracks($scope.album.spotifyId)
+  .then(function(res){
+    res.items.forEach(function(track){
+      $scope.tracks.push({name: track.name, URL: $sce.trustAsResourceUrl(track.preview_url)});
+    })
+  })
+
+  $scope.addToCart = function(currentAlbum){
+    if($scope.user){
       var userCart = localStorageService.get('userCart');
       if (!userCart) {
         userCart = [{

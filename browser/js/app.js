@@ -1,11 +1,13 @@
 'use strict';
-window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt', 'LocalStorageModule']);
+window.app = angular.module('FullstackGeneratedApp', ['ui.router', 'ui.bootstrap', 'fsaPreBuilt', 'LocalStorageModule', 'ngSanitize']);
 
-app.config(function($urlRouterProvider, $locationProvider) {
+app.config(function($urlRouterProvider, $locationProvider, $sceDelegateProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
     $urlRouterProvider.otherwise('/');
+
+    $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?spotify\.com/.+$')]);
 });
 
 app.config(function(localStorageServiceProvider){
