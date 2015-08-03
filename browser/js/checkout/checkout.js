@@ -21,11 +21,10 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
   } 
   else $scope.cartItems = localStorageService.get('cart');
 
-  if($scope.cartItems.length > 0){
-    $scope.cartItems.forEach(function(item){
-      $scope.purchases.push({album: item.album, price: item.album.price, quantity: item.quantity})
-    })
-  } else $scope.purchases.push({album: $scope.cartItems.album, price: $scope.cartItems.album.price, quantity: $scope.cartItems.quantity});
+  $scope.cartItems.forEach(function(item){
+    $scope.purchases.push({album: item.album, price: item.album.price, quantity: item.quantity})
+  })
+
 
 
   //when place order is clicked -> make post request with form data for user and guest
