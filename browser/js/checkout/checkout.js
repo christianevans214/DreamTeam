@@ -12,7 +12,47 @@ app.config(function($stateProvider){
     })
 })
 
-app.controller('CheckoutController', function($scope, user){
-  // $scope.hello = "hello";
+app.controller('CheckoutController', function($state, $scope, user, TransactionFactory, localStorageService, UserFactory){
+  $scope.user = user;
+  $scope.purchases = [];
+
+  if($scope.user){
+    $scope.cartItems = localStorageService.get('userCart');
+  } 
+  else $scope.cartItems = localStorageService.get('cart');
+
+  $scope.cartItems.forEach(function(item){
+    $scope.purchases.push({album: item.album, price: item.album.price, quantity: item.quantity})
+  })
+
+
+  //when place order is clicked -> make post request with form data for user and guest
+  $scope.submitCheckout = function(orderData){
+    orderData.purchases = $scope.purchases;
+    orderData.user = $scope.user;
+    if(orderData.shippingMatch){
+      orderData.shipping = orderData.billing;
+    }
+    TransactionFactory.submitTransaction(orderData)
+    .then(function(order){
+      //update user to store in their transaction history
+      if($scope.user){
+        if($scope.user.purchaseHistory) $scope.user.purchaseHistory.push(order);
+        else $scope.user.purchaseHistory = [order];  
+        UserFactory.updateUser($scope.user._id, $scope.user);
+      }
+      return order;
+    })
+    .then(function(){
+      //delete local storage
+      localStorageService.remove('cart', 'userCart');
+      $state.go('checkout.success');
+    })
+  }
+
+
+  //go to page that says "order complete" -> that goes home
+
+  //send conformation email
 
 })

@@ -6,16 +6,34 @@ var schema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User'
 	},
+	billing: {
+		firstName: String,
+		lastName: String,
+		company: String,
+		phone: String,
+		address: String,
+		city: String,
+		zip: String,
+		country: String
+		//required: true
+	},
+	shipping: {
+		firstName: String,
+		lastName: String,
+		company: String,
+		phone: String,
+		address: String,
+		city: String,
+		zip: String,
+		country: String,
+		//required: true
+	},
 	email: {
-		type: String
-			// required: true do we want required? What if twitter/fb/google sign in
+		type: String,
+		required: true
 	},
 	purchases: [{
-		artistName: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Artist"
-		},
-		albumName: {
+		album: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Album"
 		},
