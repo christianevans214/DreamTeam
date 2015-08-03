@@ -36,7 +36,8 @@ var schema = new mongoose.Schema({
 	isInStock: {
 		type: Boolean,
 		default: true
-	}
+	},
+	spotifyId: String
 	// pending a differentiator for album size 
 })
 
