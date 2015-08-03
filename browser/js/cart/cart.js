@@ -17,7 +17,6 @@ app.controller('CartController', function($state, user, $scope, CheckoutFactory,
 
   //delete album from user cart
   $scope.deleteFromCart = function(currentAlbum) {
-    // console.log("currentAlbum", currentAlbum)
     var index = CartFactory.deleteAlbum(currentAlbum, $scope.cartItems);
     $scope.cartItems.splice(index, 1);
     $scope.user.cart = $scope.cartItems;
@@ -29,12 +28,11 @@ app.controller('CartController', function($state, user, $scope, CheckoutFactory,
   $scope.updateCartQuantity = function(currentAlbum, quantity) {
     $scope.user.cart = $scope.cartItems;
     localStorageService.set('userCart', $scope.cartItems);
-    console.log('scope use cart', $scope.user.cart);
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
 
+  //checkout
   $scope.checkout = function(cart) {
-    //CheckoutFactory.getTransaction(cart);
     $state.go('checkout');
   }
 

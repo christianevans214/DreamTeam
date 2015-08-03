@@ -6,14 +6,12 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('GuestCartController', function($state, $scope, GuestCartFactory, CartFactory, localStorageService){
+app.controller('GuestCartController', function($state, $scope, CartFactory, localStorageService){
   $scope.cartItems = localStorageService.get('cart');
-  // console.log("guest cartItems", $scope.cartItems);
 
   //delete album from user cart
   $scope.deleteFromCart = function(currentAlbum){
-    // console.log("currentAlbum", currentAlbum)
-    var index = GuestCartFactory.deleteAlbum(currentAlbum, $scope.cartItems);
+    var index = CartFactory.deleteAlbum(currentAlbum, $scope.cartItems);
     $scope.cartItems.splice(index, 1);
     localStorageService.set('cart', $scope.cartItems);
   }
@@ -25,7 +23,6 @@ app.controller('GuestCartController', function($state, $scope, GuestCartFactory,
 
   //checkout
   $scope.checkout = function(cart){
-    //CheckoutFactory.getTransaction(cart);
     $state.go('checkout');
   }
 
