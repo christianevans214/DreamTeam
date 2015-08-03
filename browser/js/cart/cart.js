@@ -19,7 +19,6 @@ app.controller('CartController', function($state, user, $scope,CheckoutFactory, 
   $scope.deleteFromCart = function(currentAlbum){
     // console.log("currentAlbum", currentAlbum)
     var index = CartFactory.deleteAlbum(currentAlbum, $scope.cartItems);
-    $scope.cartItems = $scope.cartItems.splice(index, 1);
     $scope.cartItems.splice(index, 1);
     $scope.user.cart = $scope.cartItems;
     localStorageService.set('userCart', $scope.cartItems);
