@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
-var Artist = mongoose.model("Artist");
+// var Artist = mongoose.model("Artist");
+// var Review = mongoose.model("Review");
 
 
 var schema = new mongoose.Schema({
@@ -22,10 +23,10 @@ var schema = new mongoose.Schema({
 		duration: String,
 		artists: [String]
 	}],
-	review: [{
+	review: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Review"
-	}],
+	},
 	tags: [String],
 	genre: {
 		type: [String],
@@ -57,14 +58,14 @@ var schema = new mongoose.Schema({
 
 
 //average rating
-schema
-	.virtual('review.averageRating')
-	.get(function() {
-		var sumReview = this.review.rating.reduce(function(cur, nextReview) {
-			return cur + nextReview.rating;
-		})
-		return Math.round((sumReview / this.review.length) * 100) / 100;
-	})
+// schema
+// 	.virtual('review.averageRating')
+// 	.get(function() {
+// 		var sumReview = this.review.rating.reduce(function(cur, nextReview) {
+// 			return cur + nextReview.rating;
+// 		})
+// 		return Math.round((sumReview / this.review.length) * 100) / 100;
+// 	})
 
 
 mongoose.model('Album', schema);

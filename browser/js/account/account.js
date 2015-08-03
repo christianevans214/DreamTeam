@@ -12,7 +12,6 @@ app.config(function($stateProvider) {
 })
 
 app.controller('AccountController', function($scope, UserFactory, user, $rootScope) {
-	console.log(user);
 	$scope.user = user;
 	$rootScope.$on("editedUser", function(event, data) {
 		// console.log("event caught!", data);

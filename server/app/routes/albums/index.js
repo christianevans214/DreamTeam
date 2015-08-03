@@ -6,7 +6,8 @@ var _ = require('lodash'); //extend
 module.exports = router;
 
 router.param('id', function(req, res, next, id){
-	Album.findById(id).populate('artist')
+	Album.findById(id).populate('review')
+	.populate('artist')
 	.populate('Album')
 	.exec()
 	.then(function(album){
@@ -22,7 +23,9 @@ router.param('id', function(req, res, next, id){
 
 //GET all albums
 router.get('/', function (req, res, next) {
-	Album.find({}).populate('artist')
+	Album.find({})
+	.populate('review')
+	.populate('artist')
 	.populate('Album')
 	.exec()
 	.then(function(albums){

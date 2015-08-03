@@ -7,12 +7,16 @@ app.config(function($stateProvider){
       album: function(AlbumFactory, $stateParams) {
         return AlbumFactory.getAlbum($stateParams.albumId);
       }
+      reviewUser: function(UserFactory) {
+        return UserFactory.getUser(album.review.username);
+      }
     }
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, album, $state, AuthService, UserFactory, CartFactory, localStorageService){
+app.controller('AlbumController', function($scope, $rootScope, album, reviewUser, $state, AuthService, UserFactory, CartFactory, localStorageService){
 
+  // console.log(reviewUser)
   $scope.album = album;
 
   AuthService.getLoggedInUser()
@@ -21,11 +25,8 @@ app.controller('AlbumController', function($scope, $rootScope, album, $state, Au
   })
 
   $scope.addToCart = function(currentAlbum){
-    console.log("currentAlbum", currentAlbum)
-
     if($scope.user){
       CartFactory.addAlbum(currentAlbum, $scope.user);
-      console.log('user', $scope.user);
       UserFactory.updateUser($scope.user._id, $scope.user)
      .then(function(newUpdatedUser){
         $rootScope.$broadcast("editedCart", newUpdatedUser)

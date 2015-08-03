@@ -48,33 +48,6 @@ var seedArtists = function() {
     return Artist.createAsync(artists);
 }
 
-var seedReviews = function() { 
-
-    var reviews = [{
-        username: "Barack",
-        content: "This album is presindential.",
-        rating: 5
-    }, {
-        username: "Cooper",
-        content: "Woof, grr, woof!",
-        rating: 3
-    }, {
-        username: "Led",
-        content: "A stairway to heaven of an album!",
-        rating: 5
-    }, {
-        username: "Taylor",
-        content: "I HATE KANYE!",
-        rating: 1
-    }, {
-        username: "test",
-        content: "test test test",
-        rating: 5
-    }]
-
-    return Review.createAsync(reviews);
-
-}
 
 var seedUsers = function() {
 
@@ -117,6 +90,28 @@ var seedUsers = function() {
     return User.createAsync(users);
 
 };
+
+var reviews = [{
+    username: "test",
+    content: "test test test",
+    rating: 5
+}, {
+    username: "Barack",
+    content: "This album is presindential.",
+    rating: 5
+}, {
+    username: "Cooper",
+    content: "Woof, grr, woof!",
+    rating: 3
+}, {
+    username: "Led",
+    content: "A stairway to heaven of an album!",
+    rating: 5
+}, {
+    username: "Taylor",
+    content: "I HATE KANYE!",
+    rating: 1
+}]
 
 
 var albums = [{
@@ -185,32 +180,87 @@ var albums = [{
     review: "Cooper"
 }];
 
+var newAlbums;
+
 
 connectToDb.then(function() {
     mongoose.connection.db.dropDatabase(function() {
-        seedArtists()
-            .then(function(responseArr) {
-                console.log("array of artists", gitresponseArr);
-                var newAlbums = albums.map(function(album, index) {
-                    console.log(responseArr[index], album.artist)
-                    if (responseArr[index].name === album.artist) {
-                        album.artist = responseArr[index]._id;
-                        return album;
+        //STEP 1: Seed Users to DB.
+
+        seedUsers()
+            .then(function(arrUser){
+                console.log('1) We seed users first');
+                reviews = reviews.map(function(review, index) {    
+                    if (arrUser[index].firstName === review.username) {
+                        review.username = arrUser[index]._id;
+                        return review
                     }
                 })
-                Album.createAsync(newAlbums)
-                    .then(function(newAlbums) {
-                        // console.log(newAlbums);
-                        return seedUsers();
-                    })
-                    .then(function(newUsers) {
-                        // console.log(newUsers);
-                        // console.log("Everything seeded!")
-                        process.kill(0);
-                    })
+                console.log("2) We changed the users to match _id store in NewArray")
+        
+            Review.create(reviews)
+            .then(function(reviewsDB){
+                reviews = reviewsDB
+                return reviewsDB;
             })
+            
+            seedArtists()
+                .then(function(artistResp) {
+                    console.log('4) We seed artists third')
+                    newAlbums = albums.map(function(album, index){
+                        if (artistResp[index].name === album.artist) {
+                            album.artist = artistResp[index]._id;
+                            return album;
+                        }                        
+                    })
+                })                   
+                .then(function(){
+                    reviews = reviews.map(function(review, index){
+                        if (review.username === arrUser[index]._id) {
+                            newAlbums.map(function(album){
+                                if (album.review === arrUser[index].firstName){
+                                    album.review = review._id
+                                    return album
+                                }
+                            })
+                        }
+                        return review                       
+                    })
+                console.log('5) We match artists ID with artist in album')
+                Album.create(newAlbums)
+                .then(function(albArr){
+                    console.log('6) We seed albums last')
+                    process.kill(0);    
+                })
+            })
+        })
     });
 });
+
+
+
+    //     seedArtists()
+    //         .then(function(responseArr) {
+    //             console.log("array of artists", responseArr);
+    //             var newAlbums = albums.map(function(album, index) {
+    //                 console.log(responseArr[index], album.artist)
+    //                 if (responseArr[index].name === album.artist) {
+    //                     album.artist = responseArr[index]._id;
+    //                     return album;
+    //                 }
+    //             })
+    //             Album.createAsync(newAlbums)
+    //                 .then(function(newAlbums) {
+    //                     // console.log(newAlbums);
+    //                     return seedUsers();
+    //                 })
+    //                 .then(function(newUsers) {
+    //                     // console.log(newUsers);
+    //                     // console.log("Everything seeded!")
+    //                     process.kill(0);
+    //                 })
+    //         })
+    // });
 // User.findAsync({}).then(function(users) {
 //     if (users.length === 0) {
 //         // return seedUsers();
