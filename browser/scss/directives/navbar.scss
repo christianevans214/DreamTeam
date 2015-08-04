@@ -1,69 +1,92 @@
-navbar {
+// navbar {
+//   width: 10%;
+//   height: 100vh;
+//   display: inline-block;
+//   background: white;
+//   border: 1px solid black;
+//   box-shadow: 1px 1px 14px -3px black;
 
-  display: block;
-  background: white;
-  border-bottom: 1px solid black;
-  box-shadow: 1px 1px 14px -3px black;
+//   .container {
+//     width: 91%;
+//     max-width: 1340px;
+//     padding-top: 20px;
+//   }
 
-  .container {
-    width: 91%;
-    max-width: 1340px;
-    padding-top: 20px;
-  }
+//   fullstack-logo {
+//     margin-top: 5px;
+//     margin-right: 20px;
+//     width: 40px;
+//   }
 
-  fullstack-logo {
-    margin-top: 5px;
-    margin-right: 20px;
-    width: 40px;
-  }
+//   a {
+//     color: black;
+//     font-size: 16px;
+//   }
 
-  a {
-    color: black;
-    font-size: 16px;
-  }
+//   .nav > li > a {
+//     cursor: pointer;
+//     transition: color 0.2s;
+//     &.active {
+//       color: darken(#f31214, 10%);
+//     }
+//     &:hover {
+//       background: none;
+//       color: #f31214;
+//     }
+//     &:focus {
+//       background: none;
+//     }
+//   }
 
-  .nav > li > a {
-    cursor: pointer;
-    transition: color 0.2s;
-    &.active {
-      color: darken(#f31214, 10%);
-    }
-    &:hover {
-      background: none;
-      color: #f31214;
-    }
-    &:focus {
-      background: none;
-    }
-  }
+//   .login-button {
+//     float: right;
+//     border: 1px solid black;
+//     margin-top: 10px;
+//     background: none;
+//     outline: none !important;
+//   }
 
-  .login-button {
-    float: right;
+//    .signup-button {
+//     float: right;
+//     border: 1px solid black;
+//     margin-top: 10px;
+//     padding-left: 5px;
+//     background: none;
+//     outline: none !important;
+//   }
+
+//   .welcome {
+//     float: right;
+//     margin-top: 12px;
+//     span {
+//       color: white;
+//     }
+//     a {
+//       color: #f30046;
+//       cursor: pointer;
+//     }
+//   }
+
+// }
+
+.nb{
+  position:fixed;
+  text-align: center;
+  background-color: #262335;
+  color: white;
+  border-right: 2px solid white;
+  height: 100vh;
+  width: 13%;
+  display: inline-block;
+  .filler {
     border: 1px solid black;
-    margin-top: 10px;
-    background: none;
-    outline: none !important;
+    height: 8%;
   }
-
-   .signup-button {
-    float: right;
-    border: 1px solid black;
-    margin-top: 10px;
-    padding-left: 5px;
-    background: none;
-    outline: none !important;
+  .nav-element{
+    cursor:pointer;
+    margin: 3% auto;
+    width: 60px;
+    height: 10%;
+    border: 1px solid white;
   }
-
-  .welcome {
-    float: right;
-    margin-top: 12px;
-    span {
-      color: white;
-    }
-    a {
-      color: #f30046;
-      cursor: pointer;
-    }
-  }
-
 }
