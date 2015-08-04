@@ -13,8 +13,11 @@ app.controller("NewPromoController", function($rootScope, $scope, PromotionsFact
 		validGenres: {}
 	};
 	$scope.makePromo = function(newPromoInfo) {
+		newPromoInfo.percentageOff = Number(newPromoInfo.percentageOff);
+
 		PromotionsFactory.createPromotion(newPromoInfo)
 			.then(function(data) {
+				console.log(data)
 				$rootScope.$broadcast("newPromo", data);
 				// promos.push(data);
 				$state.go('admin.promoManagement')

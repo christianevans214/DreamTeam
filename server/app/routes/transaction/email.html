@@ -1,0 +1,36 @@
+<html>
+  <head><meta charset='utf-8'></head>
+  <body>
+    <p>Hey <%=billing.firstName%>,</p>
+    <br>
+    <p>
+     We've processed your order! You should be receiving your vinyls in 5-7 days.
+    </p>
+    <p> 
+      Order Number: <%=_id%> 
+    </p>
+    <p>
+      Date ordered: <%=dateOrdered%> 
+    </p>
+    <p>
+      Shipping Address: <%=shipping.address%> <%=shipping.city%> <%=shipping.zip%> <%=shipping.country%> 
+    </p>
+    <ul>
+      <% for(var i=0; i<purchases.length; i++) {%>
+      <li>Products Ordered: <%=purchases[i].album.title%> </li>
+      <li>Price: <%=purchases[i].price%> </li>
+      <li>Quantity: <%=purchases[i].quantity%> </li>
+    <% } %>
+   </ul>
+   <p>
+    Status:<%=status%>
+   </p>
+   <p>
+    Thanks for shopping with us!
+   </p>
+    <p>
+      Cheers,<br>
+      Infinity Loop
+    </p>
+  </body>
+</html>

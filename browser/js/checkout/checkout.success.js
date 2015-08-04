@@ -5,3 +5,8 @@ app.config(function($stateProvider){
     templateUrl: 'js/checkout/success.html'
     })
 })
+
+// app.controller('emailController', function($scope, $state){
+
+
+// })
