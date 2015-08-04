@@ -15,19 +15,58 @@ app.config(function($stateProvider) {
   })
 })
 
-app.controller('AlbumController', function($scope, $rootScope, user, album, $state, UserFactory, AuthService, CartFactory, localStorageService, TrackFactory, $sce){
+app.controller('AlbumController', function($scope, $rootScope, user, album, $state, UserFactory, AuthService, CartFactory, localStorageService, TrackFactory, $sce, AlbumFactory){
 
   $scope.user = user;
   $scope.album = album;
   $scope.tracks = [];
 
-  //Get tracks from spotify for current album
-  TrackFactory.fetchTracks($scope.album.spotifyId)
-  .then(function(res){
-    res.items.forEach(function(track){
-      $scope.tracks.push({name: track.name, URL: $sce.trustAsResourceUrl(track.preview_url)});
+  //if album does not have spotifyId, search for album with spotify get request, and save to database
+  if(!$scope.album.spotifyId){
+    var queryAlbum = $scope.album.title.split(' ').join('+');
+    var query = `?q=${queryAlbum}&type=album&market=US`;
+    TrackFactory.searchAlbums(query)
+    .then(function(results){
+      var listOfAlbums = results.albums.items;
+      if(listOfAlbums && listOfAlbums.length === 1){
+        $scope.album.spotifyId = listOfAlbums[0].id;
+      }else {
+        var albumFound = listOfAlbums.filter(function(currentAlbum){
+          return currentAlbum.name === $scope.album.title;
+        })
+        /*if(albumFound && albumFound.length === 1){
+          $scope.album.spotifyId = albumFound[0].id;
+        }*/
+        $scope.album.spotifyId = albumFound[0].id;
+      }
+      AlbumFactory.updateAlbum($scope.album._id, $scope.album);
+      return results;
     })
-  })
+    .then(function(){
+      TrackFactory.fetchTracks($scope.album.spotifyId)
+      .then(function(res){
+        res.items.forEach(function(track){
+          if(!track.preview_url) return;
+          $scope.tracks.push({name: track.name, URL: $sce.trustAsResourceUrl(track.preview_url)});
+        })
+      })
+    })
+  } 
+
+  console.log("spotifyId", $scope.album.spotifyId)
+
+  if($scope.album.spotifyId){
+    //Get tracks from spotify for current album
+    TrackFactory.fetchTracks($scope.album.spotifyId)
+    .then(function(res){
+      res.items.forEach(function(track){
+        if(!track.preview_url) return;
+        $scope.tracks.push({name: track.name, URL: $sce.trustAsResourceUrl(track.preview_url)});
+      })
+    })
+  }
+  
+
 
   $scope.addToCart = function(currentAlbum){
     if($scope.user){
