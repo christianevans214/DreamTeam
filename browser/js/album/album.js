@@ -40,8 +40,20 @@ app.controller('AlbumController', function($scope, $rootScope, user, album, $sta
         $scope.album.spotifyId = albumFound[0].id;
       }
       AlbumFactory.updateAlbum($scope.album._id, $scope.album);
+      return results;
+    })
+    .then(function(){
+      TrackFactory.fetchTracks($scope.album.spotifyId)
+      .then(function(res){
+        res.items.forEach(function(track){
+          if(!track.preview_url) return;
+          $scope.tracks.push({name: track.name, URL: $sce.trustAsResourceUrl(track.preview_url)});
+        })
+      })
     })
   } 
+
+  console.log("spotifyId", $scope.album.spotifyId)
 
   if($scope.album.spotifyId){
     //Get tracks from spotify for current album
