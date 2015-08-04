@@ -63,9 +63,17 @@ app.controller("AdminController", function($state, $rootScope, $scope, UserFacto
 			return true;
 		})
 	})
+
+	$rootScope.$on('deletedPromo', function(event, id) {
+		$scope.promos = $scope.promos.filter(function(promo) {
+			if (promo._id === id) return false;
+			return true;
+		})
+	})
 	$rootScope.$on('newPromo', function(event, data) {
 		data.createdAt = new Date(data.createdAt).toLocaleDateString('en-US', $scope.options)
 		data.expireAt = new Date(data.expireAt).toLocaleDateString('en-US', $scope.options)
+		promos.push(data);
 		$scope.promos.push(data);
 	})
 	$rootScope.$on('newAlbum', function(event, data) {
