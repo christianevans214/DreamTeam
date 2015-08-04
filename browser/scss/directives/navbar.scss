@@ -69,6 +69,7 @@
 
 // }
 
+
 .nb{
   position:fixed;
   text-align: center;
@@ -81,7 +82,8 @@
 
   .filler {
     // border: 1px solid black;
-    height: 8%;
+    height: 10%;
+    margin-bottom: 25px;
   }
   .nav-element{
     font-size: 24px;
@@ -89,8 +91,10 @@
     margin: 3% auto;
     width: 60px;
     height: 10%;
+    color: #ccc;
     // border: 1px solid white;
     .glyphicon {
+
       transition: 0.2s ease-in-out;
     }
     .text-description{
@@ -100,9 +104,11 @@
     }
 
     &:hover > .glyphicon {
+      color: white;
       transform: translate(0, -7px);
     }
     &:hover > .text-description {
+      color: white;
       opacity: 1;
     }
   }

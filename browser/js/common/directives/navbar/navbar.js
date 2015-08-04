@@ -13,20 +13,7 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
             }, {
                 label: "Store",
                 state: "store",
-                glyphClass: "glyphicon-shopping-cart"
-            }, {
-                label: 'Account',
-                state: 'account',
-                glyphClass: "glyphicon-folder-close",
-                auth: true
-            }, {
-                label: 'About',
-                state: 'about',
-                glyphClass: "glyphicon-info-sign"
-            }, {
-                label: 'Docs',
-                state: 'docs',
-                glyphClass: "glyphicon-hdd"
+                glyphClass: "glyphicon-cd"
             }];
 
             scope.user = null;
