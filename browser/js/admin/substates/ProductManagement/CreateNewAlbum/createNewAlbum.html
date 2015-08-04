@@ -1,0 +1,24 @@
+<section id="newAlbumDetail">
+  <div class="image col-lg-6">
+    <img class = "album-image" src = '{{album.image}}'/>
+  </div>
+
+  <div class = 'album-info col-lg-6'>
+    <ol class="list-group">
+      <h2>Edit Album Details</h2>
+      <pre>{{album | json}}</pre>
+      <input class = "edit-album-input" type = "input" ng-model = "album.title" placeholder = "Album Title" class="list-group-item"></input>
+      <!-- will need clever way to change album artist on ng-click -->
+      <input class = "edit-album-input" type = "input" ng-model = "album.artist.name" placeholder = "Artist Name" class="list-group-item"></input>
+      <input class = "edit-album-input" type = "input" ng-model = "album.genre[0]" placeholder = "Genre" class="list-group-item"></input>
+      <input class = "edit-album-input" type = "input" ng-model = "album.image" placeholder = "Image URL link" class="list-group-item"></input>
+      <input class = "edit-album-input" type = "input" ng-model = "album.price" placeholder = "Album Price" class="list-group-item"/>
+      <p class="list-group-item">Album in stock: {{album.isInStock}}</p>
+
+    </ol>
+    <label for= "inStockButton">Album in stock?</label>
+    <input id="inStockButton" type="checkbox" ng-model = album.isInStock></input>
+    <button type = "btn" ng-click="createNewAlbum(album)">Submit Changes</button>
+  </div>
+
+</section>

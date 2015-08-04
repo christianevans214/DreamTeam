@@ -15,9 +15,10 @@ body {
 }
 
 #main {
-  padding-top: 60px;
-  width: 100%;
+  width: 87%;
+  float: right;
   margin: 0 auto;
+  display: inline-block;
 }
 
 @import 'directives/main';

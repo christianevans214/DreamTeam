@@ -1,4 +1,4 @@
-<nav class="navbar navbar-static-top">
+<!-- <nav class="navbar">
     <div class="container">
         <div class="navbar-header">
             <fullstack-logo></fullstack-logo>
@@ -27,3 +27,19 @@
         </div>
     </div>
 </nav>
+ -->
+<div class = "nb">
+    <div class = "logo">
+    <h3> The Verge </h3>
+    <!-- include nice scripty font... -->
+    </div>
+    <div class = "filler">
+    </div>
+    <div class = "nav-element" ui-sref="{{item.state}}({id: user._id})" ng-repeat = "item in items">
+    <span class = "glyphicon nav-item">{{item.label}}</span>
+    <p class = "invisi-description"></p>
+    </div>
+    <div class = "nav-element edmin" ng-if="user.isAdmin">
+    <span class = "glyphicon nav-item" ui-sref="admin({id:user._id})">Admin</span>
+    </div>
+</div>
