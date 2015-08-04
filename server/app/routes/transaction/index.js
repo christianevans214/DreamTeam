@@ -14,9 +14,16 @@ var emailTemplate = fs.readFileSync(emailPath, 'utf-8');
 
 //Send an Email Confirmation
 router.post('/email', function(req,res,next){
- var emailHTML= ejs.render(emailTemplate, req.body);
+ var order = req.body;
+ order.status = ' Confirmed';
+ var emailHTML= ejs.render(emailTemplate, order);
  sendEmail(emailHTML, req.body);
-  console.log('req.body', req.body);
+ order.status = ' Shipped';
+ var emailHTML= ejs.render(emailTemplate, order);
+ sendEmail(emailHTML, req.body);
+ order.status = ' Delivered';
+ var emailHTML= ejs.render(emailTemplate, order);
+ sendEmail(emailHTML, req.body);
 })
 
 //params for transaction
@@ -37,7 +44,7 @@ var sendEmail = function(emailHTML, transaction){
   var message = {
     "html": emailHTML,
     "subject": 'Order Confirmation',
-    "from_email": 'annalexgoldberg@gmail.com',
+    "from_email": 'infinitylooprecords@gmail.com',
     "from_name": 'Infinity Loop',
     "to": [{
             "email": transaction.email,
@@ -54,12 +61,8 @@ var sendEmail = function(emailHTML, transaction){
   };
   var ip_pool = "Main Pool";
   mandrill_client.messages.send({"message": message, "async": false, "ip_pool": ip_pool}, function(result) {
-      // console.log(message);
-      // console.log(result);   
   }, function(e) {
-      // Mandrill returns the error as an object with name and message keys
       console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
-      // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
   });
 };
 
