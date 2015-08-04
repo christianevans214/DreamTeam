@@ -27,7 +27,7 @@
               <img src='{{purchase.album.image}}' id="avatar">
              </div>
              <ul>
-               <h3> Album </h3> <div class="navbar-link" a ui-sref="albumDetail({albumId: purchase.album._id})"> {{purchase.album.title}} </div>
+               <h3> Album </h3> <div> <ui-sref="albumDetail({albumId: purchase.album._id})"> {{purchase.album.title}} </div>
                <h3> Quantity </h3>  <p> {{purchase.quantity}} </p>
                <h3> Price </h3>  <p>  ${{purchase.price}} </p>
                <!-- total??? -->

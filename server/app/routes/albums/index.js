@@ -33,7 +33,7 @@ router.get('/', function(req, res, next) {
 
 //GET one album
 router.get('/:id', function(req, res) {
-	res.json(req.album);
+	res.json(req.album.toObject());
 })
 
 //POST new album
