@@ -8,20 +8,12 @@ app.directive('navbar', function($rootScope, AuthService, AUTH_EVENTS, $state) {
 
             scope.items = [{
                 label: 'Home',
-                state: 'home'
+                state: 'home',
+                glyphClass: "glyphicon-home"
             }, {
                 label: "Store",
-                state: "store"
-            }, {
-                label: 'Account',
-                state: 'account',
-                auth: true
-            }, {
-                label: 'About',
-                state: 'about'
-            }, {
-                label: 'Documentation',
-                state: 'docs'
+                state: "store",
+                glyphClass: "glyphicon-cd"
             }];
 
             scope.user = null;
