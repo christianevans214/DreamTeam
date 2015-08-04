@@ -12,7 +12,7 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('CheckoutController', function($state, $scope, user, TransactionFactory, localStorageService, UserFactory){
+app.controller('CheckoutController', function($state, $scope, user, TransactionFactory, localStorageService, UserFactory, PromotionsFactory){
   $scope.user = user;
   $scope.purchases = [];
 
@@ -24,6 +24,52 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
   $scope.cartItems.forEach(function(item){
     $scope.purchases.push({album: item.album, price: item.album.price, quantity: item.quantity})
   })
+
+
+  $scope.getGenres = function(genresArr){
+    return genresArr[0].split(' ');
+  }
+
+  $scope.applyPromo = function(promoCode, purchase){
+    if(promoCode === "BOGO"){
+      console.log("BOGO");
+    } else if(promoCode === "FREE"){
+      purchase.price = 0;
+    } else if(promoCode === "10%OFF"){
+      purchase.price = purchase.price*(0.9);
+    } else if(promoCode === "25%OFF"){
+      purchase.price = purchase.price*(0.75);
+    } else if(promoCode === "50%OFF"){
+      purchase.price = purchase.price*(0.5);
+    }
+    return purchase;
+  }
+
+
+  $scope.checkPromo = function(promo){
+    var valid = false;
+    PromotionsFactory.getAllPromotions()
+    .then(function(validPromos){
+      valid = validPromos.filter(function(validPromo){
+        return (promo.toLowerCase() === validPromo.code.toLowerCase() && (new Date(validPromos[0].expireAt) - new Date()) > 0);
+      })
+
+      if(valid.length === 1){
+        $scope.purchases.forEach(function(item){
+          console.log("purchase items", item)
+          var genres = $scope.getGenres(item.album.genre)
+          for(var i = 0; i < genres.length; i++){
+            if(valid[0].validProducts.indexOf(genres[i]) > -1){
+              $scope.applyPromo(valid[0].code, item);
+            }
+          }
+        })
+        console.log("purchases", $scope.purchases);
+      }
+    })
+  }
+
+
 
   //when place order is clicked -> make post request with form data for user and guest
   $scope.submitCheckout = function(orderData){
@@ -51,3 +97,14 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
   //TODO: send conformation email
 
 })
+
+
+
+
+
+
+
+
+
+
+
