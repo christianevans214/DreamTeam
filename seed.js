@@ -42,6 +42,8 @@ var seedArtists = function() {
         name: "Kanye West"
     }, {
         name: "Joni Mitchel"
+    }, {
+        name: "Shaggy"
     }]
 
     return Artist.createAsync(artists);
@@ -170,6 +172,13 @@ var albums = [{
     image: "http://blog.thecurrent.org/files/2015/04/Blue-Joni-Mitchell.jpg",
     year: 1971,
     spotifyId: '5hW4L92KnC6dX9t7tYM4Ve'
+}, {
+    artist: "Shaggy",
+    title: "The Boombastic Collection",
+    genre: ["Reggae Soul"],
+    price: "45.00",
+    image: "http://ecx.images-amazon.com/images/I/71lkgzDdEyL._SL1117_.jpg",
+    year: 1995
 }];
 
 
