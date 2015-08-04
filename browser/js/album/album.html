@@ -23,4 +23,14 @@
     </ui-view>
   </div>
 
+  <ul class= 'playlist col-lg-6 list-group'>
+    <li class= 'list-group-item' ng-repeat="track in tracks"> 
+        <!-- <p class="glyphicon glyphicon-play play"></p> -->
+        <p> {{track.name}} </p>
+        <audio ng-src="{{track.URL}}" type="track" preload="auto" controls></audio>
+    </li>
+  </ul>
+  </div>
+
 </section>
+

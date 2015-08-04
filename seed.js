@@ -43,6 +43,8 @@ var seedArtists = function() {
         name: "Kanye West"
     }, {
         name: "Joni Mitchel"
+    }, {
+        name: "Shaggy"
     }]
 
     return Artist.createAsync(artists);
@@ -135,7 +137,8 @@ var albums = [{
     price: "27.16",
     image: "http://i.huffpost.com/gen/891066/images/o-MICHAEL-JACKSON-THRILLER-facebook.jpg",
     year: 1982,
-    review: ["Barack", "Led"]
+    review: ["Barack", "Led"],
+    spotifyId: '2ANVost0y2y52ema1E9xAZ'
 }, {
     artist: "Leon Bridges",
     title: "Coming Home",
@@ -143,7 +146,8 @@ var albums = [{
     price: "20.00",
     image: "http://static1.squarespace.com/static/54fdea6de4b018047dada8af/t/5552050ee4b03b3ccda57c18/1431438608081/",
     year: 2015,
-    review: ["Led", "Cooper", "Taylor"]
+    review: ["Led", "Cooper", "Taylor"],
+    spotifyId: '4svLfrPPk2npPVuI4kXPYg'
 }, {
     artist: "The Beatles",
     title: "Abbey Road",
@@ -151,7 +155,8 @@ var albums = [{
     price: "37.00",
     image: "http://d817ypd61vbww.cloudfront.net/sites/default/files/styles/media_responsive_widest/public/tile/image/AbbeyRoad.jpg?itok=BgfH98zh",
     year: 1969,
-    review: ["Barack", "Cooper"]
+    review: ["Barack", "Cooper"],
+    spotifyId: '3oVCGd8gjANVb5r2F0M8BI'
 }, {
     artist: "Pink Floyd",
     title: "Dark Side of the Moon",
@@ -159,7 +164,8 @@ var albums = [{
     price: "24.43",
     image: "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
     year: 1973,
-    review: ["Cooper"]
+    review: ["Cooper"],
+    spotifyId: '3a0UOgDWw2pTajw85QPMiz'
 }, {
     artist: "Beyoncé",
     title: "Beyoncé",
@@ -167,7 +173,8 @@ var albums = [{
     price: "25.50",
     image: "https://upload.wikimedia.org/wikipedia/commons/2/21/Beyonc%C3%A9_-_Beyonc%C3%A9.svg",
     year: 2014,
-    review: ["Barack"]
+    review: ["Barack"],
+    spotifyId: '2UJwKSBUz6rtW4QLK74kQu'
 }, {
     artist: "Led Zeppelin",
     title: "IV",
@@ -175,7 +182,8 @@ var albums = [{
     price: "23.84",
     image: "http://superhypeblog.com/wp-content/uploads/2011/08/led-zep-iv.jpg",
     year: 1971,
-    review: ["test", "test"]
+    review: ["test", "test"],
+    spotifyId: '1Ugdi2OTxKopVVqsprp5pb'
 }, {
     artist: "Kanye West",
     title: "My Beautiful Dark Twisted Fantasy",
@@ -183,7 +191,8 @@ var albums = [{
     price: "25.85",
     image: "http://sites.bxmc.poly.edu/~dariclim/VFS/wp-content/uploads/2014/09/kanye_west_mbdtf.jpg",
     year: 2010,
-    review: ["Taylor", "Cooper", "Led", "Barack"]
+    review: ["Taylor", "Cooper", "Led", "Barack"],
+    spotifyId: '20r762YmB5HeofjMCiPMLv'
 }, {
     artist: "Joni Mitchel",
     title: "Feeling Blue",
@@ -191,7 +200,15 @@ var albums = [{
     price: "32.00",
     image: "http://blog.thecurrent.org/files/2015/04/Blue-Joni-Mitchell.jpg",
     year: 1971,
-    review: ["Cooper", "Taylor"]
+    review: ["Cooper", "Taylor"],
+    spotifyId: '5hW4L92KnC6dX9t7tYM4Ve'
+}, {
+    artist: "Shaggy",
+    title: "The Boombastic Collection",
+    genre: ["Reggae Soul"],
+    price: "45.00",
+    image: "http://ecx.images-amazon.com/images/I/71lkgzDdEyL._SL1117_.jpg",
+    year: 1995
 }];
 
 var newAlbums;

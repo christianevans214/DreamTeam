@@ -9,6 +9,7 @@ router.use('/albums', require('./albums'));
 router.use('/reviews', require('./reviews'));
 router.use('/artists', require('./artists'));
 router.use('/promos', require('./promos'));
+router.use('/https://api.spotify.com/v1', require('./tracks'));
 
 
 // Make sure this is after all of

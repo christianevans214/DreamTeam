@@ -6,15 +6,16 @@ app.config(function($stateProvider) {
 	})
 })
 
-app.controller('ProductManagementView', function($rootScope, $state, $scope, AlbumFactory, ArtistFactory, $stateParams, albums, artists) {
-	$scope.album = albums.filter(function(album) {
+app.controller('ProductManagementView', function($rootScope, $state, $scope, AlbumFactory, ArtistFactory, $stateParams) {
+
+	$scope.album = $scope.albums.filter(function(album) {
 			if (album._id === $stateParams.id) return true;
 		})[0]
-		//this is not broken, but should be placed in a factory...
+		//this is not broken, but should be placed in a factory...or...like half its current size.
 	$scope.submitChanges = function(id, albumChanges) {
 		var nameToHold = albumChanges.artist.name;
-		albumChanges.artist = artists.filter(function(artist) {
-			// console.log("artist", artist, "albumChanges", albumChanges)
+		albumChanges.artist = $scope.artists.filter(function(artist) {
+
 			if (artist.name === albumChanges.artist.name) return true;
 		})[0]
 		if (albumChanges.artist) albumChanges.artist = albumChanges.artist._id;
@@ -23,20 +24,22 @@ app.controller('ProductManagementView', function($rootScope, $state, $scope, Alb
 					name: nameToHold
 				})
 				.then(function(newArtist) {
-					console.log("new artist made", newArtist);
 					albumChanges.artist = newArtist._id;
+					console.log("newArtist._id", newArtist._id);
+					console.log("ID", id)
+					console.log("ALBUM CHANGES", albumChanges);
 					return AlbumFactory.updateAlbum(id, albumChanges)
 				})
 				.then(function(updatedAlbum) {
-					console.log(updatedAlbum);
 					$scope.album = updatedAlbum;
 					albumChanges.artist = updatedAlbum.artist;
 					$state.go('admin.productManagement')
 				})
 		} else {
+			console.log("ID", id)
+			console.log("ALBUM CHANGES", albumChanges);
 			AlbumFactory.updateAlbum(id, albumChanges)
 				.then(function(updatedAlbum) {
-					console.log("artist existed", updatedAlbum);
 					$scope.album = updatedAlbum;
 					albumChanges.artist = updatedAlbum.artist;
 					$state.go('admin.productManagement')

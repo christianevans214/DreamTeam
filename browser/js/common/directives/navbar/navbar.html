@@ -1,4 +1,4 @@
-<nav class="navbar navbar-static-top">
+<!-- <nav class="navbar">
     <div class="container">
         <div class="navbar-header">
             <fullstack-logo></fullstack-logo>
@@ -27,3 +27,42 @@
         </div>
     </div>
 </nav>
+ -->
+<div class = "nb">
+    <div class = "logo">
+    <h3>Infinity </br> Loop</h3>
+    <!-- include nice scripty font... -->
+    </div>
+    <div class = "filler welcome">
+        <span ng-show="user">Welcome, {{user.email}}!</span>
+    </div>
+    <div class = "nav-element" ui-sref="cart">
+        <span class = "glyphicon glyphicon-shopping-cart"></span>
+        <p class = "text-description">My Cart</p>
+    </div>
+    <div class = "nav-element edmin" ng-if="user.isAdmin">
+    <span class = "glyphicon glyphicon-wrench nav-item" ui-sref="admin({id:user._id})"></span>
+    <p class = "text-description">Admin</p>
+    </div>
+    <div class = "nav-element" ui-sref="{{item.state}}({id: user._id})" ng-repeat = "item in items">
+        <span class = "glyphicon {{item.glyphClass}} nav-item"></span>
+        <p class = "text-description">{{item.label}}</p>
+    </div>
+    <div ng-if="user" class = "nav-element" ui-sref= "account({id:user._id})">
+        <span class = "glyphicon glyphicon-user" nav-item></span>
+        <p class = "text-description">Account</p>
+    </div>
+    <div ng-if="!user" class = "nav-element" ui-sref = "login">
+        <span class = "glyphicon glyphicon-log-in nav-item"></span>
+        <p class = "text-description">Login</p>
+    </div>
+    <div ng-if="!user" class = "nav-element" ui-sref = "signup">
+        <span class = "glyphicon glyphicon-plus nav-item"></span>
+        <p class = "text-description">Sign Up</p>
+    </div>
+    <div ng-if="user" class = "nav-element" ng-click="logout()">
+        <span class = "glyphicon glyphicon-minus"></span>
+        <p class = "text-description">Log Out</p>
+    </div>
+
+</div>

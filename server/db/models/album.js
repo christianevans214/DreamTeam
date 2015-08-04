@@ -34,10 +34,13 @@ var schema = new mongoose.Schema({
 	isInStock: {
 		type: Boolean,
 		default: true
-	}
-	// pending a differentiator for album size 
+	},
+	spotifyId: String
+		// pending a differentiator for album size 
 })
 
+//1) Need to somehow get review ._id
+//2) Push the review._id into $scope.album.reviews
 // schema.virtual('artistName').set(function(artistData, done) {
 // 	var self = this;
 // 	Artist.find({
