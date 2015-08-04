@@ -5,6 +5,9 @@ app.config(function($stateProvider) {
 			controller: "AdminController",
 			templateUrl: "js/admin/admin.html",
 			resolve: {
+				user: function(AuthService) {
+					return AuthService.getLoggedInUser();
+				},
 				users: function(UserFactory) {
 					return UserFactory.getAllUsers()
 				},
@@ -25,7 +28,20 @@ app.config(function($stateProvider) {
 		})
 })
 
-app.controller("AdminController", function($state, $rootScope, $scope, UserFactory, TransactionFactory, AlbumFactory, users, albums, artists, transactions, promos) {
+// app.run(function($rootScope, $state, AuthService) {
+// 	var user = AuthService.getLoggedInUser();
+// 	console.log(user);
+// })
+
+app.controller("AdminController", function($state, $rootScope, $scope, UserFactory, TransactionFactory, AlbumFactory, users, albums, artists, transactions, promos, user, ArtistFactory) {
+	(function(user) {
+		if (user && user.isAdmin) return;
+		$state.go('home');
+	})(user)
+	$scope.users = users;
+	$scope.albums = albums;
+	$scope.artists = artists;
+	$scope.transactions = transactions;
 	$scope.options = {
 		weekday: 'long',
 		year: 'numeric',
@@ -35,23 +51,29 @@ app.controller("AdminController", function($state, $rootScope, $scope, UserFacto
 		minute: "numeric",
 		second: "numeric"
 	};
-	$scope.users = users;
-	$scope.abums = albums;
-	$scope.artists = artists;
-	$scope.transactions = transactions;
-	// $scope.promos = promos;
 	$scope.promos = promos.map(function(promo) {
-		console.log(promo)
 		promo.createdAt = new Date(promo.createdAt).toLocaleDateString('en-US', $scope.options)
 		promo.expireAt = new Date(promo.expireAt).toLocaleDateString('en-US', $scope.options)
-		console.log(promo);
 		return promo;
 	})
+
+	$rootScope.$on('deletedAlbum', function(event, id) {
+		$scope.albums = $scope.albums.filter(function(album) {
+			if (album._id === id) return false;
+			return true;
+		})
+	})
 	$rootScope.$on('newPromo', function(event, data) {
-			console.log("this worked", data);
-			data.createdAt = new Date(data.createdAt).toLocaleDateString('en-US', $scope.options)
-			data.expireAt = new Date(data.expireAt).toLocaleDateString('en-US', $scope.options)
-			$scope.promos.push(data);
+		data.createdAt = new Date(data.createdAt).toLocaleDateString('en-US', $scope.options)
+		data.expireAt = new Date(data.expireAt).toLocaleDateString('en-US', $scope.options)
+		$scope.promos.push(data);
+	})
+	$rootScope.$on('newAlbum', function(event, data) {
+			ArtistFactory.getArtist(data.artist)
+				.then(function(artistInfo) {
+					data.artist = artistInfo
+					$scope.albums.push(data);
+				})
 		})
 		//should make an Admin service that has all these functions for deleting things/updating things/what not
 	$scope.deleteUser = function(id) {
@@ -63,7 +85,6 @@ app.controller("AdminController", function($state, $rootScope, $scope, UserFacto
 			//DB deletion of users
 		UserFactory.deleteUser(id)
 			.then(function(response) {
-				console.log(response);
 				$state.go('admin.userManagement')
 			})
 	}

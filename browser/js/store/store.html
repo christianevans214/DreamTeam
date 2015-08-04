@@ -25,7 +25,7 @@
 			<li ng-repeat= "criterion in searchCriteria" ui-sref = "{{criterion.state}}">{{criterion.title}}</li>
 		</ul> -->
 		<div class = "search">
-			<div class = "searchCrit" id = "artist"><label for = "artist-name">Artist Name</label>     <input id = "artist-name" ng-model = "filterObject.artist.name" placeholder="Story Name"></input></div>
+			<div class = "searchCrit" id = "artist"><label for = "artist-name">Artist Name</label>     <input id = "artist-name" ng-model = "filterObject.artist.name" placeholder="Artist Name"></input></div>
 			<div class = "searchCrit" id = "album"><label for = "album">Album</label>     <input id = "album" ng-model = "filterObject.title" placeholder = "Album"></input></div>
 			<!-- price should be a drop-down list of price-ranges -->
 			<div class = "searchCrit" id = "price"><label for = "price">Price</label>     <input id = "price" ng-model = "filterObject.price" placeholder = "Price"></input></div>
