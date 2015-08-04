@@ -3,13 +3,17 @@
 		<div class="avatar-wrapper">
 			<img src='{{ user.photo }}' id='avatar'>
 		</div>
+		<hr>
 		<div class = "accountInfo-wrapper">
+			<div class="texture">
+				 <p class = "name">@{{ user.firstName }} {{ user.lastName }}</p>
+			</div>
+		<hr>
 			<ui-view>	
 				<br>
-				<p id = "firstName" ng-model = "user.firstName">@{{ user.firstName }} {{ user.lastName }}</p>
-				<hr>
-				<p ng-model = "user.email">email: {{ user.email }}</p>
-				<hr>
+					<p class="email">
+					E-mail: {{ user.email }}
+				 </p>
 			<button ui-sref="account.editProfile" class="btn btn-default">Edit Profile</button>
 			<button class="btn btn-default" ui-sref="account.shoppingHistory">Shopping History</button>
 			</ui-view>
