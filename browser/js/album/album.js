@@ -22,6 +22,14 @@ app.controller('AlbumController', function($scope, $rootScope, user, album, $sta
   $scope.album = album;
   $scope.tracks = [];
 
+  $scope.range = function(count){
+    var ratings = []; 
+    for (var i = 0; i < count; i++) { 
+        ratings.push(i) 
+    } 
+    return ratings;
+}
+
   //if album does not have spotifyId, search for album with spotify get request, and save to database
   if(!$scope.album.spotifyId){
     var queryAlbum = $scope.album.title.split(' ').join('+');

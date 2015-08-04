@@ -113,7 +113,7 @@ var reviews = [{
     rating: 5
 }, {
     username: "Barack",
-    content: "This album is presindential.",
+    content: "This album is presidential.",
     rating: 5
 }, {
     username: "Cooper",

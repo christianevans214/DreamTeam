@@ -55,27 +55,12 @@ router.put('/:id', function(req, res, next) {
 	lodash extend updates the properties of the first argument,
 	the second arguments updates the properties of the previous argument.
 	*/
-	// _.extend(req.album, req.body);
-	// req.album.save()
-	// 	.then(function(album) {
-	// 		res.json(album);
-	// 	})
-	// 	.then(null, next);
+
 	_.extend(req.album, req.body);
 	req.album.save().then(function(album) {
 		res.json(album);
 	})
-	// Album.findOne(req.params.id).exec()
-	// .then(function(album){
-	// 	console.log(album)
-	// 	res.json(album)
-	// })
-		// // .populate('artist').exec()
-		// .then(function(data) {
-		// 	console.log("UPDATED", data);
-		// 	res.json(data);
-		// }, next)
-		// .then(null, next);
+	
 })
 
 //DELETE remove album
