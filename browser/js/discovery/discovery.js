@@ -1,6 +1,4 @@
 app.config(function($stateProvider) {
-
-	// Register our *about* state.
 	$stateProvider.state('discovery', {
 		url: '/discovery',
 		controller: 'DiscoveryController',
@@ -13,7 +11,10 @@ app.config(function($stateProvider) {
 	});
 });
 
-app.controller('DiscoveryController', function($scope, DiscoveryFactory, AlbumFactory, featuredAlbum, $state){
+app.controller('DiscoveryController', function($scope, AlbumFactory, featuredAlbum, $state){
+
+	console.log("heyyyy");
+
 	$scope.feature = featuredAlbum[Math.floor(Math.random()*featuredAlbum.length)]
 
 	$scope.goToAlbumDetail = function(){

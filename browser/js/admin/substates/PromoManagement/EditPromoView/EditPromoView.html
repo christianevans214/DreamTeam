@@ -1,0 +1,31 @@
+<div class = "promo-maker-container"style = "padding-left: 50px">
+<div class = "promo-box" style = "border: 1px solid black; display: inline-block; width: 50%">
+		<pre> {{updatedPromo | json}} </pre>
+		<label for="code">Input code</label>
+		<input ng-model="updatedPromo.code" class = "new-promo-element promo-code" placeholder="Promo code"/></br>
+		<label for="created">Expiration hours </label>
+		<input ng-model = "updatedPromo.expireString" id = "created" type = "text" value = "24"></input></br></br>
+		<label for="percentage">Percentage off items (decimal form)</label>
+		<input ng-model="updatedPromo.percentageOff" class="new-promo-element promo-percentage"required/></br>
+		<label>Valid Genres for promo: </label>
+		<div class = "checkbox-genre-container">
+			<label class="checkbox-inline">
+				<input type="checkbox" name="validGenres" ng-model="updatedPromo.validGenres.Rock"> Rock
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" name="validGenres" ng-model="updatedPromo.validGenres.Pop"> Pop
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" name="validGenres" ng-model="updatedPromo.validGenres.Soul"> Soul
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" name="validGenres" ng-model="updatedPromo.validGenres['Hip-Hop']"> Hip-Hop
+			</label>
+			<label class="checkbox-inline">
+				<input type="checkbox" name="validGenres" ng-model="updatedPromo.validGenres['R&B']"> R&B
+			</label>
+		</div>
+		<button type = "btn btn-danger" ng-click="updatePromo(updatedPromo)">Update Promo</button>
+		<h1 ng-if="duplicate">Error: You messed up </h1>
+	</div>
+</div>
