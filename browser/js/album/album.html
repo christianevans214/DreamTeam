@@ -4,7 +4,6 @@
   <div class="album-wrapper col-lg-6">
     <img class = "album-image" src = '{{album.image}}'/>
   </div>
-
   <div class = 'album-info col-lg-6'>
     <ol class="list-group">
       <h2> Album Details</h2>
@@ -13,7 +12,19 @@
       <li class="list-group-item">{{album.genre[0]}}</li>
       <li class="list-group-item">{{album.price | currency}}</li>
     </ol>
-    <button class="btn btn-default" ng-click ="addToCart(album)"> Add To Cart </button>
+    <ui-view>
+      <ol class="list-group">
+        <h2> Album Reviews </h2>
+        <li class="list-group-item" ng-repeat= "review in album.review">
+          @{{ review.username.firstName }} says: {{review.content}} 
+            <span ng-repeat="start in range(review.rating)" class = "glyphicon glyphicon-cd" id="star-review">
+            </span>
+          </li>
+        </li>
+      </ol>
+    <button class="btn btn-default" ng-click ="addToCart(album)" > Add To Cart </button>
+    <button ui-sref="albumDetail.addReview" class="btn btn-default" ng-if="user"> Write a Review</button>
+    </ui-view>
   </div>
 
   <ul class= 'playlist col-lg-6 list-group'>

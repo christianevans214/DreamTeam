@@ -5,30 +5,34 @@ var Album = mongoose.model('Album');
 var _ = require('lodash'); //extend
 module.exports = router;
 
-router.param('id', function(req, res, next, id) {
-	Album.findById(id).populate('artist')
-		.populate('Album')
-		.exec()
-		.then(function(album) {
-			if (album) {
-				req.album = album;
-				next();
-			} else {
-				throw new Error('No album found');
-			}
-		})
-		.then(null, next);
-})
+router.param('id', function(req, res, next, id){
+	Album.findById(id).populate('artist').populate({path:'review'}).exec(function(err, docs) {
+		var options = {
+			path: 'review.username',
+			model: 'User'
+		};
+
+	if (err) return next(err)
+	Album.populate(docs, options, function (err, album) {
+      	if (err) return next(err);
+      	req.album = album;
+      	next();
+    });
+  });
+});
+
 
 //GET all albums
-router.get('/', function(req, res, next) {
-	Album.find({}).populate('artist')
-		.populate('Album')
-		.exec()
-		.then(function(albums) {
-			res.json(albums);
-		})
-		.then(null, next);
+router.get('/', function (req, res, next) {
+	Album.find({})
+	.populate('review')
+	.populate('artist')
+	.populate('Album')
+	.exec()
+	.then(function(albums){
+		res.json(albums);
+	})
+	.then(null, next);
 })
 
 //GET one album
@@ -51,24 +55,12 @@ router.put('/:id', function(req, res, next) {
 	lodash extend updates the properties of the first argument,
 	the second arguments updates the properties of the previous argument.
 	*/
-	// _.extend(req.album, req.body);
-	// req.album.save()
-	// 	.then(function(album) {
-	// 		res.json(album);
-	// 	})
-	// 	.then(null, next);
-	Album.findOneAndUpdate({
-			_id: req.params.id
-		}, {
-			$set: req.body
-		}, {
-			new: true
-		}).populate('artist').exec()
-		.then(function(data) {
-			console.log("UPDATED", data);
-			res.json(data);
-		})
 
+	_.extend(req.album, req.body);
+	req.album.save().then(function(album) {
+		res.json(album);
+	})
+	
 })
 
 //DELETE remove album

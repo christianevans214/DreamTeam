@@ -17,9 +17,18 @@ app.config(function($stateProvider) {
 
 app.controller('AlbumController', function($scope, $rootScope, user, album, $state, UserFactory, AuthService, CartFactory, localStorageService, TrackFactory, $sce, AlbumFactory) {
 
+
   $scope.user = user;
   $scope.album = album;
   $scope.tracks = [];
+
+  $scope.range = function(count){
+    var ratings = []; 
+    for (var i = 0; i < count; i++) { 
+        ratings.push(i) 
+    } 
+    return ratings;
+  }
 
   //if album does not have spotifyId, search for album with spotify get request, and save to database
   if (!$scope.album.spotifyId) {
@@ -88,6 +97,7 @@ app.controller('AlbumController', function($scope, $rootScope, user, album, $sta
         localStorageService.set('userCart', userCart);
       }
       $scope.user.cart = userCart;
+
       UserFactory.updateUser($scope.user._id, $scope.user)
         .then(function(updatedUser) {
           $state.go('cart');

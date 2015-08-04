@@ -36,7 +36,11 @@
     <div class = "filler welcome">
         <span ng-show="user">Welcome, {{user.email}}!</span>
     </div>
-    <div class = "nav-element" ui-sref="cart">
+    <div ng-if="user" class = "nav-element" ui-sref="cart">
+        <span class = "glyphicon glyphicon-shopping-cart"></span>
+        <p class = "text-description">My Cart</p>
+    </div>
+        <div ng-if="!user" class = "nav-element" ui-sref="guestCart">
         <span class = "glyphicon glyphicon-shopping-cart"></span>
         <p class = "text-description">My Cart</p>
     </div>
