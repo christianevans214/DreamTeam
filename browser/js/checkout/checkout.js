@@ -25,8 +25,6 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
     $scope.purchases.push({album: item.album, price: item.album.price, quantity: item.quantity})
   })
 
-
-
   //when place order is clicked -> make post request with form data for user and guest
   $scope.submitCheckout = function(orderData){
     orderData.purchases = $scope.purchases;
@@ -50,6 +48,6 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
       $state.go('success');
     })
   }
-  //send conformation email
+  //TODO: send conformation email
 
 })

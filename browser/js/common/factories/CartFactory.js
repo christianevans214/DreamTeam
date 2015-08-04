@@ -22,6 +22,13 @@ app.factory('CartFactory', function () {
 				}
 			});
 			return index;
+		},
+		sumPrice: function(cart){
+			var sum = 0;
+			cart.forEach(function(cartItem){
+				sum += cartItem.album.price*cartItem.quantity;
+			})
+			return sum;
 		}
 	}
 })

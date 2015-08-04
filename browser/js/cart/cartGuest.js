@@ -21,6 +21,8 @@ app.controller('GuestCartController', function($state, $scope, CartFactory, loca
     localStorageService.set('cart', $scope.cartItems);
   }
 
+  $scope.totalPrice = CartFactory.sumPrice($scope.cartItems);
+
   //checkout
   $scope.checkout = function(cart){
     $state.go('checkout');
