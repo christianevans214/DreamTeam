@@ -1,0 +1,25 @@
+<div class = "form-wrapper">
+	<form>
+		<h2>Submit your review for {{album.title}} !</h2>
+		<ul class="list-group">
+			<label>Write your review below: </label>
+			<input class="form-control" type='text' placeholder='This album is ... ' 
+			align="left" ng-model="newReview.content"></input><br>
+			<label>How many stars would you give this album? </label>
+				<select id="code" ng-model="newReview.rating">
+					<option value = "1">1</option>
+					<option value = "2">2</option>
+					<option value = "3">3</option>
+					<option value = "4">4</option>
+					<option value = "5">5</option>
+				</select></br>
+			<br>
+		</ul>
+	</form>
+</div>	
+
+<button class="btn btn-default" ng-click="submitReview(newReview)">Submit Review!</button>
+
+
+
+	

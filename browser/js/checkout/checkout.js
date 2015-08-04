@@ -12,7 +12,7 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('CheckoutController', function($state, $scope, user, TransactionFactory, localStorageService, UserFactory){
+app.controller('CheckoutController', function($state, AlbumFactory, $scope, user, TransactionFactory, localStorageService, UserFactory){
   $scope.user = user;
   $scope.purchases = [];
 
@@ -44,12 +44,32 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
       }
       return order;
     })
+    // .then(function(order){
+    //   order.purchases.forEach(function(purchase, ind){
+    //       AlbumFactory.getAlbum(purchase.album)
+    //       .then(function(album){
+    //         console.log('album', album);
+    //         order.purchases[ind].album = album;
+    //       })
+    //     })
+    //   return order;
+    // })
+    .then(function(order){
+      console.log('order', order);
+      $scope.sendEmail(order);
+    })
     .then(function(){
       //delete local storage
       localStorageService.remove('cart', 'userCart');
       $state.go('success');
     })
   }
+
   //send conformation email
+  $scope.sendEmail = function(order){
+    console.log('sendEmailOrder', order);
+    TransactionFactory.emailTransaction(order);
+  }
+
 
 })

@@ -14,9 +14,10 @@ app.factory('CartFactory', function () {
 		},
 		deleteAlbum: function(album, cart){
 			var index;
-			cart.forEach(function(cartItem, idx){
-				console.log("idx:", idx, "cartItem:", cartItem);
-				if(cartItem.album._id === album._id) {
+ 			user.cart.forEach(function(cartItem, idx){
+				// console.log("idx:", idx, "cartItem:", cartItem);
+				// console.log('album', album);
+				if(cartItem.album === album._id) {
 					index = idx;
 					return;
 				}
