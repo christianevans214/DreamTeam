@@ -69,6 +69,7 @@
 
 // }
 
+
 .nb{
   position:fixed;
   text-align: center;
@@ -78,15 +79,37 @@
   height: 100vh;
   width: 13%;
   display: inline-block;
+
   .filler {
-    border: 1px solid black;
-    height: 8%;
+    // border: 1px solid black;
+    height: 10%;
+    margin-bottom: 25px;
   }
   .nav-element{
+    font-size: 24px;
     cursor:pointer;
     margin: 3% auto;
     width: 60px;
     height: 10%;
-    border: 1px solid white;
+    color: #ccc;
+    // border: 1px solid white;
+    .glyphicon {
+
+      transition: 0.2s ease-in-out;
+    }
+    .text-description{
+      transition: 0.2s ease-in-out;
+      font-size: 12px;
+      opacity: 0;
+    }
+
+    &:hover > .glyphicon {
+      color: white;
+      transform: translate(0, -7px);
+    }
+    &:hover > .text-description {
+      color: white;
+      opacity: 1;
+    }
   }
 }

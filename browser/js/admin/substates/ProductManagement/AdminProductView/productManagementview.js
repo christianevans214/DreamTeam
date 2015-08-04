@@ -25,6 +25,9 @@ app.controller('ProductManagementView', function($rootScope, $state, $scope, Alb
 				})
 				.then(function(newArtist) {
 					albumChanges.artist = newArtist._id;
+					console.log("newArtist._id", newArtist._id);
+					console.log("ID", id)
+					console.log("ALBUM CHANGES", albumChanges);
 					return AlbumFactory.updateAlbum(id, albumChanges)
 				})
 				.then(function(updatedAlbum) {
@@ -33,6 +36,8 @@ app.controller('ProductManagementView', function($rootScope, $state, $scope, Alb
 					$state.go('admin.productManagement')
 				})
 		} else {
+			console.log("ID", id)
+			console.log("ALBUM CHANGES", albumChanges);
 			AlbumFactory.updateAlbum(id, albumChanges)
 				.then(function(updatedAlbum) {
 					$scope.album = updatedAlbum;
