@@ -32,7 +32,28 @@ app.factory("PromotionsFactory", function($http) {
 					console.log("SUCCESS")
 					return res.data;
 				})
+		},
+		updatePromotion: function(id, promoInfo) {
+			var storeArr = [];
+			for (var genre in promoInfo.validGenres) {
+				if (promoInfo.validGenres[genre] === true) storeArr.push(genre);
+			}
+			delete promoInfo.validGenres;
+			promoInfo.validProducts = storeArr;
+			console.log(promoInfo);
+			return $http.put("api/promos/" + id, promoInfo)
+				.then(function(res) {
+					console.log("successfully updated", res.data)
+					return res.data;
+				})
+		},
+		deletePromotion: function(id) {
+			return $http.delete("api/promos/" + id)
+				.then(function(res) {
+					return res.data;
+				})
 		}
+
 
 	}
 })
