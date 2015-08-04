@@ -16,6 +16,9 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
   $scope.user = user;
   $scope.purchases = [];
 
+  //set default of country to us:
+  $scope.defaultCountry = "United States";
+
   if($scope.user){
     $scope.cartItems = localStorageService.get('userCart');
   } 
@@ -30,6 +33,7 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
     return genresArr[0].split(' ');
   }
 
+  //TODO: FIX FOR NEW PROMOS
   $scope.applyPromo = function(promoCode, purchase){
     if(promoCode === "BOGO"){
       console.log("BOGO");
@@ -67,6 +71,8 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
         console.log("purchases", $scope.purchases);
       }
     })
+
+    //NOTE: IF PROMO IS EXPIRED REMOVE FROM DATABASE!
   }
 
 
