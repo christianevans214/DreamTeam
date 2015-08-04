@@ -29,7 +29,13 @@ var schema = new mongoose.Schema({
 	},
 	validProducts: [String],
 	//expiration string that's in hours.
-	expireString: String
+	expireString: String,
+	percentageOff: {
+		type: Number,
+		min: 0,
+		max: 1
+	}
+
 })
 
 schema.virtual('createdAt_ms').get(function() {
