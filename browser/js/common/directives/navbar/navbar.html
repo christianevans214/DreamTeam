@@ -30,16 +30,17 @@
  -->
 <div class = "nb">
     <div class = "logo">
-    <h3> The Verge </h3>
+    <h3>Infinity </br> Loop</h3>
     <!-- include nice scripty font... -->
     </div>
     <div class = "filler">
     </div>
     <div class = "nav-element" ui-sref="{{item.state}}({id: user._id})" ng-repeat = "item in items">
-    <span class = "glyphicon nav-item">{{item.label}}</span>
-    <p class = "invisi-description"></p>
+        <span class = "glyphicon {{item.glyphClass}} nav-item"></span>
+        <p class = "text-description">{{item.label}}</p>
     </div>
     <div class = "nav-element edmin" ng-if="user.isAdmin">
-    <span class = "glyphicon nav-item" ui-sref="admin({id:user._id})">Admin</span>
+    <span class = "glyphicon glyphicon-wrench nav-item" ui-sref="admin({id:user._id})"></span>
+    <p class = "text-description">Admin</p>
     </div>
 </div>
