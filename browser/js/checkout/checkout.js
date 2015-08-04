@@ -44,16 +44,6 @@ app.controller('CheckoutController', function($state, AlbumFactory, $scope, user
       }
       return order;
     })
-    // .then(function(order){
-    //   order.purchases.forEach(function(purchase, ind){
-    //       AlbumFactory.getAlbum(purchase.album)
-    //       .then(function(album){
-    //         console.log('album', album);
-    //         order.purchases[ind].album = album;
-    //       })
-    //     })
-    //   return order;
-    // })
     .then(function(order){
       console.log('order', order);
       $scope.sendEmail(order);
