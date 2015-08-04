@@ -1,0 +1,29 @@
+
+
+<section id="albumDetail">
+  <div class="album-wrapper col-lg-6">
+    <img class = "album-image" src = '{{album.image}}'/>
+  </div>
+
+  <div class = 'album-info col-lg-6'>
+    <ol class="list-group">
+      <h2> Album Details</h2>
+      <li class="list-group-item">{{album.title}}</li>
+      <li class="list-group-item">{{album.artist.name}}</li>
+      <li class="list-group-item">{{album.genre[0]}}</li>
+      <li class="list-group-item">{{album.price}}</li>
+    </ol>
+    <button class="btn btn-default" ng-click ="addToCart(album)"> Add To Cart </button>
+  </div>
+
+  <ul class= 'playlist col-lg-6 list-group'>
+    <li class= 'list-group-item' ng-repeat="track in tracks"> 
+        <!-- <p class="glyphicon glyphicon-play play"></p> -->
+        <p> {{track.name}} </p>
+        <audio ng-src="{{track.URL}}" type="track" preload="auto" controls></audio>
+    </li>
+  </ul>
+  </div>
+
+</section>
+

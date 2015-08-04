@@ -1,0 +1,40 @@
+<div class = "store">
+	<div class = "carousel featured-albums" "style = width: 100%">
+		<img src = "http://musicmedia.ign.com/music/image/article/117/1171117/25-most-iconic-album-covers-of-all-time-20110527043622444-000.jpg" />
+	</div>
+	<div class = "albums-showcase col-md-9 col-lg-9 col-sm-9">
+		<div class = "album col-md-3 col-lg-3 col-sm-3" ng-repeat= "album in albums | filter:filterObject">
+		<a ui-sref = "albumDetail({albumId: '{{album._id}}'})"><div class = "clickable">
+			<img src = "{{album.image}}" style = "width: 100%"/>
+			<div class = "album-info">
+			<h4> {{album.title}} </h4>
+			<p> {{album.artist.name}}</p>
+			<p> {{album.genre.join(",")}}</p>
+			<p> ${{album.price}}</p>
+			<p> {{album.tags.join(",")}}</p>
+			<p> {{album.year}} </p>
+			</div>
+		</div>
+		</a>
+		</div>
+	</div>
+	<div class = "search-container col-md-4 col-lg-4 col-sm-4">
+		<h1>S E A R C H</h1>
+		<div class = "search-options">
+	<!-- 	<ul class = "search-criteria">
+			<li ng-repeat= "criterion in searchCriteria" ui-sref = "{{criterion.state}}">{{criterion.title}}</li>
+		</ul> -->
+		<div class = "search">
+			<div class = "searchCrit" id = "artist"><label for = "artist-name">Artist Name</label>     <input id = "artist-name" ng-model = "filterObject.artist.name" placeholder="Artist Name"></input></div>
+			<div class = "searchCrit" id = "album"><label for = "album">Album</label>     <input id = "album" ng-model = "filterObject.title" placeholder = "Album"></input></div>
+			<!-- price should be a drop-down list of price-ranges -->
+			<div class = "searchCrit" id = "price"><label for = "price">Price</label>     <input id = "price" ng-model = "filterObject.price" placeholder = "Price"></input></div>
+			<!-- price should be a check-list list of different genres -->
+			<div class = "searchCrit" id = "genre"><label for = "genre">Genre</label>     <input id = "genre" ng-model = "filterObject.genre" placeholder = "Genre"></input></div>
+			<div class = "searchCrit" id = "year"><label for = "year">Year</label>     <input id = "year" ng-model = "filterObject.year" placeholder = "Year"></input></div>
+		</div>
+		</div>
+	</div>
+
+</div>
+<!-- {albumId: {{album._id}}} -->
