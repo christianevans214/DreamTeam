@@ -51,6 +51,7 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
 
 
   $scope.checkPromo = function(promo){
+    console.log("PROMO", promo);
     var valid = false;
     PromotionsFactory.getAllPromotions()
     .then(function(validPromos){
@@ -69,16 +70,18 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
           }
         })
         console.log("purchases", $scope.purchases);
+        //$scope.cartItems = $scope.purchases;
       }
     })
 
     //NOTE: IF PROMO IS EXPIRED REMOVE FROM DATABASE!
   }
 
-
+  //UPDATE QUANTITY
 
   //when place order is clicked -> make post request with form data for user and guest
   $scope.submitCheckout = function(orderData){
+    console.log("ORDER DATA");
     orderData.purchases = $scope.purchases;
     orderData.user = $scope.user;
     if(orderData.shippingMatch){
