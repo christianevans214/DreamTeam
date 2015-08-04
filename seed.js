@@ -207,6 +207,7 @@ var albums = [{
     title: "The Boombastic Collection",
     genre: ["Reggae Soul"],
     price: "45.00",
+    review: ["Cooper", "Taylor"],
     image: "http://ecx.images-amazon.com/images/I/71lkgzDdEyL._SL1117_.jpg",
     year: 1995
 }];
