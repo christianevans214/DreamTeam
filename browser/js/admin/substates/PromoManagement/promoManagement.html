@@ -4,11 +4,12 @@
 	<div class = "promo-repeat-container">
 		<ul class = "promo-list"> 
 			<li class = "promo" ng-repeat = "promo in promos">
-			<p class = "promo-element promo-code">{{promo.code}}</p>
+			<p style = "cursor:pointer" ui-sref="admin.editPromo({id:promo._id})"class = "promo-element promo-code">{{promo.code}}</p>
 			<p class ="promo-element promo-date-created">{{promo.createdAt}}</p>
 			<p class = "promo-element promo-date-expires">{{promo.expireAt}}</p>
 			<p class = "promo-element promo-valid-genres">{{promo.validProducts.join(", ")}}</p>
-			<p class = "promo-element promo-valid-genres">{{promo.percentageOff}}</p>
+			<p class = "promo-element promo-valid-genres">{{promo.percentageOff * 100}}% Off</p>
+			<span class = "promo-trash delete glyphicon glyphicon-trash" ng-click = "deleteAlbum(promo._id)"></span>
 			</li>
 		</ul>
 	</div>
