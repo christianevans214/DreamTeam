@@ -28,7 +28,7 @@ app.controller('AlbumController', function($scope, $rootScope, user, album, $sta
         ratings.push(i) 
     } 
     return ratings;
-}
+  }
 
   //if album does not have spotifyId, search for album with spotify get request, and save to database
   if (!$scope.album.spotifyId) {

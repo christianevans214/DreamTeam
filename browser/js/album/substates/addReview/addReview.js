@@ -19,7 +19,7 @@ app.controller('addReviewController', function($scope, user, $state, ReviewFacto
 				return AlbumFactory.updateAlbum($scope.album._id, $scope.album)
 			}).then(function(updatedAlbum){
 				console.log(updatedAlbum)
-				$state.go('albumDetail')
+				$state.go('albumDetail', {}, { reload: true })
 			})
 		}
 	})
