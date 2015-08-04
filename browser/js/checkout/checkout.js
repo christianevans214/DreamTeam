@@ -51,7 +51,7 @@ app.controller('CheckoutController', function($state, AlbumFactory, $scope, user
     .then(function(){
       //delete local storage
       localStorageService.remove('cart', 'userCart');
-      $state.go('success');
+      $state.go('account.shoppingHistory', {id: user._id});
     })
   }
 
