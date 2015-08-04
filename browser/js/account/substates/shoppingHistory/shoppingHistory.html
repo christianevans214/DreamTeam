@@ -1,29 +1,38 @@
-<div class="col-md-8 col-lg-8 col-sm-8">
- <h1> Shopping History </h1>
+<div class="container-fluid">
+ <div class="jumbotron">
+  <p class="page-header">Shopping History
+  </p>
+</div>
   <ul class="list-group" ng-repeat="transaction in allTransactions">
-    <li class="list-group-item"> 
-      <h2> Billing </h2>
-      {{transaction.billing.firstName}} {{transaction.billing.lastName}} {{transaction.billing.phone}} {{transaction.billing.address}} {{transaction.billing.city}} {{transaction.billing.zip}} {{transaction.billing.country}} 
-    </li>
-    </li>
-    <li class="list-group-item"> 
-      <h2> Shipping </h2>
-      {{transaction.shipping.firstName}} {{transaction.shipping.lastName}} {{transaction.shipping.phone}} {{transaction.shipping.address}} {{transaction.shipping.city}} {{transaction.shipping.zip}} {{transaction.shipping.country}} 
-    </li>
     <li class="list-group-item">
-      <h2> Date Ordered </h2>
-      {{transaction.dateOrdered}}</li>
-    <li class="list-group-item">
-       <h2> E-mail </h2>
-      {{transaction.email}}</li>
-    <li class="list-group-item">
-      <h2>Items Ordered </h2> 
-      <li class="list-group-item" ng-repeat="purchase in transaction.purchases"> 
-           <h3> Album ordered </h3> {{purchase.album.title}}
-           <h3> Quantity </h3>  {{purchase.quantity}}
-           <h3> Price </h3>  ${{purchase.price}}
-           {{transaction.transactions.album}}
-    </li>
+        <h2> Date Ordered </h2>
+        {{transaction.dateOrdered}}
+     </li>
+     <li class="list-group-item"> 
+        <h2> Billing </h2>
+        {{transaction.billing.firstName}} {{transaction.billing.lastName}} {{transaction.billing.phone}} {{transaction.billing.address}} {{transaction.billing.city}} {{transaction.billing.zip}} {{transaction.billing.country}} 
+      </li>
+      </li>
+      <li class="list-group-item"> 
+        <h2> Shipping </h2>
+        {{transaction.shipping.firstName}} {{transaction.shipping.lastName}} {{transaction.shipping.phone}} {{transaction.shipping.address}} {{transaction.shipping.city}} {{transaction.shipping.zip}} {{transaction.shipping.country}} 
+      </li>
+      <li class="list-group-item">
+         <h2> E-mail </h2>
+        {{transaction.email}}</li>
+      <li class="list-group-item">
+        <h2>Items Ordered </h2> 
+        <li class="list-group-item" ng-repeat="purchase in transaction.purchases"> 
+             <div <a ui-sref="albumDetail({albumId: purchase.album._id})">
+              <img src='{{purchase.album.image}}' id="avatar">
+             </div>
+             <ul>
+               <h3> Album </h3> <div class="navbar-link" a ui-sref="albumDetail({albumId: purchase.album._id})"> {{purchase.album.title}} </div>
+               <h3> Quantity </h3>  <p> {{purchase.quantity}} </p>
+               <h3> Price </h3>  <p>  ${{purchase.price}} </p>
+               <!-- total??? -->
+             </ul>
+      </li>
   </ul> 
  </div>
 </div>
