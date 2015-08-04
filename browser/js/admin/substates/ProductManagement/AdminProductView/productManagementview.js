@@ -42,7 +42,7 @@ app.controller('ProductManagementView', function($rootScope, $state, $scope, Alb
 				.then(function(updatedAlbum) {
 					$scope.album = updatedAlbum;
 					albumChanges.artist = updatedAlbum.artist;
-					$state.go('admin.productManagement')
+					$state.go('admin.productManagement', {}, { reload: true })
 				})
 		}
 	}

@@ -94,15 +94,25 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
       }
       return order;
     })
+    .then(function(order){
+      console.log('order', order);
+      $scope.sendEmail(order);
+    })
     .then(function(){
       //delete local storage
       localStorageService.remove('cart', 'userCart');
       $state.go('success');
     })
   }
-  //TODO: send conformation email
 
+  //send conformation email
+  $scope.sendEmail = function(order){
+    console.log('sendEmailOrder', order);
+    TransactionFactory.emailTransaction(order);
+  }
 })
+
+
 
 
 

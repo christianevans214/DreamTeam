@@ -16,6 +16,7 @@ app.factory("PromotionsFactory", function($http) {
 			var promoToCreate = {
 				validProducts: []
 			};
+			promoToCreate.percentageOff = promoInfo.percentageOff;
 			promoToCreate.code = promoInfo.code;
 			for (var genre in promoInfo.validGenres) {
 				console.log("genre", genre, promoInfo.validGenres);

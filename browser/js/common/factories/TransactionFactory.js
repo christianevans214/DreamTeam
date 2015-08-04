@@ -28,6 +28,14 @@ app.factory("TransactionFactory", function($http) {
 			return this.updateTransaction(id, {
 				"status": status
 			})
+		},
+		emailTransaction: function(order){
+			console.log('JSONorder', order);
+
+			return $http.post('api/transaction/email', order)
+			.then(function(res){
+				return res.data;
+			})
 		}
 
 	}
