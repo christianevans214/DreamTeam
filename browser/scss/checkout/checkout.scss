@@ -1,7 +1,76 @@
-.checkout{
+/* .checkout{
   width: 200px;
   height: 200px;
   overflow:hidden;  
   text-align: center;
   margin: 0 auto;
+} */
+
+#checkout{
+    //zoom: 1;
+    float: left;
+    //position: relative;
+    margin: 0 auto;
+    //width: 900px;
+    width: 50%;
+    padding: 45px 15px;
+    border: 3px solid green; //to remove
+
+	.checkout{
+		margin: 0;
+	    padding: 30px 0 0 0;
+	    //border: 0;
+	    clear: both;
+		font-family: 'proxima-nova','Helvetica Neue',Helvetica,Arial,sans-serif;
+	    background: #f3f3f3;
+	    border: 3px solid red; //to remove
+	    color: #333;
+	    font-size: 13px;
+	    margin: 0;
+	    padding-bottom: 50px;
+
+		.title{
+			font-size: 16px;
+		    color: #333;
+		    height: 20px;
+		    padding-bottom: 30px;
+		}
+		.subtitle{
+			color: #333;
+		    font-weight: bold;
+		    clear: both;
+		    padding-top: 30px;
+		}
+		.description{
+			clear: both;
+		    padding-top: 10px;
+		    padding-left: 2px;
+		    font-size: 12px;
+		}
+		.field > input{
+			position: relative;
+		    float: left;
+		    width: 100%;
+		    padding: 8px 10px;
+		    border: 1px solid #ddd;
+		    border-radius: 4px;
+		    margin: .6em 0 0;
+		}
+	    .address > input{
+	    	width: 45%;
+    		border: 1px solid #ddd;
+    		margin-right: 2%;
+		    box-sizing: border-box;
+		    border: 1px solid #ccc;
+		    border-top-color: #bbb;
+		    box-shadow: 0 2px 2px rgba(0,0,0,.05) inset;
+		    font-size: 1em;
+	    }
+	}
+
 }
+
+
+
+
+
