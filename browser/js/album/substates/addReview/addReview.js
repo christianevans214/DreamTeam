@@ -16,10 +16,10 @@ app.controller('addReviewController', function($scope, user, $state, ReviewFacto
 			ReviewFactory.createReview(ReviewToSubmit)
 			.then(function(revSub){
 				$scope.album.review.push(revSub);
-				console.log($scope.album)
 				return AlbumFactory.updateAlbum($scope.album._id, $scope.album)
 			}).then(function(updatedAlbum){
 				console.log(updatedAlbum)
+				$state.go('albumDetail')
 			})
 		}
 	})

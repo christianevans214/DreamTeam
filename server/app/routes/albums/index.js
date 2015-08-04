@@ -12,9 +12,11 @@ router.param('id', function(req, res, next, id){
 			model: 'User'
 		};
 
-	if (err) return res.json(500);
+	if (err) return next(err)
 	Album.populate(docs, options, function (err, album) {
-      res.json(album);
+      	if (err) return next(err);
+      	req.album = album;
+      	next();
     });
   });
 });
@@ -59,18 +61,21 @@ router.put('/:id', function(req, res, next) {
 	// 		res.json(album);
 	// 	})
 	// 	.then(null, next);
-	Album.findOneAndUpdate({
-			_id: req.params.id
-		}, {
-			$set: req.body
-		}, {
-			new: true
-		}).populate('artist').exec()
-		.then(function(data) {
-			console.log("UPDATED", data);
-			res.json(data);
-		})
-
+	_.extend(req.album, req.body);
+	req.album.save().then(function(album) {
+		res.json(album);
+	})
+	// Album.findOne(req.params.id).exec()
+	// .then(function(album){
+	// 	console.log(album)
+	// 	res.json(album)
+	// })
+		// // .populate('artist').exec()
+		// .then(function(data) {
+		// 	console.log("UPDATED", data);
+		// 	res.json(data);
+		// }, next)
+		// .then(null, next);
 })
 
 //DELETE remove album
