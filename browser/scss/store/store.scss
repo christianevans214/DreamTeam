@@ -1,8 +1,40 @@
+
 *{
 	// border: 1px solid black;
 }
+.parallax-img{
+	h1{
+		padding-top: 80px;
+		margin-left: -18%;
+		font-size: 100px;
+	}
+	color: white;
+	text-align: center;
+	background-image: url("images/featured-bw-vinyl-cropped.jpg");
+	height: 40vh;
+	width: 100%;
+	  background-repeat: no-repeat;
+  background-size: 100%;
+  border-bottom: 20px solid white;
+  position: fixed;
+}
 
+.below-parallax-container{
+	height: 1000px;
+	padding-top: 40vh;
+	background-color: white;
+
+}
+.album-showcase{
+	background-color: black;
+	float: right;
+	width: 75%;
+
+}
 .search-container{
+	padding-top: 50px;
+	background-color: white;
+	height: 1000px;
 	float: right;
 	width: 25%;
 	text-align: center;
@@ -27,7 +59,21 @@
 // }
 .searchCrit{
 	float: right;
+	padding-right: 55px;
 }
 .album-info {
 	color: black;
+}
+
+.album{
+	margin-top: 4px;
+	transition: all 0.2s ease-in-out;
+	&:hover{
+		box-shadow: 3px 3px 5px 6px #ccc;
+
+	}
+	a{
+		text-decoration: none;
+	}
+	padding-top: 50px;
 }

@@ -10,7 +10,7 @@ app.config(function($urlRouterProvider, $locationProvider, $sceDelegateProvider)
     $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?spotify\.com/.+$')]);
 });
 
-app.config(function(localStorageServiceProvider){
+app.config(function(localStorageServiceProvider) {
     localStorageServiceProvider
         .setPrefix('stackStore');
 })
