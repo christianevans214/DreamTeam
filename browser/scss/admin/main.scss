@@ -22,7 +22,9 @@
 	display: inline-block;
 	margin-right: 15px;
 }
-
+.users-list{
+	list-style-type: none;
+}
 .users-list-element{
 	display: inline-block;
 	margin-right: 15px;
@@ -74,7 +76,17 @@
 		}
 	}
 }
-
+.transaction-li{
+	list-style-type: none;
+}
+.promo{
+	list-style-type: none;
+}
+.promo-code{
+	&:hover{
+		text-decoration: underline;
+	}
+}
 .promo-element{
 	display:inline-block;
 }
