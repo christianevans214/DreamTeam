@@ -1,8 +1,8 @@
 <div>
 	<ul class = "users">
-		<li class = "users-list" ng-repeat = 'user in users'>
+		<li style = "padding-top: 10px" class = "users-list" ng-repeat = 'user in users'>
 		<div class = "users-list-item">
-			<img ui-sref = "admin.viewUser({id:user._id})" ng-click="setUser(user)" class = "users-list-element tinyPhoto" src = '{{user.photo}}'>
+			<img style= "cursor: pointer" ui-sref = "admin.viewUser({id:user._id})" ng-click="setUser(user)" class = "users-list-element tinyPhoto" src = '{{user.photo}}'>
 			</img>
 			<h5 class = "users-list-element users-firstName">{{user.firstName}}</h5>
 			<h5 class = "users-list-element users-lastName">{{user.lastName}}</h5>

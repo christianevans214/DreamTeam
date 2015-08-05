@@ -45,7 +45,10 @@ var schema = new mongoose.Schema({
 		default: Date.now
 	},
 	trackingNumber: String,
-	status: String,
+	status: {
+		type: String,
+		default: "Pending"
+	},
 	promo: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Promo"

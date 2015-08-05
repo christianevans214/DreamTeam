@@ -1,16 +1,16 @@
 <div>
-	<button class = "btn btn-default" ui-sref= "admin.createAlbum">Create new album</button>
+	<button style = "float: right; margin-top: -62px; margin-right: 15px;" class = "btn btn-default" ui-sref= "admin.createAlbum">Create new album</button>
 	<ul class = "albums">
-		<li class = "album-list" ng-repeat = 'album in albums'>
+		<li style = "padding-top: 10px"class = "album-list" ng-repeat = 'album in albums'>
 		<!-- {{album}} -->
 		<div class = "album-list-item">
-			<img ui-sref = "admin.viewProduct({id:album._id})"class = "album-list-element tinyPhoto" src = '{{album.image}}'>
+			<img style="cursor: pointer" ui-sref = "admin.viewProduct({id:album._id})"class = "album-list-element tinyPhoto" src = '{{album.image}}'>
 			</img>
 			<h5 class = "album-list-element album-artist">{{album.artist.name}}</h5>
 			<h5 class = "album-list-element album-title">{{album.title}}</h5>
 			<p class = 'album-list-element album-genre'>{{album.genre[0]}}</p>
 			<p class = "album-list-element album-year">{{album.year}}</p>
-			<p class = "album-list-element album-price">${{album.price}}</p>
+			<p class = "album-list-element album-price">{{album.price | currency}}</p>
 			<p class = "album-list-element album-objectId">{{album._id}}</p>
 			<span class = "delete glyphicon glyphicon-trash" ng-click = "deleteAlbum(album._id)"></span>
 		</div>
