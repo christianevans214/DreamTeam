@@ -1,16 +1,13 @@
 <div class = "admin-container">
-	<div class = "admin-navbar">
-		<ul class = "admin-nav-btns">
+		<ul class = "admin-nav-btns breadcrumb">
 		<!-- can have a calendar for now -->
-			<li class = "nav-btn" ui-sref = "admin"><span class = "glyphicon glyphicon-dashboard"></span> Dashboard</li>
-			<li class = "nav-btn" ui-sref="admin.userManagement"><span class = "glyphicon glyphicon-user"></span> Users</li>
-			<li class = "nav-btn" ui-sref = "admin.productManagement"> <span class = "glyphicon glyphicon-cd"></span> Albums</li>
-			<li class = "nav-btn" ui-sref = "admin.transactionManagement"><span class = "glyphicon glyphicon-send"></span> Transactions</li>
-			<li class = "nav-btn" ui-sref = "admin.promoManagement"><span class = "glyphicon glyphicon-star"></span> Promotions</li>
+			<li class = "nav-btn" ui-sref = "admin"><h5 class = "glyphicon glyphicon-dashboard"> Dashboard</h5></li>
+			<li class = "nav-btn" ui-sref="admin.userManagement"><h5 class = "glyphicon glyphicon-user"> Users </h5> </li>
+			<li class = "nav-btn" ui-sref = "admin.productManagement"> <h5 class = "glyphicon glyphicon-cd"> Albums </h5></li>
+			<li class = "nav-btn" ui-sref = "admin.transactionManagement"><h5 class = "glyphicon glyphicon-send"> Transactions </h5></li>
+			<li class = "nav-btn" ui-sref = "admin.promoManagement"><h5 class = "glyphicon glyphicon-star"> Promotions </h5></li>
 			<!-- artists wil lhave option to make featured -->
-			<!-- <li class = "nav-btn" ui-sref = "admin.artistManagement"><span class = "glyphicon glyphicon-star"></span>Artists</li> -->
 		</ul>
-	</div>
 	<div class = "sub-state-container">
 		<ui-view></ui-view>
 	</div>
