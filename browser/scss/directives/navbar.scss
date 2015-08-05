@@ -1,4 +1,11 @@
 .nb{
+  .logo{
+    padding-top: 10px;
+    font-family: Bukhari;
+    h1{
+      transform: rotate(-10deg);
+    }
+  }
   position:fixed;
   text-align: center;
   background-color: #262335;
@@ -10,6 +17,7 @@
 
   .filler {
     // border: 1px solid black;
+    padding-top: 20px;
     height: 10%;
     margin-bottom: 25px;
   }
