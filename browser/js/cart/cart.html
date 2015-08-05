@@ -1,101 +1,79 @@
-<div class="container">
-	<div class="row">
-		<table class="table-hover">
-			<thead>
-				<tr>
-					<th></th>
-					<th>Item</th>
-					<th>Current Quantity</th>
-					<th>Edit Quantity</th>
-					<th>Price</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="cartItem in cartItems">
-				 <div>
-						<td class="col-md-3 col-lg-5 col-sm-3">
-							<a ui-sref="albumDetail({albumId: cartItem.album._id})">
-							<div>
-								<img class="square col-md-3 col-lg-5 col-sm-3" ng-src='{{cartItem.album.image}}'>
-							</div>
-							</a>
-						</td>
-						<td class="col-md-2 col-lg-3 col-sm-3">
-							<a ui-sref="albumDetail({albumId: cartItem.album._id})">
-							{{cartItem.album.title}}
-							</a>
-						</td>
-						<td class="col-md-2 col-lg-3 col-sm-3">{{cartItem.quantity}}</td>
-						<td class="col-md-2 col-lg-3 col-sm-3">
-							<select ng-model="cartItem.quantity" ng-change="updateCartQuantity(cartItem.album, cartItem.quantity)" convert-to-number>
-							  <option value="1">1</option>
-							  <option value="2">2</option>
-							  <option value="3">3</option>
-							  <option value="4">4</option>
-							  <option value="5">5</option>
-							  <option value="6">6</option>
-							  <option value="7">7</option>
-							  <option value="8">8</option>
-							  <option value="9">9</option>
-							  <option value="10">10</option>
-							</select>
-						</td>
-						<td class="col-md-1 col-lg-1 col-sm-1">${{cartItem.album.price}} </td>
-						<td class="remove-item col-md-1 col-lg-1 col-sm-1" ng-click="deleteFromCart(cartItem.album)">x</td>
-				  </div>
-				</tr>
-				<div>
-				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<th>Total:</th>
-					<td>{{totalPrice}}</td>
-					<td></td>
-				</tr>
-				<div>
-			</tbody>
-		</table>
-	</div>
-	<button class="btn btn-default col-md-3 col-md-offset-9 col-lg-3  col-lg-offset-9 col-sm-3 col-sm-offset-9 checkout" ng-click="checkout(cartItems)"> Checkout </button>
+<div class="checkout">
+	<div class="title">User Cart</div>
+	<div class="cart">
+	    <table>
+	        <thead>
+	            <tr>
+	                <td class="item">Item</td>
+	                <td class="quantity">Quantity</td>
+	                <td class="price">Price</td>
+	                <td class="remove-head"></td>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr ng-repeat="cartItem in cartItems">
+	                <td class="item">
+	                    <div class="item-img">
+	                        <img ng-src='{{cartItem.album.image}}'>
+	                        <div class="item-desc">
+	                            <div>{{cartItem.album.title}}</div>
+	                        </div>
+	                    </div>
+	                </td>
+            		<td class="quantity">
+                        <input ng-model="cartItem.quantity" size="2" value="{{cartItem.quantity}}" ng-change="updateCartQuantity(cartItem.album, cartItem.quantity)">
+                    </td>
+	            	
+<!-- 	                <td class="quantity">
+	                    <select class="form-control" ng-model="cartItem.quantity" ng-init="cartItem.quantity=defaultQuantity[$index]" ng-change="updateCartQuantity(cartItem.album, cartItem.quantity)" convert-to-number>
+		                    <option value="1">1</option>
+		                    <option value="2">2</option>
+		                    <option value="3">3</option>
+		                    <option value="4">4</option>
+		                    <option value="5">5</option>
+		                    <option value="6">6</option>
+		                    <option value="7">7</option>
+		                    <option value="8">8</option>
+		                    <option value="9">9</option>
+		                    <option value="10">10</option>
+                		</select>
+	                </td> -->
+	                <td class="price">
+	                    {{cartItem.album.price | currency}}
+	                </td>
+	                <td class="remove" ng-click="deleteFromCart(cartItem.album)">x</td>
+	            </tr>
+	        </tbody>
+	    </table>
+     	<div id="price-summary">
+            <div class="subtotal total">
+                <div class="price">
+                    <span>{{totalPrice | currency}}</span>
+                <div class="label">Subtotal</div>
+                </div>
+            </div>
+            <div class="tax total">
+                <div class="price">
+                    <span>{{0.00 | currency}}</span>
+                </div>
+                <div class="label">Tax</div>
+            </div>
+            <div class="shipping total">
+                <div class="price">
+                    <span>{{0.00 | currency}}</span>
+                </div>
+                <div class="label">Shipping</div>
+            </div>
+            <div class="empty-message total" ng-show="!cartItems">
+                <a id="message" ui-sref="store">You have nothing in your shopping cart.</a>
+            </div>
+        </div>
+            <div class="button">
+            	<button class="btn btn-primary" ui-sref="checkout">Checkout</button>
+            <div>
+    </div>
 </div>
 
-
-
-<div class="title">Order Summary</div>
-<div class="cart">
-    <table>
-        <thead>
-            <tr>
-                <td class="item">Item</td>
-                <td class="quantity">Quantity</td>
-                <td class="price">Price</td>
-                <td class="remove-head"></td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="cartItem in cartItems">
-                <td class="item">
-                    <div class="item-img">
-                        <img ng-src='{{cartItem.album.image}}'>
-                        <div class="item-desc">
-                            <div>{{cartItem.album.title}}</div>
-                        </div>
-                    </div>
-                </td>
-                <td class="quantity">
-                    <input size="1" value="{{cartItem.quantity}}">
-                </td>
-                <td class="price">
-                    <span>{{cartItem.album.price | currency}}</span>
-                </td>
-                <td class="remove" ng-click="deleteFromCart(cartItem.album)"></td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="subtotal"></div>
-</div>
 
 
 

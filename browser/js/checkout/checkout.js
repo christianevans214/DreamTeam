@@ -36,7 +36,7 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
 
   $scope.applyPromo = function(promoCode, purchase){
     console.log("purchase", purchase, promoCode)
-    purchase.price = purchase.album.price*(promoCode.percentageOff);
+    purchase.price = purchase.album.price*(1-promoCode.percentageOff);
     $scope.savings += (purchase.album.price - purchase.price);
     return purchase;
   }

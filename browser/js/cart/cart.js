@@ -13,10 +13,12 @@ app.config(function($stateProvider) {
 
 app.controller('CartController', function($state, user, $scope, UserFactory, CartFactory, AlbumFactory, localStorageService) {
   $scope.user = user;
+  $scope.defaultQuantity = [];
   $scope.cartItems = localStorageService.get('userCart');
   console.log("CART", $scope.cartItems)
   $scope.cartItems.forEach(function(item){
     console.log("ITEM", item);
+    $scope.defaultQuantity.push(item.quantity);
   })
 
   //delete album from user cart
@@ -24,6 +26,7 @@ app.controller('CartController', function($state, user, $scope, UserFactory, Car
     var index = CartFactory.deleteAlbum(currentAlbum, $scope.cartItems);
     $scope.cartItems.splice(index, 1);
     $scope.user.cart = $scope.cartItems;
+    $scope.totalPrice = CartFactory.sumPrice($scope.cartItems);
     localStorageService.set('userCart', $scope.cartItems);
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
@@ -31,15 +34,11 @@ app.controller('CartController', function($state, user, $scope, UserFactory, Car
   //update album from user cart
   $scope.updateCartQuantity = function(currentAlbum, quantity) {
     $scope.user.cart = $scope.cartItems;
+    $scope.totalPrice = CartFactory.sumPrice($scope.cartItems);
     localStorageService.set('userCart', $scope.cartItems);
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
 
   $scope.totalPrice = CartFactory.sumPrice($scope.cartItems);
-
-  //checkout
-  $scope.checkout = function(cart) {
-    $state.go('checkout');
-  }
 
 })

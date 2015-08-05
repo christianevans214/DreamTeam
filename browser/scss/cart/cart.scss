@@ -1,18 +1,179 @@
-.remove-item{
-	float: right;
-    margin-right: 10px;
-    font-weight: bold;
-    font-size: 1.2em;
-    cursor: pointer;
-    opacity: .5;
+@font-face {
+  font-family: 'Raleway-Medium';
+  src: url("fonts/Raleway-Medium.ttf");
 }
-
-
-.circle{
-  border-radius: 100em;
-  padding-bottom: 15px;
+@font-face {
+  font-family: 'Raleway-SemiBold';
+  src: url("fonts/Raleway-SemiBold.ttf");
 }
-
+@font-face {
+  font-family: 'Raleway-Thin';
+  src: url("fonts/Raleway-Thin.ttf");
+}
 .checkout{
-  margin-bottom: 20px;
+	font-family: Raleway-Medium;
+	float: left;
+	width: 100%;
+	margin: 0;
+   	background: #F3F3F3;
+    //border: 3px solid red; //to remove
+    color: #333;
+    font-size: 14px;
+    // margin: 0;
+    padding-bottom: 50px;
+
+	.title{
+		font-size: 16px;
+	    color: #333;
+	    height: 20px;
+	    padding-bottom: 30px;
+	}
+	.subtitle{
+		color: #333;
+	    font-weight: bold;
+	    clear: both;
+	    padding-top: 30px;
+	}
+	.description{
+		clear: both;
+	    padding-top: 10px;
+	    padding-left: 2px;
+	    font-size: 12px;
+	}
+
+	.cart{
+    	thead{
+    		//font-family: Railway-SemiBold;
+	    	text-align: left;
+	    	font-size: 18px;
+	    	vertical-align: top;
+	    	line-height: 15px;
+	    	//color: #666;
+	    	text-transform: uppercase;
+		    color: #777;
+		    font-size: 18px;
+		    word-wrap: normal;
+		    font-style: bold;
+    	}
+    	td{
+    		display: table-cell;
+    		font-family: Railway-Thin;
+    		font-size: 14px;
+    		padding-top: 5px;
+    		padding-bottom: 5px;
+    		padding-left: 20px;
+    		border-bottom: 1px solid #ddd;
+    		&.item{
+    			width: 40%;
+    		}
+    		&.quantity{
+    			width: 5%;
+    		}
+    		&.price{
+    			width: 5%;
+    		}
+    		&.remove{
+    			width: 5%;
+    		}
+    	}
+    	table{
+    		font-family: 'proxima-nova','Helvetica Neue',Helvetica,Arial,sans-serif;
+    		text-align: left;
+    		font-size: 12px;
+    		display: table;
+		    border-collapse: separate;
+		    border-spacing: 2px;
+		    border-color: grey;
+		    border-bottom: 1px solid #ddd;
+		    padding-top: 30px;
+		    margin-bottom: 10px;
+		    width: 100%;
+		    //rborder-bottom: 1px solid #ddd;
+		    //border-top: 1px solid #ddd;
+    	}
+    	.item-img > img{
+    		width: 150px;
+    		display: inline-block;
+    	}
+    	.item-desc{
+    		display: inline-block;
+    	}
+    	.quantity {
+    		& > input{
+	    		margin: 0;
+			    padding: 2px;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    text-align: right;
+			    //float: right;
+			}
+/*     		.form-control{
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    text-align: center;
+			    width: 35%;
+    		} */
+    	}
+    	.remove{
+		    margin-right: 10px;
+		    font-weight: bold;
+		    font-size: 2em;
+		    cursor: pointer;
+
+    	}
+    	#price-summary{
+    		float: right;
+    		width: 20%;
+    		padding: 2px;
+    		margin-right: 30px;
+    		border-bottom: 1px solid #ddd;
+    		
+	    	.total {
+	    		//display: block;
+	    		div.label{
+		    		float: right;
+				    text-transform: uppercase;
+				    color: #777;
+				    font-size: 14px;
+				    word-wrap: normal;
+
+	    		}
+	    		.price > span{
+	    			float: right;
+				    min-width: 100px;
+				    text-align: right;
+				    font-size: 14px;
+				    margin-right: 30px;
+	    		}
+	    	}
+	    	.empty-message{
+	    		a{
+	    			color: #777;
+	    		}
+	    	}
+    	}
+    	 .button{
+	    	text-align: center;
+			display: inline-block;
+			float: right;
+			clear: both;
+			padding-right: 20px;
+
+			.btn.btn-primary{
+		    	display: inline-block;
+		    	margin: 1em auto;
+		    	background: #222;
+		    	border: #222;
+			    font-size: 12px;
+			    text-transform: uppercase;
+			    letter-spacing: 1px;
+			    text-align: center;
+			    padding: 11px 11px;
+			}
+		}
+    }
 }
+
+
+
+
