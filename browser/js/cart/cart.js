@@ -13,13 +13,8 @@ app.config(function($stateProvider) {
 
 app.controller('CartController', function($state, user, $scope, UserFactory, CartFactory, AlbumFactory, localStorageService) {
   $scope.user = user;
-  $scope.defaultQuantity = [];
   $scope.cartItems = localStorageService.get('userCart');
   console.log("CART", $scope.cartItems)
-  $scope.cartItems.forEach(function(item){
-    console.log("ITEM", item);
-    $scope.defaultQuantity.push(item.quantity);
-  })
 
   //delete album from user cart
   $scope.deleteFromCart = function(currentAlbum) {
