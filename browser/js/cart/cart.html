@@ -13,31 +13,18 @@
 	        <tbody>
 	            <tr ng-repeat="cartItem in cartItems">
 	                <td class="item">
-	                    <div class="item-img">
-	                        <img ng-src='{{cartItem.album.image}}'>
+	                    	<div class="item-img">
+	                        	<img ng-src='{{cartItem.album.image}}'>
 	                        <div class="item-desc">
-	                            <div>{{cartItem.album.title}}</div>
+	                    		<a ui-sref="albumDetail({albumId: cartItem.album._id})">
+	                            {{cartItem.album.title}}
+	                        </a>
 	                        </div>
 	                    </div>
 	                </td>
             		<td class="quantity">
                         <input ng-model="cartItem.quantity" size="2" value="{{cartItem.quantity}}" ng-change="updateCartQuantity(cartItem.album, cartItem.quantity)">
                     </td>
-	            	
-<!-- 	                <td class="quantity">
-	                    <select class="form-control" ng-model="cartItem.quantity" ng-init="cartItem.quantity=defaultQuantity[$index]" ng-change="updateCartQuantity(cartItem.album, cartItem.quantity)" convert-to-number>
-		                    <option value="1">1</option>
-		                    <option value="2">2</option>
-		                    <option value="3">3</option>
-		                    <option value="4">4</option>
-		                    <option value="5">5</option>
-		                    <option value="6">6</option>
-		                    <option value="7">7</option>
-		                    <option value="8">8</option>
-		                    <option value="9">9</option>
-		                    <option value="10">10</option>
-                		</select>
-	                </td> -->
 	                <td class="price">
 	                    {{cartItem.album.price | currency}}
 	                </td>

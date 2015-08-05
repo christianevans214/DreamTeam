@@ -95,8 +95,13 @@
     		width: 150px;
     		display: inline-block;
     	}
-    	.item-desc{
-    		display: inline-block;
+    	#item-desc > a{
+	    		display: inline-block;
+	    		text-decoration: none;
+				text-transform: uppercase;
+			    color: #777;
+			    font-size: 14px;
+			    word-wrap: normal;
     	}
     	.quantity {
     		& > input{
