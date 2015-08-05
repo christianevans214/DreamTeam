@@ -15,7 +15,7 @@ var schema = new mongoose.Schema({
 		city: String,
 		zip: String,
 		country: String
-		//required: true
+			//required: true
 	},
 	shipping: {
 		firstName: String,
