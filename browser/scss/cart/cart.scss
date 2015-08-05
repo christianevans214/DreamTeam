@@ -152,11 +152,6 @@
 				    margin-right: 30px;
 	    		}
 	    	}
-	    	.empty-message{
-	    		a{
-	    			color: #777;
-	    		}
-	    	}
     	}
     	 .button{
 	    	text-align: center;
@@ -180,6 +175,14 @@
     }
 }
 
+.empty-message{
+	width: 100%;
+	text-align: center;
+	a{
+		text-align: center;
+		color: #777;
+	}
+}
 
 
 

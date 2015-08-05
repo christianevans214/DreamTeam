@@ -16,8 +16,6 @@ app.config(function($stateProvider) {
 })
 
 app.controller('AlbumController', function($scope, $rootScope, user, album, $state, UserFactory, AuthService, CartFactory, localStorageService, TrackFactory, $sce, AlbumFactory) {
-
-
   $scope.user = user;
   $scope.album = album;
   $scope.tracks = [];
