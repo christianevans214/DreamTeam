@@ -12,9 +12,9 @@ app.factory("TransactionFactory", function($http) {
 					return res.data
 				})
 		},
-		submitTransaction: function(info){
+		submitTransaction: function(info) {
 			return $http.post('api/transaction', info)
-				.then(function(res){
+				.then(function(res) {
 					return res.data;
 				})
 		},
@@ -29,13 +29,13 @@ app.factory("TransactionFactory", function($http) {
 				"status": status
 			})
 		},
-		emailTransaction: function(order){
+		emailTransaction: function(order) {
 			console.log('JSONorder', order);
 
 			return $http.post('api/transaction/email', order)
-			.then(function(res){
-				return res.data;
-			})
+				.then(function(res) {
+					return res.data;
+				})
 		}
 
 	}

@@ -7,23 +7,24 @@ var mandrill = require('mandrill-api/mandrill');
 var mandrill_client = new mandrill.Mandrill('_HrZ4VdCFDLb6afgApoxUw');
 var mongoose = require('mongoose');
 var Transaction = mongoose.model('Transaction');
+var _ = require("lodash");
 module.exports = router;
 
 var emailPath = path.join(__dirname, 'email.html');
 var emailTemplate = fs.readFileSync(emailPath, 'utf-8');
 
 //Send an Email Confirmation
-router.post('/email', function(req,res,next){
- var order = req.body;
- order.status = ' Confirmed';
- var emailHTML= ejs.render(emailTemplate, order);
- sendEmail(emailHTML, req.body);
- order.status = ' Shipped';
- var emailHTML= ejs.render(emailTemplate, order);
- sendEmail(emailHTML, req.body);
- order.status = ' Delivered';
- var emailHTML= ejs.render(emailTemplate, order);
- sendEmail(emailHTML, req.body);
+router.post('/email', function(req, res, next) {
+  var order = req.body;
+  order.status = ' Confirmed';
+  var emailHTML = ejs.render(emailTemplate, order);
+  sendEmail(emailHTML, req.body);
+  order.status = ' Shipped';
+  var emailHTML = ejs.render(emailTemplate, order);
+  sendEmail(emailHTML, req.body);
+  order.status = ' Delivered';
+  var emailHTML = ejs.render(emailTemplate, order);
+  sendEmail(emailHTML, req.body);
 })
 
 //params for transaction
@@ -40,29 +41,32 @@ router.param('id', function(req, res, next, id) {
     .then(null, next);
 })
 
-var sendEmail = function(emailHTML, transaction){
+var sendEmail = function(emailHTML, transaction) {
   var message = {
     "html": emailHTML,
     "subject": 'Order Confirmation',
     "from_email": 'infinitylooprecords@gmail.com',
     "from_name": 'Infinity Loop',
     "to": [{
-            "email": transaction.email,
-            "name": transaction.billing.firstName
-        }],
+      "email": transaction.email,
+      "name": transaction.billing.firstName
+    }],
     "important": false,
-    "track_opens": true,    
+    "track_opens": true,
     "auto_html": false,
     "preserve_recipients": true,
     "merge": false,
     "tags": [
-        "Order"
-    ]    
+      "Order"
+    ]
   };
   var ip_pool = "Main Pool";
-  mandrill_client.messages.send({"message": message, "async": false, "ip_pool": ip_pool}, function(result) {
-  }, function(e) {
-      console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+  mandrill_client.messages.send({
+    "message": message,
+    "async": false,
+    "ip_pool": ip_pool
+  }, function(result) {}, function(e) {
+    console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
   });
 };
 
@@ -87,9 +91,9 @@ router.post('/', function(req, res, next) {
     .then(function(transaction) {
       return Transaction.findById(transaction._id).populate('purchases.album').exec()
     })
-    .then(function(transaction){
-        console.log('transaction', transaction);
-        res.json(transaction);
+    .then(function(transaction) {
+      console.log('transaction', transaction);
+      res.json(transaction);
     })
     .then(null, next);
 })
@@ -98,6 +102,7 @@ router.post('/', function(req, res, next) {
 //Update a Transaction
 router.put('/:id', function(req, res, next) {
   _.extend(req.transaction, req.body);
+  console.log(req.transaction);
   req.transaction.save()
     .then(function(transaction) {
       res.json(transaction);

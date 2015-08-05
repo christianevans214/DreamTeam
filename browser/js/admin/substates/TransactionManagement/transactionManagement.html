@@ -8,10 +8,10 @@
 <!-- 	<pre>{{transaction | json}} </pre> -->
 		<li class = "transaction-li">
 			<div class = "transaction-li-container">
-				<a ui-sref = "admin.viewTransaction({id:transaction._id})" class = "transaction-element transaction-trackingNumber">{{transaction.trackingNumber}}</a>
-				<h5 class = "transaction-element transaction-user">{{transaction.user}}</h5>
+				<a ui-sref = "admin.viewTransaction({id:transaction._id})" class = "transaction-element transaction-trackingNumber">{{transaction._id}}</a>
+				<h5 class = "transaction-element transaction-user">{{transaction.shipping.lastName}}, {{transaction.shipping.firstName}}</h5>
 				<p class = "transaction-element transaction-email">{{transaction.email}}</p>
-				<p class = "transaction-element transaction-dateOrdered">{{transaction.dateOrdered}}</p>
+				<p class = "transaction-element transaction-dateOrdered">{{transaction.dateOrdered | date}}</p>
 				<select ng-change = "updateStatus(transaction._id, transaction)" ng-model = "transaction.status" class = "transaction-element transaction-status">
 					<option value = "Created">Created</option>
 					<option value = "Pending">Pending</option>
