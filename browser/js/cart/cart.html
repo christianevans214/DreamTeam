@@ -1,4 +1,4 @@
-<div class="checkout">
+<div class="checkout" ng-show="cartItems">
 	<div class="title">User Cart</div>
 	<div class="cart">
 	    <table>
@@ -51,14 +51,14 @@
                 </div>
                 <div class="label">Shipping</div>
             </div>
-            <div class="empty-message total" ng-show="!cartItems">
-                <a id="message" ui-sref="store">You have nothing in your shopping cart.</a>
-            </div>
         </div>
             <div class="button">
             	<button class="btn btn-primary" ui-sref="checkout">Checkout</button>
-            <div>
+            </div>
     </div>
+</div>
+<div class="empty-message total" ng-show="!cartItems">
+    <a id="message" ui-sref="store"><h3>You have nothing in your shopping cart.</h3></a>
 </div>
 
 
