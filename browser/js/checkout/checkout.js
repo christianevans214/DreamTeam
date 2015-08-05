@@ -15,6 +15,7 @@ app.config(function($stateProvider){
 app.controller('CheckoutController', function($state, $scope, user, TransactionFactory, localStorageService, UserFactory, PromotionsFactory, CartFactory){
   $scope.user = user;
   $scope.purchases = [];
+  $scope.savings = 0;
 
   //set default of country to us:
   $scope.defaultCountry = "United States";
@@ -33,42 +34,36 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
     return genresArr[0].split(' ');
   }
 
-  //TODO: FIX FOR NEW PROMOS
   $scope.applyPromo = function(promoCode, purchase){
-    if(promoCode === "BOGO"){
-      console.log("BOGO");
-    } else if(promoCode === "FREE"){
-      purchase.price = 0;
-    } else if(promoCode === "10%OFF"){
-      purchase.price = purchase.price*(0.9);
-    } else if(promoCode === "25%OFF"){
-      purchase.price = purchase.price*(0.75);
-    } else if(promoCode === "50%OFF"){
-      purchase.price = purchase.price*(0.5);
-    }
+    console.log("purchase", purchase, promoCode)
+    purchase.price = purchase.album.price*(promoCode.percentageOff);
+    $scope.savings += (purchase.album.price - purchase.price);
     return purchase;
   }
 
 
   $scope.checkPromo = function(promo){
     console.log("PROMO", promo);
-    var valid = false;
+    $scope.valid = false;
     PromotionsFactory.getAllPromotions()
     .then(function(validPromos){
-      valid = validPromos.filter(function(validPromo){
+      $scope.valid = validPromos.filter(function(validPromo){
         return (promo.toLowerCase() === validPromo.code.toLowerCase() && (new Date(validPromos[0].expireAt) - new Date()) > 0);
       })
 
-      if(valid.length === 1){
+      if($scope.valid.length === 1){
         $scope.purchases.forEach(function(item){
-          console.log("purchase items", item)
+          console.log("purchase items", item, $scope.valid)
           var genres = $scope.getGenres(item.album.genre)
           for(var i = 0; i < genres.length; i++){
-            if(valid[0].validProducts.indexOf(genres[i]) > -1){
-              $scope.applyPromo(valid[0].code, item);
+            if($scope.valid[0].validProducts.indexOf(genres[i]) > -1){
+              $scope.applyPromo($scope.valid[0], item);
             }
           }
+          //set cartItems to updated purchases for html form
+          $scope.cartItems = $scope.purchases;
         })
+        console.log("cartItems", $scope.cartItems)
         console.log("purchases", $scope.purchases);
         //$scope.cartItems = $scope.purchases;
       }
@@ -82,12 +77,13 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
 
   //when place order is clicked -> make post request with form data for user and guest
   $scope.submitCheckout = function(orderData){
-    console.log("ORDER DATA");
     orderData.purchases = $scope.purchases;
     orderData.user = $scope.user;
+    orderData.promo = $scope.valid[0]._id;
     if(orderData.shippingMatch){
-      orderData.shipping = orderData.billing;
+      orderData.billing = orderData.shipping;
     }
+    console.log("FINAL ORDER DATA", orderData)
     TransactionFactory.submitTransaction(orderData)
     .then(function(order){
       //update user to store in their transaction history
@@ -101,6 +97,7 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
     .then(function(order){
       console.log('order', order);
       $scope.sendEmail(order);
+      return order;
     })
     .then(function(){
       //delete local storage

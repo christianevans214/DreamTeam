@@ -7,7 +7,7 @@
         </div>
         <div class="description">Receipts and notifications will be sent to this email address.</div>
         <div class="subtitle">Shipping Address</div>
-        <div class="field name">
+        <div class="field input-name">
            <input type="name" name="first_name" value="" ng-model="checkout.shipping.firstName" id="first_name" placeholder="First Name" />
            <input type="name" name="last_name" value="" ng-model="checkout.shipping.lastName" id="last_name" placeholder="Last Name" />
         </div>
@@ -339,7 +339,7 @@
             </div>
         <div ng-show="!checkout.shippingMatch">
         <div class="subtitle">Billing Address</div>
-        <div class="field name">
+        <div class="field input-name">
            <input type="name" name="first_name" value="" ng-model="checkout.billing.firstName" id="first_name" placeholder="First Name" />
            <input type="name" name="last_name" value="" ng-model="checkout.billing.lastName" id="last_name" placeholder="Last Name" />
         </div>
@@ -725,7 +725,10 @@
                             <td class="quantity">
                                 <input size="1" value="{{cartItem.quantity}}">
                             </td>
-                            <td class="price">
+                            <td class="price" ng-show="savings>0">
+                                <span>{{cartItem.price | currency}}</span>
+                            </td>
+                            <td class="price" ng-show="!savings">
                                 <span>{{cartItem.album.price | currency}}</span>
                             </td>
                             <td class="remove" ng-click="deleteFromCart(cartItem.album)"></td>
@@ -753,7 +756,7 @@
                 </div>
                 <div class="discounts total">
                     <div class="price">
-                        <span>{{0.00 | currency}}</span>
+                        <span>{{savings | currency}}</span>
                     </div>
                     <div class="label">Discounts</div>
                 </div>
