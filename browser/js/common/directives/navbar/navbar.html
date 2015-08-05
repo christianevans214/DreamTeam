@@ -1,33 +1,3 @@
-<!-- <nav class="navbar">
-    <div class="container">
-        <div class="navbar-header">
-            <fullstack-logo></fullstack-logo>
-        </div>
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}({id: user._id})">{{ item.label }}</a>
-            </li>
-            <li ng-show=user.isAdmin>
-                <a ui-sref-active="active" ui-sref="admin({id:user._id})">Admin</a>
-            </li>
-            <li ng-show="user">
-                <a ui-sref-active="active" ui-sref="cart({id: user._id})">Cart
-                <span class="glyphicon glyphicon-shopping-cart"></span></a>
-            </li>
-            <li ng-show="!user">
-                <a ui-sref-active="active" ui-sref="guestCart">Cart
-                <span class="glyphicon glyphicon-shopping-cart"></span></a>
-            </li>
-        </ul>
-        <button ng-show="!user" ui-sref="signup" class="btn login-button">Sign Up</button>
-        <button ng-show="!user" ui-sref="login" class="btn signup-button">Login</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <a ng-click="logout()">Logout</a>
-        </div>
-    </div>
-</nav>
- -->
 <div class = "nb">
     <div class = "logo">
     <h1>Infinite </br> Loop</h1>

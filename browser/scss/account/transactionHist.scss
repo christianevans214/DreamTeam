@@ -1,16 +1,75 @@
-.orderImage{
-  border-radius: 100em;
-  padding-bottom: 15px;
-  max-height: 20px;
-  max-width: 20px; 
+
+#orderImage{
+  padding: 15px;
+  margin: 10px;
+  max-height: 200px;
+  max-width: 200px;
+  float: left;
 }
 
 .orderInfo{
-  text-align: center
+  text-align: center;
+  display: inline-block;
+  width: 70%;
 }
 
-#avatar {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;  
-  }
+#avatar{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;  
+    padding: 10px;
+}
+
+.info{
+  float: right;
+  padding: 5px;
+  font-style: italic;
+  font-weight: bold;
+  width: 100%;
+}
+#textShop{
+  color: white;
+  font-size: 300%;
+}
+
+#textNum{
+  color: white;
+  font-size: 200%;
+  float: right;
+  text-align: right;
+}
+
+#textItems{
+  color: white;
+  font-size: 800%;
+  font-weight: bold;
+  float: right;
+}
+
+.orderNum{
+  background: #000 url("images/Vinyl_groove_macro.jpg") center center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  position: relative;
+}
+
+.order{
+  background: #000 url("images/Vinyl_groove_macro.jpg") center center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  position: relative;
+  opacity: 0.6;
+}
+
+.jumbotron{
+  background: #000 url("http://orig09.deviantart.net/8d94/f/2011/252/8/1/vinyl_stock_4_by_minicorndogs-d49d3zb.jpg") center center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  position: relative;
+}

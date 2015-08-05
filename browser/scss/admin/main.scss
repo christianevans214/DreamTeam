@@ -7,6 +7,10 @@
 	.nav-btn{
 		cursor: pointer;
 		display: inline-block;
+		&:hover > .glyphicon {
+	      color: #262335;
+	      transform: translate(0, -2px);
+	    }
 	}
 }
 
