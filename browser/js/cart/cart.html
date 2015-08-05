@@ -60,3 +60,52 @@
 	</div>
 	<button class="btn btn-default col-md-3 col-md-offset-9 col-lg-3  col-lg-offset-9 col-sm-3 col-sm-offset-9 checkout" ng-click="checkout(cartItems)"> Checkout </button>
 </div>
+
+
+
+<div class="title">Order Summary</div>
+<div class="cart">
+    <table>
+        <thead>
+            <tr>
+                <td class="item">Item</td>
+                <td class="quantity">Quantity</td>
+                <td class="price">Price</td>
+                <td class="remove-head"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="cartItem in cartItems">
+                <td class="item">
+                    <div class="item-img">
+                        <img ng-src='{{cartItem.album.image}}'>
+                        <div class="item-desc">
+                            <div>{{cartItem.album.title}}</div>
+                        </div>
+                    </div>
+                </td>
+                <td class="quantity">
+                    <input size="1" value="{{cartItem.quantity}}">
+                </td>
+                <td class="price">
+                    <span>{{cartItem.album.price | currency}}</span>
+                </td>
+                <td class="remove" ng-click="deleteFromCart(cartItem.album)"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="subtotal"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

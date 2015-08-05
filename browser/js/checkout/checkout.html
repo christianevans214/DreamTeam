@@ -695,7 +695,7 @@
             </div>
         </div> 
 
-        <div class="button continue" ng-click="continue=false">
+        <div class="button continue" ng-click="submitCheckout(checkout)">
             <button class="btn btn-primary">Submit Order</button> 
         </div> 
     </div>      
@@ -732,6 +732,35 @@
                         </tr>
                     </tbody>
                 </table>
+                <div id="price-summary">
+                <div class="subtotal total">
+                    <div class="price">
+                        <span>{{totalPrice | currency}}</span>
+                    <div class="label">Subtotal</div>
+                    </div>
+                </div>
+                <div class="tax total">
+                    <div class="price">
+                        <span>{{0.00 | currency}}</span>
+                    </div>
+                    <div class="label">Tax</div>
+                </div>
+                <div class="shipping total">
+                    <div class="price">
+                        <span>{{0.00 | currency}}</span>
+                    </div>
+                    <div class="label">Shipping</div>
+                </div>
+                <div class="discounts total">
+                    <div class="price">
+                        <span>{{0.00 | currency}}</span>
+                    </div>
+                    <div class="label">Discounts</div>
+                </div>
+                <div class="empty-message total" ng-show="!cartItems">
+                    <a id="message" ui-sref="store">You have nothing in your shopping cart.</a>
+                </div>
+                </div>
             </div>
         </div>
 

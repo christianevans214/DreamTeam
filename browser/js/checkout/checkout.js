@@ -12,7 +12,7 @@ app.config(function($stateProvider){
   })
 })
 
-app.controller('CheckoutController', function($state, $scope, user, TransactionFactory, localStorageService, UserFactory, PromotionsFactory){
+app.controller('CheckoutController', function($state, $scope, user, TransactionFactory, localStorageService, UserFactory, PromotionsFactory, CartFactory){
   $scope.user = user;
   $scope.purchases = [];
 
@@ -78,6 +78,7 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
   }
 
   //UPDATE QUANTITY
+  $scope.totalPrice = CartFactory.sumPrice($scope.cartItems);
 
   //when place order is clicked -> make post request with form data for user and guest
   $scope.submitCheckout = function(orderData){
