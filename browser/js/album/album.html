@@ -1,12 +1,14 @@
 
-
-<section id="albumDetail">
   <div class="album-wrapper col-lg-6">
     <img class = "album-image" src = '{{album.image}}'/>
   </div>
   <div class = 'album-info col-lg-6'>
     <ol class="list-group">
-      <h2> Album Details</h2>
+      <div class="textureAlb album">
+      <p class="textAlbum">
+        <h2> Album Details</h2>
+      </p>
+     </div>
       <li class="list-group-item">{{album.title}}</li>
       <li class="list-group-item">{{album.artist.name}}</li>
       <li class="list-group-item">{{album.genre[0]}}</li>
@@ -14,7 +16,11 @@
     </ol>
     <ui-view>
       <ol class="list-group">
+        <div class="textureAlb album">
+        <p class="textAlbum">
         <h2> Album Reviews </h2>
+        </p>
+       </div>
         <li class="list-group-item" ng-repeat= "review in album.review">
           @{{ review.username.firstName }} says: {{review.content}} 
             <span ng-repeat="start in range(review.rating)" class = "glyphicon glyphicon-cd" id="star-review">
@@ -22,19 +28,22 @@
           </li>
         </li>
       </ol>
-    <button class="btn btn-default" ng-click ="addToCart(album)" > Add To Cart </button>
+    <button class="btn btn-default" ng-click ="addToCart(album)">Add To Cart </button>
     <button ui-sref="albumDetail.addReview" class="btn btn-default" ng-if="user"> Write a Review</button>
     </ui-view>
   </div>
-
+  <div>
   <ul class= 'playlist col-lg-6 list-group'>
+      <div class="textTracks"> <p> Tracks </p> </div>
     <li class= 'list-group-item' ng-repeat="track in tracks"> 
-        <!-- <p class="glyphicon glyphicon-play play"></p> -->
         <p> {{track.name}} </p>
-        <audio ng-src="{{track.URL}}" type="track" preload="auto" controls></audio>
+        <div>
+          <audio ng-src="{{track.URL}}" type="track" preload="auto" controls></audio>
+        <div>
     </li>
   </ul>
+ </div>
   </div>
-
 </section>
+</div>
 
