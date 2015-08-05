@@ -69,7 +69,10 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
       }
     })
 
-    //NOTE: IF PROMO IS EXPIRED REMOVE FROM DATABASE!
+    //IF PROMO IS EXPIRED REMOVE FROM DATABASE!
+    if((new Date(validPromos[0].expireAt) - new Date()) < 0){
+      PromotionsFactory.deletePromotion($scope.valid[0]._id)
+    }
   }
 
   //UPDATE QUANTITY
