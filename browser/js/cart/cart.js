@@ -14,6 +14,10 @@ app.config(function($stateProvider) {
 app.controller('CartController', function($state, user, $scope, UserFactory, CartFactory, AlbumFactory, localStorageService) {
   $scope.user = user;
   $scope.cartItems = localStorageService.get('userCart');
+  console.log("CART", $scope.cartItems)
+  $scope.cartItems.forEach(function(item){
+    console.log("ITEM", item);
+  })
 
   //delete album from user cart
   $scope.deleteFromCart = function(currentAlbum) {
@@ -31,11 +35,11 @@ app.controller('CartController', function($state, user, $scope, UserFactory, Car
     UserFactory.updateUser($scope.user._id, $scope.user);
   }
 
+  $scope.totalPrice = CartFactory.sumPrice($scope.cartItems);
+
   //checkout
   $scope.checkout = function(cart) {
     $state.go('checkout');
   }
-
-
 
 })
