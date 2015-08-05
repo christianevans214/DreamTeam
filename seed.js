@@ -264,7 +264,7 @@ connectToDb.then(function() {
                     Album.create(newAlbums)
                         .then(function(albArr) {
                             console.log('6) We seed albums last')
-                            process.kill(0);
+                                // process.kill(0);
                         })
                 })
         })
