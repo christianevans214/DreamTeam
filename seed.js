@@ -220,55 +220,53 @@ connectToDb.then(function() {
         //STEP 1: Seed Users to DB.
 
         seedUsers()
-            .then(function(arrUser){
+            .then(function(arrUser) {
                 console.log('1) We seed users first');
-                reviews = reviews.map(function(review, index) {    
+                reviews = reviews.map(function(review, index) {
                     if (arrUser[index].firstName === review.username) {
                         review.username = arrUser[index]._id;
                         return review
                     }
                 })
                 console.log("2) We changed the users to match _id store in NewArray")
-        
-            Review.create(reviews)
-            .then(function(reviewsDB){
-                reviews = reviewsDB
-                return reviewsDB;
-            })
-            
-            seedArtists()
-                .then(function(artistResp) {
-                    console.log('4) We seed artists third')
-                    newAlbums = albums.map(function(album, index){
-                        if (artistResp[index].name === album.artist) {
-                            album.artist = artistResp[index]._id;
-                            return album;
-                        }                        
-                    })
-                })                   
-                .then(function(){
-                    reviews = reviews.map(function(review, index){
-                        if (review.username === arrUser[index]._id) {
-                            newAlbums.forEach(function(album){
-                                album.review = album.review.map(function(rev){
-                                    if (rev === arrUser[index].firstName){
-                                        rev = review._id
-                                    }
-                                    return rev
-                                })
-                            })
-                        }
-                        return review                       
+
+                Review.create(reviews)
+                    .then(function(reviewsDB) {
+                        reviews = reviewsDB
+                        return reviewsDB;
                     })
 
-                Album.create(newAlbums)
-                .then(function(albArr){
-                    console.log('6) We seed albums last')
-                    process.kill(0);    
-                })
+                seedArtists()
+                    .then(function(artistResp) {
+                        console.log('4) We seed artists third')
+                        newAlbums = albums.map(function(album, index) {
+                            if (artistResp[index].name === album.artist) {
+                                album.artist = artistResp[index]._id;
+                                return album;
+                            }
+                        })
+                    })
+                    .then(function() {
+                        reviews = reviews.map(function(review, index) {
+                            if (review.username === arrUser[index]._id) {
+                                newAlbums.forEach(function(album) {
+                                    album.review = album.review.map(function(rev) {
+                                        if (rev === arrUser[index].firstName) {
+                                            rev = review._id
+                                        }
+                                        return rev
+                                    })
+                                })
+                            }
+                            return review
+                        })
+
+                        Album.create(newAlbums)
+                            .then(function(albArr) {
+                                console.log('6) We seed albums last')
+                                process.kill(0);
+                            })
+                    })
             })
-        })
     });
 });
-
-

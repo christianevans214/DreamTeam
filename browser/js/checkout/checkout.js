@@ -36,8 +36,8 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
 
   $scope.applyPromo = function(promoCode, purchase){
     console.log("purchase", purchase, promoCode)
-    purchase.price = purchase.album.price*(promoCode.percentageOff);
-    $scope.savings += (purchase.album.price - purchase.price);
+    purchase.price = purchase.album.price*(1-promoCode.percentageOff);
+    $scope.savings += ((purchase.album.price) - purchase.price);
     return purchase;
   }
 
@@ -68,15 +68,15 @@ app.controller('CheckoutController', function($state, $scope, user, TransactionF
         //$scope.cartItems = $scope.purchases;
       }
     })
-
     //IF PROMO IS EXPIRED REMOVE FROM DATABASE!
     if((new Date(validPromos[0].expireAt) - new Date()) < 0){
       PromotionsFactory.deletePromotion($scope.valid[0]._id)
     }
   }
-
+  
   //UPDATE QUANTITY
-  $scope.totalPrice = CartFactory.sumPrice($scope.cartItems);
+  $scope.subTotal = CartFactory.sumPrice($scope.cartItems);
+  
 
   //when place order is clicked -> make post request with form data for user and guest
   $scope.submitCheckout = function(orderData){
